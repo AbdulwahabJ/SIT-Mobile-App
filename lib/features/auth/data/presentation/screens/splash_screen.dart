@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 
@@ -25,10 +24,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.splashScreenColor,
       body: Center(
-        child: Image.asset(Assets.companyLogo),
+        child: Image.asset(
+          Assets.splashLogo,
+          width: size.width * 0.7,
+          height: size.width * 0.4,
+        ),
       ),
     );
   }
