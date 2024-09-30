@@ -27,9 +27,9 @@ class CustomPhoneField extends StatelessWidget {
         if (value == null) {
           return 'Please enter your phone number';
         }
-        if (!RegExp(r'^\d+$').hasMatch(value.nsn)) {
-          return 'phone number must contain only numbers.';
-        }
+        // if (!RegExp(r'^\d+$').hasMatch(value.nsn)) {
+        //   return 'phone number must contain only numbers.';
+        // }
 
         return null;
       },

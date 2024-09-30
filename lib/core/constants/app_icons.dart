@@ -6,6 +6,7 @@ class AppIcons {
   //
   static const double iconSize = 18.0;
   static const double secondIconSize = 24.0;
+  static const double thirdIconSize = 34.0;
 
   //sign in screen   ###########
   static const Icon logInMailIcon = Icon(FontAwesomeIcons.solidEnvelope,
@@ -28,6 +29,9 @@ class AppIcons {
   static const Icon codeIcon =
       Icon(Icons.fingerprint, size: secondIconSize, color: AppColors.iconColor);
   //
-  static const Icon dropDownMenuIcson = Icon(Icons.arrow_drop_down,
+  static const Icon dropDownMenuIcon = Icon(Icons.arrow_drop_down,
       size: secondIconSize, color: AppColors.iconColor);
+  //
+  static const Icon backIcon = Icon(Icons.arrow_back_rounded,
+      size: thirdIconSize, color: AppColors.iconColor);
 }

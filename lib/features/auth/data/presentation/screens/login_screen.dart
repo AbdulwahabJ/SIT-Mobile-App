@@ -80,7 +80,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     return null;
                   },
                 ),
-                // const SizedBox(height: 14),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -90,12 +89,12 @@ class _LogInScreenState extends State<LogInScreen> {
                       },
                       child: const Text(
                         AppTexts.forgetPassword,
-                        style: AppStyles.styleReguler16,
+                        style: AppStyles.styleReguler13,
                       ),
                     )
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 6),
                 Center(
                   child: InkWell(
                     child: CustomMainButton(
@@ -129,7 +128,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           Navigator.pushNamed(context, AppRoutes.signupScreen);
                         },
                         child: const Text(AppTexts.signUp,
-                            style: AppStyles.styleReguler16)),
+                            style: AppStyles.styleReguler13)),
                   ],
                 )
               ],

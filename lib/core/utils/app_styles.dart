@@ -21,9 +21,9 @@ abstract class AppStyles {
   );
 
   //styleReguler16..
-  static const TextStyle styleReguler16 = TextStyle(
+  static const TextStyle styleReguler13 = TextStyle(
     color: AppColors.accentColor,
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
   );

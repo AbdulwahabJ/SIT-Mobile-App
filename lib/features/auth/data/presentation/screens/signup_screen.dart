@@ -31,7 +31,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // String? _phoneNumber;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0, top: 16),
+          child: IconButton(
+            icon: AppIcons.backIcon, // تغيير الأيقونة إلى أيقونة أخرى
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -43,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 28),
                 const Text(
                   AppTexts.signUp,
                   style: AppStyles.styleSemiBold26,
@@ -133,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       flex: 2,
                       child: DropdownButtonFormField<String>(
                         iconSize: 24,
-                        icon: AppIcons.dropDownMenuIcson,
+                        icon: AppIcons.dropDownMenuIcon,
                         decoration: InputDecoration(
                           enabledBorder: TextFieldDecoration.enabledBorder(),
                           focusedBorder: TextFieldDecoration.focusedBorder(),
