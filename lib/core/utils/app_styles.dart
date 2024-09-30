@@ -6,24 +6,24 @@ abstract class AppStyles {
 
   //styleSemiBold22..
   static const TextStyle styleSemiBold22 = TextStyle(
-    color: AppColors.primaryColor,
+    color: AppColors.whaiteBackgroundColor,
     fontSize: 22,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w600,
   );
 
-  //styleSemiBold30..
-  static const TextStyle styleSemiBold30 = TextStyle(
+  //styleSemiBold26..
+  static const TextStyle styleSemiBold26 = TextStyle(
     color: AppColors.primaryColor,
-    fontSize: 30,
+    fontSize: 26,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w600,
   );
 
   //styleReguler16..
   static const TextStyle styleReguler16 = TextStyle(
-    color: AppColors.primaryColor,
-    fontSize: 16,
+    color: AppColors.accentColor,
+    fontSize: 14,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
   );
