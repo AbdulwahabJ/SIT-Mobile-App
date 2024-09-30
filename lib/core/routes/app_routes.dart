@@ -8,7 +8,7 @@ import '../../features/auth/data/presentation/screens/signup_screen.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splash';
-  static const String loginScreen = '/login';
+  static const String loginScreen = '/';
   static const String signupScreen = '/signup';
   static const String verfiyScreen = '/verfiy';
   static const String resetPasswordScreen = '/resetPassword';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/text_field_decoration.dart';
 import '../../../../../core/utils/app_styles.dart';
 
@@ -7,16 +8,18 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   final Icon icon;
   final String? type;
-  final String? Function(String?)? validator; // Add a validator parameter
-  final Function(String)? onChanged; // Add onChanged callback
+  final String? Function(String?)? validator; // الفالديشن
+  final Function(String)? onChanged; // رد فعل عند تغيير النص
+  final TextEditingController? controller; // إضافة TextEditingController
 
   const CustomTextField({
     super.key,
     required this.hintText,
     required this.icon,
     this.type,
-    this.validator, // Pass the validator function
-    this.onChanged, // Pass the onChanged function
+    this.validator, // تمرير الفالديشن
+    this.onChanged, // تمرير رد فعل عند التغيير
+    this.controller, // تمرير TextEditingController
   });
 
   @override
@@ -29,6 +32,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller, // استخدم TextEditingController هنا
       obscureText: widget.type == 'password' ? !passwordVisible : false,
       decoration: InputDecoration(
         suffixIcon: widget.type == 'password'
@@ -38,7 +42,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     : AppIcons.passwordNotVisibilityIcon,
                 onPressed: () {
                   setState(() {
-                    passwordVisible = !passwordVisible; // Toggle visibility
+                    passwordVisible =
+                        !passwordVisible; // تغيير ظهور كلمة المرور
                   });
                 },
               )
@@ -51,8 +56,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         errorBorder: TextFieldDecoration.errorBorder(),
         focusedErrorBorder: TextFieldDecoration.focusedErrorBorder(),
       ),
-      validator: widget.validator, // Add validator here
-      onChanged: widget.onChanged, // Trigger the onChanged callback
+      validator: widget.validator, // إضافة الفالديشن
+      onChanged: widget.onChanged, // رد فعل عند تغيير النص
     );
   }
 }

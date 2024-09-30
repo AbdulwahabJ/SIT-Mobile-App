@@ -12,10 +12,10 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
   String? _selectedCode;
@@ -27,7 +27,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     // String? _phoneNumber;
 
     return Scaffold(
@@ -45,8 +44,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
-            left: AppPadding.authScreenPadding,
-            right: AppPadding.authScreenPadding,
+            left: AppPadding.authScreensPadding,
+            right: AppPadding.authScreensPadding,
           ),
           child: Form(
             key: _formKey,
@@ -55,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 const SizedBox(height: 28),
                 const Text(
-                  AppTexts.signUp,
+                  AppTexts.signUpHeader,
                   style: AppStyles.styleSemiBold26,
                 ),
                 const SizedBox(height: 20),
@@ -93,8 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                 ),
                 const SizedBox(height: 14),
-                // Phone Number Field
-                // Phone Number Field
+
                 const CustomPhoneField(),
                 const SizedBox(height: 14),
                 // Password Field
@@ -180,7 +178,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Center(
                   child: InkWell(
                     child: CustomMainButton(
-                      size: size,
                       isLoading: _isLoading,
                       buttonText: AppTexts.signUpTextButton,
                     ),
