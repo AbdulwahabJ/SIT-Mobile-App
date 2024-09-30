@@ -1,11 +1,15 @@
 class AppTexts {
+  //sign in Screen
   static const String signIn = 'Sign in';
-  static const String loginTextButton = 'SIGN IN';
-  static const String loginSignUpTextButton = 'Sign up';
-    static const String loginForgetPasswordTextButton = 'Forget Password?';
+  static const String signUp = 'Sign up';
 
+  static const String signInTextButton = 'SIGN IN';
+  static const String signUpTextButton = 'SIGN UP';
 
-  static const String loginDontHaveAccount = "Don't have an account?";
-  static const String loginMailHintText = 'example@gmail.com';
-  static const String loginPasswordHintText = "Your password";
+  static const String mailHintText = 'example@gmail.com';
+  static const String fullNameHintText = 'Full name';
+  static const String forgetPassword = 'Forget Password?';
+  static const String dontHaveAccount = "Don't have an account?";
+  static const String passwordHintText = "Your password";
+  static const String codeHintText = "Code";
 }

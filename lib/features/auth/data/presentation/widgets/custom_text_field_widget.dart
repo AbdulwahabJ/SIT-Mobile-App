@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
-import '../../../../../core/constants/app_colors.dart';
+import 'package:sit_app/features/auth/data/presentation/widgets/text_field_decoration.dart';
 import '../../../../../core/utils/app_styles.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -8,6 +8,7 @@ class CustomTextField extends StatefulWidget {
   final Icon icon;
   final String? type;
   final String? Function(String?)? validator; // Add a validator parameter
+  final Function(String)? onChanged; // Add onChanged callback
 
   const CustomTextField({
     super.key,
@@ -15,6 +16,7 @@ class CustomTextField extends StatefulWidget {
     required this.icon,
     this.type,
     this.validator, // Pass the validator function
+    this.onChanged, // Pass the onChanged function
   });
 
   @override
@@ -44,53 +46,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintText: widget.hintText,
         hintStyle: AppStyles.styleLight14,
         prefixIcon: widget.icon,
-        enabledBorder: enabledBorder(),
-        focusedBorder: focusedBorder(),
-        errorBorder: errorBorder(),
-        focusedErrorBorder: focusedErrorBorder(),
+        enabledBorder: TextFieldDecoration.enabledBorder(),
+        focusedBorder: TextFieldDecoration.focusedBorder(),
+        errorBorder: TextFieldDecoration.errorBorder(),
+        focusedErrorBorder: TextFieldDecoration.focusedErrorBorder(),
       ),
-
       validator: widget.validator, // Add validator here
-    );
-  }
-
-  OutlineInputBorder focusedErrorBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(
-        color: Colors.red,
-        width: 1.5,
-      ),
-    );
-  }
-
-  OutlineInputBorder errorBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(
-        color: Colors.red,
-        width: 1.5,
-      ),
-    );
-  }
-
-  OutlineInputBorder focusedBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(
-        color: Colors.blue,
-        width: 1.5,
-      ),
-    );
-  }
-
-  OutlineInputBorder enabledBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(
-        color: AppColors.primaryColor,
-        width: 1.5,
-      ),
+      onChanged: widget.onChanged, // Trigger the onChanged callback
     );
   }
 }

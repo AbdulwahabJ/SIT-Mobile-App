@@ -52,7 +52,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 const SizedBox(height: 12),
                 CustomTextField(
-                  hintText: AppTexts.loginMailHintText,
+                  hintText: AppTexts.mailHintText,
                   icon: AppIcons.logInMailIcon,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -66,7 +66,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 const SizedBox(height: 14),
                 CustomTextField(
-                  hintText: AppTexts.loginPasswordHintText,
+                  hintText: AppTexts.passwordHintText,
                   icon: AppIcons.logInPasswordIcon,
                   type: 'password',
                   validator: (value) {
@@ -89,7 +89,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         Navigator.pushNamed(context, AppRoutes.verfiyScreen);
                       },
                       child: const Text(
-                        AppTexts.loginForgetPasswordTextButton,
+                        AppTexts.forgetPassword,
                         style: AppStyles.styleReguler16,
                       ),
                     )
@@ -101,7 +101,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     child: CustomMainButton(
                       size: size,
                       isLoading: _isLoading,
-                      buttonText: AppTexts.loginTextButton,
+                      buttonText: AppTexts.signUpTextButton,
                     ),
                     onTap: () {
                       FocusScope.of(context).unfocus();
@@ -123,12 +123,12 @@ class _LogInScreenState extends State<LogInScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(AppTexts.loginDontHaveAccount),
+                    const Text(AppTexts.dontHaveAccount),
                     TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, AppRoutes.signupScreen);
                         },
-                        child: const Text(AppTexts.loginSignUpTextButton,
+                        child: const Text(AppTexts.signUp,
                             style: AppStyles.styleReguler16)),
                   ],
                 )
