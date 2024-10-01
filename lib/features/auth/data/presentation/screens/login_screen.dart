@@ -73,8 +73,13 @@ class LogInScreenState extends State<LogInScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email';
                     }
-                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                    if (!RegExp(
+                            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                        .hasMatch(value)) {
                       return 'Please enter a valid email';
+                    }
+                    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@').hasMatch(value)) {
+                      return 'Email must be in English';
                     }
                     return null;
                   },

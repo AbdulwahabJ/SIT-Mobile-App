@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_text.dart';
-import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';

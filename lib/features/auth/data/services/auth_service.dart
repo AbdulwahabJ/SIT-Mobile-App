@@ -1,3 +1,4 @@
+import '../../../../core/constants/app_text.dart';
 import '../models/user_model.dart';
 import '../network/dio_client.dart';
 import '../network/shared_preferenes.dart';
@@ -9,7 +10,7 @@ class AuthService {
 
   Future<User?> logIn(String email, String password) async {
     try {
-      final response = await dioClient.post('/login', {
+      final response = await dioClient.post(AppTexts.loginApi, {
         'email': email,
         'password': password,
       });
@@ -26,12 +27,15 @@ class AuthService {
     }
   }
 
-  Future<User?> signUp(String email, String password, String username) async {
+  Future<User?> signUp(String email, String password, String name,
+      String phoneNumber, String code) async {
     try {
-      final response = await dioClient.post('/signup', {
+      final response = await dioClient.post(AppTexts.registerApi, {
         'email': email,
         'password': password,
-        'username': username,
+        'name': name,
+        'phone_number': phoneNumber,
+        'code': code,
       });
 
       if (response.statusCode == 200) {

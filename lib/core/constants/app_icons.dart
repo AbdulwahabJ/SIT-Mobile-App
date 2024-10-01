@@ -34,4 +34,7 @@ class AppIcons {
   //
   static const Icon backIcon = Icon(Icons.arrow_back_rounded,
       size: thirdIconSize, color: AppColors.iconColor);
+  //
+  static const Icon phoneIcon =
+      Icon(Icons.phone, size: secondIconSize, color: AppColors.iconColor);
 }

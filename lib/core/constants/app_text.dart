@@ -17,4 +17,8 @@ class AppTexts {
 
   static const String forgetPassword = 'Forget Password?';
   static const String dontHaveAccount = "Don't have an account?";
+
+  //api constants
+  static const String loginApi = '/login';
+  static const String registerApi = '/register';
 }
