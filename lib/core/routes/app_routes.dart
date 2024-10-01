@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sit_app/features/auth/data/presentation/screens/home_screen.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/reset_password_screen.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/splash_screen.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/verfiy_screen.dart';
@@ -12,6 +13,7 @@ class AppRoutes {
   static const String signupScreen = '/signup';
   static const String verfiyScreen = '/verfiy';
   static const String resetPasswordScreen = '/resetPassword';
+  static const String homeScreen = '/home';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -25,6 +27,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const VerfiyScreen());
       case resetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
+      case homeScreen:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

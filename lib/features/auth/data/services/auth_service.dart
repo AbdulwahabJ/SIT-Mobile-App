@@ -1,5 +1,6 @@
 import '../models/user_model.dart';
 import '../network/dio_client.dart';
+import '../network/shared_preferenes.dart';
 
 class AuthService {
   final DioClient dioClient;
@@ -14,7 +15,9 @@ class AuthService {
       });
 
       if (response.statusCode == 200) {
-        return User.fromJson(response.data['user']);
+        final user = User.fromJson(response.data['user']);
+        await TokenStorage.saveToken(user.token); // تخزين التوكن
+        return user;
       } else {
         throw Exception(response.data['message']);
       }

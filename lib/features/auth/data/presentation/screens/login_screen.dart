@@ -19,7 +19,7 @@ class LogInScreen extends StatefulWidget {
   LogInScreenState createState() => LogInScreenState();
 }
 
-class LogInScreenState extends State<LogInScreen> with RouteAware {
+class LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -112,24 +112,24 @@ class LogInScreenState extends State<LogInScreen> with RouteAware {
                   ],
                 ),
                 const SizedBox(height: 6),
-                BlocConsumer(listener: (context, state) {
+                BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
                   if (state is AuthSuccess) {
+                    _isLoading = false;
+
                     Navigator.pushReplacementNamed(
-                        context, AppRoutes.verfiyScreen);
+                        context, AppRoutes.homeScreen);
                   } else if (state is AuthFailure) {
-                    setState(() {
-                      _isLoading = false;
-                    });
+                    _isLoading = false;
+
                     // عرض رسالة الخطأ
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.error)),
                     );
+                    print(state.error);
                   }
                 }, builder: (context, state) {
                   if (state is AuthLoading) {
-                    setState(() {
-                      _isLoading = true;
-                    });
+                    _isLoading = true;
                   }
                   return Center(
                     child: InkWell(
@@ -140,13 +140,10 @@ class LogInScreenState extends State<LogInScreen> with RouteAware {
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         if (_formKey.currentState?.validate() == true) {
-                          final cubit = context.read<AuthCubit>();
-                          cubit.logIn(
+                          context.read<AuthCubit>().logIn(
                               emailController.text, passwordController.text);
                           // محاكاة عملية تسجيل الدخول
-                          setState(() {
-                            _isLoading = false;
-                          });
+                          _isLoading = false;
                         }
                       },
                     ),

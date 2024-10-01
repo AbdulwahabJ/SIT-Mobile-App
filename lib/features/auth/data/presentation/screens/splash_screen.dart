@@ -5,6 +5,7 @@ import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/login_screen.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_screen_utils.dart';
+import '../../network/shared_preferenes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,9 +18,23 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     Timer(const Duration(seconds: 3), () {
+      _checkLoginStatus();
       _navigateToLoginScreen();
     });
+  }
+
+  Future<void> _checkLoginStatus() async {
+    String? token = await TokenStorage.getToken(); // استرجاع التوكن
+
+    if (!mounted) return;
+
+    if (token != null) {
+      Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+    } else {
+      Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+    }
   }
 
   void _navigateToLoginScreen() {
