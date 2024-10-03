@@ -1,4 +1,6 @@
+import 'dart:async';
 import '../../../../core/constants/app_text.dart';
+import '../../../../core/helper/handle_exception.dart';
 import '../models/user_model.dart';
 import '../network/dio_client.dart';
 import '../network/shared_preferenes.dart';
@@ -9,7 +11,7 @@ class AuthService {
   AuthService(this.dioClient);
 
   Future<User?> logIn(String email, String password) async {
-    try {
+    return handleException(() async {
       final response = await dioClient.post(AppTexts.loginApi, {
         'email': email,
         'password': password,
@@ -17,19 +19,17 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final user = User.fromJson(response.data['user']);
-        await TokenStorage.saveToken(user.token); // تخزين التوكن
+        await TokenStorage.saveToken(user.token); // Save the token
         return user;
       } else {
-        throw Exception(response.data['message']);
+        throw Exception();
       }
-    } catch (e) {
-      throw Exception('Login failed: $e');
-    }
+    });
   }
 
   Future<User?> signUp(String email, String password, String name,
       String phoneNumber, String code) async {
-    try {
+    return handleException(() async {
       final response = await dioClient.post(AppTexts.registerApi, {
         'email': email,
         'password': password,
@@ -43,8 +43,35 @@ class AuthService {
       } else {
         throw Exception(response.data['message']);
       }
-    } catch (e) {
-      throw Exception('Sign up failed: $e');
-    }
+    });
+  }
+
+  Future<bool> verfiyEmail(String email) async {
+    return handleException(() async {
+      final response = await dioClient.post(AppTexts.verfiyEmailApi, {
+        'email': email,
+      });
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        throw Exception();
+      }
+    });
+  }
+
+  Future<bool> resetPassword(String email, String confirmedPassword) async {
+    return handleException(() async {
+      final response = await dioClient.post(AppTexts.resetPasswordApi, {
+        'email': email,
+        'password': confirmedPassword,
+      });
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        throw Exception('/');
+      }
+    });
   }
 }

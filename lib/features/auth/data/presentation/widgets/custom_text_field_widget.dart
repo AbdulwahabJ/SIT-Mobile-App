@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
-import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/text_field_decoration.dart';
 import '../../../../../core/utils/app_styles.dart';
 
