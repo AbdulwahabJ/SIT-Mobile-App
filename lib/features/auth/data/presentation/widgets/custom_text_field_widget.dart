@@ -42,13 +42,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 onPressed: () {
                   setState(() {
                     passwordVisible =
-                        !passwordVisible; // تغيير ظهور كلمة المرور
+                        !passwordVisible; 
                   });
                 },
               )
             : null,
         hintText: widget.hintText,
-        hintStyle: AppStyles.styleLight14,
+        hintStyle: AppStyles.styleLight12,
         prefixIcon: widget.icon,
         enabledBorder: TextFieldDecoration.enabledBorder(),
         focusedBorder: TextFieldDecoration.focusedBorder(),

@@ -26,8 +26,13 @@ Future<T> handleException<T>(Future<T> Function() action) async {
         e.response?.data['message'] == 'email not exist' &&
         e.response?.statusCode == 404) {
       throw (AppTexts.verfiyEmailException);
+    } else if (e is DioException &&
+        e.response?.data['message'] == 'unique email' &&
+        e.response?.statusCode == 400) {
+      throw (AppTexts.unUniqueEmailException);
     }
     //
-    throw Exception(AppTexts.generalException);
+    throw Exception('${AppTexts.generalException} : $e');
   }
 }
+//

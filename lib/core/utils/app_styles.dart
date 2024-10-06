@@ -28,10 +28,10 @@ abstract class AppStyles {
     fontWeight: FontWeight.w400,
   );
 
-  //styleLight14..
-  static const TextStyle styleLight14 = TextStyle(
+  //styleLight12..
+  static const TextStyle styleLight12 = TextStyle(
     color: AppColors.primaryColor,
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w300,
   );

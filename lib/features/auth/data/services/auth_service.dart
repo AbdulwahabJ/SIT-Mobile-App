@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'package:sit_app/core/network/dio_client.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
+
 import '../../../../core/constants/app_text.dart';
 import '../../../../core/helper/handle_exception.dart';
 import '../models/user_model.dart';
-import '../network/dio_client.dart';
-import '../network/shared_preferenes.dart';
+
 
 class AuthService {
   final DioClient dioClient;
@@ -27,15 +29,15 @@ class AuthService {
     });
   }
 
-  Future<User?> signUp(String email, String password, String name,
-      String phoneNumber, String code) async {
+  Future<User?> signUp(String name, String email, String password,
+      String phoneNumber, String? groupID) async {
     return handleException(() async {
       final response = await dioClient.post(AppTexts.registerApi, {
+        'name': name,
         'email': email,
         'password': password,
-        'name': name,
         'phone_number': phoneNumber,
-        'code': code,
+        'group_id': groupID,
       });
 
       if (response.statusCode == 200) {

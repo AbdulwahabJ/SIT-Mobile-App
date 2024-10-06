@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 
 class DioClient {
+  static final DioClient _instance = DioClient._internal();
   final Dio _dio;
 
-  DioClient()
+  factory DioClient() {
+    return _instance;
+  }
+  DioClient._internal()
       : _dio = Dio(
           BaseOptions(
             baseUrl:

@@ -3,7 +3,7 @@ import '../data/services/auth_service.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final AuthService authService;
+  final AuthService authService; // تعديل هنا لجعل authService متغيرًا.
   String verifiedEmail = '';
 
   AuthCubit(this.authService) : super(AuthInitial());
@@ -14,24 +14,22 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await authService.logIn(email, password);
       if (user != null) {
         emit(AuthSuccess('Login successful: ${user.name}'));
-        // } else {
-        //   emit(AuthFailure('Login failed: Invalid credentials.'));
-      } //'You should Sign up first
+      }
     } catch (e) {
       emit(AuthFailure('Login failed : ${e.toString()}'));
     }
   }
 
   Future<void> signUp(String name, String email, String password,
-      String phoneNumber, String code) async {
+      String phoneNumber, String? groupID) async {
     emit(AuthLoading());
     try {
       final user = await authService.signUp(
+        name,
         email,
         password,
-        name,
         phoneNumber,
-        code,
+        groupID,
       );
       if (user != null) {
         emit(AuthSuccess('Sign up successful: ${user.name}'));

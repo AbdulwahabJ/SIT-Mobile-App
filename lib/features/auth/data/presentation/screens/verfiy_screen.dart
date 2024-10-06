@@ -7,7 +7,7 @@ import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
-
+import '../../../../../core/helper/validation.dart';
 import '../../../logic/auth_cubit.dart';
 import '../../../logic/auth_state.dart';
 
@@ -22,9 +22,7 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
 
-  // String email = '';
-  bool _isLoading = false;
-  String? password;
+  bool isSuccess = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,80 +38,77 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
           ),
         ),
       ),
-      body: BlocListener<AuthCubit, AuthState>(
+      body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthLoading) {
-            setState(() => _isLoading = true);
-          } else if (state is AuthSuccess) {
-            setState(() {
-              _isLoading = false;
+          if (state is AuthSuccess) {
+            isSuccess = true;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.pushReplacementNamed(
+                context,
+                AppRoutes.resetPasswordScreen,
+              );
             });
-            Navigator.pushReplacementNamed(
-                context, AppRoutes.resetPasswordScreen);
           } else if (state is AuthFailure) {
-            setState(() => _isLoading = false);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error)),
-            );
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.error)),
+              );
+            });
           }
         },
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: AppPadding.authScreensPadding,
-              right: AppPadding.authScreensPadding,
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 28),
-                  const Text(
-                    AppTexts.verfiyTextButton,
-                    style: AppStyles.styleSemiBold26,
-                  ),
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 14),
-                  CustomTextField(
-                    controller: emailController,
-                    hintText: AppTexts.mailHintText,
-                    icon: AppIcons.logInMailIcon,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                        return 'Please enter a valid email';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 38),
-                  Center(
-                    child: InkWell(
-                      child: CustomMainButton(
-                        isLoading: _isLoading,
-                        buttonText: AppTexts.verfiyTextButton,
-                      ),
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                        if (_formKey.currentState?.validate() == true) {
-                          context
-                              .read<AuthCubit>()
-                              .verfiyEmail(emailController.text);
-                        }
-                      },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: AppPadding.authScreensPadding,
+                right: AppPadding.authScreensPadding,
+              ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 28),
+                    const Text(
+                      AppTexts.verfiyTextButton,
+                      style: AppStyles.styleSemiBold26,
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                ],
+                    const SizedBox(height: 20),
+                    const SizedBox(height: 14),
+                    CustomTextField(
+                      controller: emailController,
+                      hintText: AppTexts.mailHintText,
+                      icon: AppIcons.mailIcon,
+                      validator: (value) =>
+                          Validation.validateInput(InputType.email, value),
+                    ),
+                    const SizedBox(height: 38),
+                    Center(
+                      child: InkWell(
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          if (_formKey.currentState?.validate() == true) {
+                            context
+                                .read<AuthCubit>()
+                                .verfiyEmail(emailController.text);
+                          }
+                        },
+                        child: CustomMainButton(
+                          isSuccess: isSuccess,
+                          isLoading:
+                              state is AuthLoading, // استخدام الحالة مباشرة
+                          buttonText: AppTexts.verfiyTextButton,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

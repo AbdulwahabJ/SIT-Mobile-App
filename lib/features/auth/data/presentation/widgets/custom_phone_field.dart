@@ -26,17 +26,11 @@ class CustomPhoneField extends StatelessWidget {
           focusedBorder: TextFieldDecoration.focusedBorder(),
           errorBorder: TextFieldDecoration.errorBorder(),
           focusedErrorBorder: TextFieldDecoration.focusedErrorBorder(),
-          // إضافة رمز البلد كجزء من الحقل
           prefixIcon: AppIcons.phoneIcon),
       validator: (value) {
-        // تحقق مما إذا كان رقم الهاتف موجودًا
         if (value == null || value.nsn.isEmpty) {
           return 'Please enter your phone number';
         }
-        // // تحقق مما إذا كان رقم الهاتف يحتوي على أرقام فقط
-        // if (!RegExp(r'^\d+$').hasMatch(value.nsn)) {
-        //   return 'phone number should contain only numbers';
-        // }
         return null;
       },
       countrySelectorNavigator: const CountrySelectorNavigator.dialog(),

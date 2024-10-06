@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/login_screen.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_screen_utils.dart';
-import '../../network/shared_preferenes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,11 +15,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Timer? _timer;
   @override
   void initState() {
     super.initState();
     TokenStorage.deleteToken();
-    Timer(const Duration(seconds: 3), () {
+    _timer = Timer(const Duration(seconds: 3), () {
       _checkLoginStatus();
       _navigateToLoginScreen();
     });
@@ -73,5 +74,11 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 }
