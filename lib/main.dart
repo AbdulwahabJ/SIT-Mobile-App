@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:sit_app/core/network/get_it.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
-import 'package:sit_app/features/auth/data/network/get_it.dart';
+import 'package:sit_app/core/widgets/bottom_nav_bar.dart/logic/bottom_nav_bar_cubit.dart';
 import 'package:sit_app/features/auth/data/services/auth_service.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
 
@@ -22,10 +23,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthCubit(GetIt.I<AuthService>()),
         ),
+        BlocProvider(
+          create: (context) => BottomNavBarCubit(),
+        ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.splashScreen,
+        initialRoute: AppRoutes.navScreen,
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );

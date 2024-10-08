@@ -43,4 +43,29 @@ class AppIcons {
   //
   static const Icon successIcon = Icon(Icons.check_circle,
       size: thirdIconSize, color: AppColors.successColor);
+
+  //
+  //bottom nav bar icons
+  static const Icon homeIcon = Icon(
+    FontAwesomeIcons.house,
+    size: secondIconSize,
+  );
+  static const Icon staffIcon = Icon(
+    Icons.group,
+    size: 24,
+  );
+  static const Icon momenstIcon = Icon(
+    FontAwesomeIcons.bookmark,
+    size: secondIconSize,
+  );
+
+  //app bar icons
+  static const Icon drawerIcon =
+      Icon(Icons.menu, size: 24, color: AppColors.primaryColor);
+  static const Icon langugeIcon =
+      Icon(Icons.language, size: 24, color: AppColors.primaryColor);
+  //
+  //guide list icons
+  static const Icon guideListIcon = Icon(Icons.arrow_forward_rounded,
+      size: 22, color: AppColors.whaiteBackgroundColor);
 }

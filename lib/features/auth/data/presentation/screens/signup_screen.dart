@@ -6,7 +6,6 @@ import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
-import 'package:sit_app/features/auth/data/presentation/widgets/text_field_decoration.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
 import 'package:sit_app/features/auth/logic/auth_state.dart';
 import '../../../../../core/constants/app_icons.dart';
