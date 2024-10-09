@@ -6,11 +6,16 @@ import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/logic/bottom_nav_bar_cubit.dart';
 import 'package:sit_app/features/auth/data/services/auth_service.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator(); // تسجيل DioClient و SharedPreferences
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      builder: (context) => MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +32,10 @@ class MyApp extends StatelessWidget {
           create: (context) => BottomNavBarCubit(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.navScreen,
         onGenerateRoute: AppRoutes.generateRoute,

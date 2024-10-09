@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
-import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 
 class ListViewGuideItem extends StatelessWidget {
@@ -12,11 +11,12 @@ class ListViewGuideItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // تغيير الطول بناءً على عرض الشاشة
     return Stack(
       children: [
         Container(
-          width: ScreenUtil.getWidth(context, 0.8),
-          height: ScreenUtil.getHeight(context, 0.27),
+          // width: constraints.maxWidth,
+          // height: height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
@@ -26,8 +26,8 @@ class ListViewGuideItem extends StatelessWidget {
           ),
         ),
         Container(
-          width: ScreenUtil.getWidth(context, 0.55),
-          height: ScreenUtil.getHeight(context, 0.27),
+          // width: constraints.maxWidth,
+          // height: height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,

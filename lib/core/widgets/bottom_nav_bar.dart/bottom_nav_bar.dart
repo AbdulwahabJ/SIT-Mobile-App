@@ -21,7 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: BlocBuilder<BottomNavBarCubit, int>(
         builder: (context, currentIndex) {
           return IndexedStack(
-            index: currentIndex ,
+            index: currentIndex,
             children: const [LogInScreen(), HomeScreen(), SignUpScreen()],
           );
         },

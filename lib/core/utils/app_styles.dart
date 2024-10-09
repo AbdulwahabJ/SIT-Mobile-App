@@ -20,6 +20,22 @@ abstract class AppStyles {
     fontWeight: FontWeight.w600,
   );
 
+ //styleSemiBold16..
+  static const TextStyle styleSemiBold16 = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+
+  //styleSemiBold18..
+  static const TextStyle styleSemiBold18 = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+
   //styleSemiBold22..
   static const TextStyle styleSemiBold22 = TextStyle(
     color: AppColors.whaiteBackgroundColor,

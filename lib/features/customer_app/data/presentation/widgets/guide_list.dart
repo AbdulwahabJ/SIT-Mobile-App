@@ -20,7 +20,7 @@ class _GuideListViewState extends State<GuideListView> with RouteAware {
   final List<Map<String, String>> items = [
     {'image': 'assets/images/umrah_guide.jpg', 'label': 'Umrah Guide'},
     {'image': 'assets/images/madina_guide.jpg', 'label': 'Madina Guide'},
-    {'image': 'assets/images/madina_guide.jpg', 'label': 'Madina Guide'},
+    {'image': 'assets/images/mazarat_guide.jpg', 'label': 'Madina Guide'},
   ];
 
   @override
@@ -28,16 +28,19 @@ class _GuideListViewState extends State<GuideListView> with RouteAware {
     return Column(
       children: [
         SizedBox(
-          height: 200,
+          height: ScreenUtil.getHeight(context, 0.28),
           child: CarouselSlider(
             items: items.map((item) {
-              return ListViewGuideItem(item: item);
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: ListViewGuideItem(item: item),
+              );
             }).toList(),
             carouselController: _carouselController,
             options: CarouselOptions(
               height: ScreenUtil.getHeight(context, 0.6),
-              aspectRatio: 16 / 9,
-              viewportFraction: 0.88,
+              // aspectRatio: 16 / 9,
+              // viewportFraction: 0.88,
               // initialPage: initialPage,
               scrollDirection: Axis.horizontal,
               enableInfiniteScroll: false,

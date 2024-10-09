@@ -61,9 +61,9 @@ class AppIcons {
 
   //app bar icons
   static const Icon drawerIcon =
-      Icon(Icons.menu, size: 24, color: AppColors.primaryColor);
+      Icon(Icons.menu, size: thirdIconSize, color: AppColors.primaryColor);
   static const Icon langugeIcon =
-      Icon(Icons.language, size: 24, color: AppColors.primaryColor);
+      Icon(Icons.language, size: thirdIconSize, color: AppColors.primaryColor);
   //
   //guide list icons
   static const Icon guideListIcon = Icon(Icons.arrow_forward_rounded,

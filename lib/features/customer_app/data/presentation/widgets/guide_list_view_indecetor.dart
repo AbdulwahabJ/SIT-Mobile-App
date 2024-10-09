@@ -25,8 +25,8 @@ class GuideListViewIndecetor extends StatelessWidget {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
-            width: currentPage == entry.key ? 20.0 : 8,
-            height: 6.0,
+            width: currentPage == entry.key ? 30.0 : 8,
+            height: 8.0,
             margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
