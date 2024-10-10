@@ -7,6 +7,7 @@ import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/guide_list.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/today_program_list_view.dart';
+import '../../../../customer_app/data/presentation/widgets/customer_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,8 +16,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: const Drawer(),
+          width: ScreenUtil.getWidth(context, 0.7),
+          child: const AppDrawer(),
         ),
         appBar: AppBar(
           backgroundColor: AppColors.backgroundColor,
@@ -37,15 +38,10 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                  icon: Image.asset(
-                    Assets.companyLogo,
-                    width: ScreenUtil.getWidth(context, 0.3),
-                    height: ScreenUtil.getHeight(context, 0.09),
-                  ),
-                  onPressed: () {
-                    // أضف هنا وظيفة تغيير اللغة
-                  },
+                child: Image.asset(
+                  Assets.companyLogo,
+                  width: ScreenUtil.getWidth(context, 0.3),
+                  height: ScreenUtil.getHeight(context, 0.09),
                 ),
               ),
               IconButton(

@@ -39,31 +39,35 @@ class AppIcons {
       Icon(Icons.arrow_back_rounded, size: 28, color: AppColors.iconColor);
   // sign up screen ###########
 
-//
+  //
   //
   static const Icon successIcon = Icon(Icons.check_circle,
       size: thirdIconSize, color: AppColors.successColor);
-
   //
   //bottom nav bar icons
-  static const Icon homeIcon = Icon(
-    FontAwesomeIcons.house,
-    size: secondIconSize,
-  );
-  static const Icon staffIcon = Icon(
-    Icons.group,
-    size: 24,
-  );
-  static const Icon momenstIcon = Icon(
-    FontAwesomeIcons.bookmark,
-    size: secondIconSize,
-  );
-
+  static const Icon homeIcon =
+      Icon(FontAwesomeIcons.house, size: secondIconSize);
+  //
+  static const Icon staffIcon = Icon(Icons.group, size: 24);
+  //
+  static const Icon momenstIcon =
+      Icon(FontAwesomeIcons.bookmark, size: secondIconSize);
+  //
   //app bar icons
   static const Icon drawerIcon =
       Icon(Icons.menu, size: thirdIconSize, color: AppColors.primaryColor);
+  //
   static const Icon langugeIcon =
       Icon(Icons.language, size: thirdIconSize, color: AppColors.primaryColor);
+  //
+  static Icon settingsIcon = const Icon(Icons.settings_outlined,
+      size: 30, color: AppColors.accentColor);
+  //
+  static Icon supportIcon = const Icon(Icons.headset_mic_outlined,
+      size: 30, color: AppColors.accentColor);
+  //
+  static Icon signOutIcon =
+      const Icon(Icons.logout_rounded, size: 30, color: AppColors.accentColor);
   //
   //guide list icons
   static const Icon guideListIcon = Icon(Icons.arrow_forward_rounded,
