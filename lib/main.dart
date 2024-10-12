@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:sit_app/core/network/get_it.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
+import 'package:sit_app/core/widgets/bottom_nav_bar.dart/logic/bottom_nav_bar_cubit.dart';
+import 'package:sit_app/features/auth/data/services/auth_service.dart';
+import 'package:sit_app/features/auth/logic/auth_cubit.dart';
+import 'package:device_preview/device_preview.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator(); // تسجيل DioClient و SharedPreferences
+  runApp(
+    DevicePreview(
+      builder: (context) => MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,10 +23,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.loginScreen,
-      onGenerateRoute: AppRoutes.generateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(GetIt.I<AuthService>()),
+        ),
+        BlocProvider(
+          create: (context) => BottomNavBarCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppRoutes.customerScreen,
+        onGenerateRoute: AppRoutes.generateRoute,
+      ),
     );
   }
 }

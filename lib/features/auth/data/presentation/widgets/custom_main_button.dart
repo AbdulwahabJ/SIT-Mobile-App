@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
+import '../../../../../core/constants/app_icons.dart';
+import '../../../../../core/utils/app_screen_utils.dart';
 
 class CustomMainButton extends StatelessWidget {
   const CustomMainButton({
     super.key,
-    required this.size,
-    required bool isLoading,
+    required this.isLoading,
+    this.isSuccess = false,
     required this.buttonText,
-  }) : _isLoading = isLoading;
+  });
 
   final String buttonText;
-  final Size size;
-  final bool _isLoading;
+  final bool isLoading;
+  final bool isSuccess;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: size.height * 0.08,
-      width: size.width * 0.8,
+      height: ScreenUtil.getHeight(context, 0.07),
+      width: ScreenUtil.getWidth(context, 0.7),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.primaryColor,
@@ -32,12 +34,12 @@ class CustomMainButton extends StatelessWidget {
               style: AppStyles.styleSemiBold22,
             ),
             const SizedBox(width: 10),
-            // عرض الـ CircularProgressIndicator فقط إذا كان _isLoading true
-            if (_isLoading)
+            if (isLoading)
               const CircularProgressIndicator(
                 color: AppColors.accentColor,
                 strokeWidth: 2,
               ),
+            if (isSuccess) AppIcons.successIcon, // علامة الصح
           ],
         ),
       ),

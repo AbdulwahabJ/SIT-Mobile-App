@@ -11,4 +11,6 @@ class AppColors {
   static const Color successColor = Color(0xFF31C03F);
   static const Color splashScreenColor = Color(0xFFED713C);
   static const Color textFieldIconColor = Color(0xFF807A7A);
+  static const Color selectedNavBarIconColor = Color.fromARGB(255, 67, 78, 105);
+  static const Color unSelectedNavBarIconColor = Color(0xFFBFC8E8);
 }

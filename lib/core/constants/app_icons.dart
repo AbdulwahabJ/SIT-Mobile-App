@@ -5,18 +5,75 @@ import 'package:sit_app/core/constants/app_colors.dart';
 class AppIcons {
   //
   static const double iconSize = 18.0;
-  static const double passwordIconSize = 24.0;
+  static const double secondIconSize = 20.0;
+  static const double thirdIconSize = 34.0;
 
+  //sign in screen   ###########
+  static const Icon mailIcon = Icon(FontAwesomeIcons.solidEnvelope,
+      size: 16, color: AppColors.iconColor);
   //
-  static const Icon logInMailIcon = Icon(FontAwesomeIcons.solidEnvelope,
-      size: iconSize, color: AppColors.iconColor);
+  static const Icon passwordIcon =
+      Icon(FontAwesomeIcons.lock, size: 16, color: AppColors.iconColor);
   //
-  static const Icon logInPasswordIcon =
-      Icon(FontAwesomeIcons.lock, size: iconSize, color: AppColors.iconColor);
-  //
-  static const Icon passwordVisibilityIcon = Icon(Icons.visibility,
-      size: passwordIconSize, color: AppColors.iconColor);
+  static const Icon passwordVisibilityIcon =
+      Icon(Icons.visibility, size: secondIconSize, color: AppColors.iconColor);
   //
   static const Icon passwordNotVisibilityIcon = Icon(Icons.visibility_off,
-      size: passwordIconSize, color: AppColors.iconColor);
+      size: secondIconSize, color: AppColors.iconColor);
+  // sign in screen   ###########
+//
+  // sign up screen ###########
+  static const Icon fullNameIcon =
+      Icon(Icons.account_circle, size: iconSize, color: AppColors.iconColor);
+
+  static const Icon dropDownMenuIcon =
+      Icon(Icons.arrow_drop_down, size: iconSize, color: AppColors.iconColor);
+
+  static const Icon phoneIcon =
+      Icon(Icons.phone, size: secondIconSize, color: AppColors.iconColor);
+
+  static const Icon groupIcon = Icon(Icons.groups_2_rounded,
+      size: secondIconSize, color: AppColors.iconColor);
+  //
+  static const Icon backIcon =
+      Icon(Icons.arrow_back_rounded, size: 28, color: AppColors.iconColor);
+  // sign up screen ###########
+
+  //
+  //
+  static const Icon successIcon = Icon(Icons.check_circle,
+      size: thirdIconSize, color: AppColors.successColor);
+  //
+  //bottom nav bar icons
+  static const Icon homeIcon =
+      Icon(FontAwesomeIcons.house, size: secondIconSize);
+  //
+  static const Icon staffIcon = Icon(Icons.group, size: 24);
+  //
+  static const Icon momenstIcon =
+      Icon(FontAwesomeIcons.bookmark, size: secondIconSize);
+  //
+  //app bar icons
+  static const Icon drawerIcon =
+      Icon(Icons.menu, size: thirdIconSize, color: AppColors.primaryColor);
+  //
+  static const Icon langugeIcon =
+      Icon(Icons.language, size: thirdIconSize, color: AppColors.primaryColor);
+  //
+  static Icon settingsIcon = const Icon(Icons.settings_outlined,
+      size: 30, color: AppColors.accentColor);
+  //
+  static Icon supportIcon = const Icon(Icons.headset_mic_outlined,
+      size: 30, color: AppColors.accentColor);
+  //
+  static Icon signOutIcon =
+      const Icon(Icons.logout_rounded, size: 30, color: AppColors.accentColor);
+  //
+  //guide list icons
+  static const Icon guideListIcon = Icon(Icons.arrow_forward_rounded,
+      size: 22, color: AppColors.whaiteBackgroundColor);
+
+  //staff screen icons
+  static Icon staffSendIconIcon =
+      const Icon(Icons.send_sharp, size: 26, color: AppColors.primaryColor);
 }
