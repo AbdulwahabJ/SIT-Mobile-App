@@ -20,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     TokenStorage.deleteToken();
+    TokenStorage.deleteUser();
     _timer = Timer(const Duration(seconds: 3), () {
       _checkLoginStatus();
       _navigateToLoginScreen();
@@ -68,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: AppColors.splashScreenColor,
       body: Center(
         child: Image.asset(
-          Assets.splashLogo,
+          AppImages.splashLogo,
           width: ScreenUtil.getHeight(context, 0.7),
           height: ScreenUtil.getHeight(context, 0.17),
         ),

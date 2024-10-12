@@ -41,4 +41,24 @@ abstract class TextFieldDecoration {
       ),
     );
   }
+
+  static OutlineInputBorder groupEnabledBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(
+        color: AppColors.unSelectedNavBarIconColor,
+        width: 1.5,
+      ),
+    );
+  }
+
+  static OutlineInputBorder groupFocusedBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: const BorderSide(
+        color: AppColors.unSelectedNavBarIconColor,
+        width: 1.5,
+      ),
+    );
+  }
 }

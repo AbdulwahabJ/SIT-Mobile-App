@@ -24,7 +24,6 @@ class LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +36,10 @@ class LogInScreenState extends State<LogInScreen> {
                 SnackBar(content: Text(state.message)),
               );
             });
-            Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+            Navigator.pushReplacementNamed(
+              context,
+              AppRoutes.customerScreen,
+            );
           } else if (state is AuthFailure) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -61,7 +63,7 @@ class LogInScreenState extends State<LogInScreen> {
                     const SizedBox(height: 60),
                     Center(
                       child: Image.asset(
-                        Assets.companyLogo,
+                        AppImages.companyLogo,
                         height: ScreenUtil.getHeight(context, 0.28),
                         width: ScreenUtil.getWidth(context, 0.6),
                       ),

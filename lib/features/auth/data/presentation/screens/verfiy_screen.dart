@@ -91,7 +91,7 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
                           if (_formKey.currentState?.validate() == true) {
                             context
                                 .read<AuthCubit>()
-                                .verfiyEmail(emailController.text);
+                                .verifyEmail(emailController.text);
                           }
                         },
                         child: CustomMainButton(

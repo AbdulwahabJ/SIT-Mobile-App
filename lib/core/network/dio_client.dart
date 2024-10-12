@@ -16,13 +16,15 @@ class DioClient {
             receiveTimeout: const Duration(seconds: 30),
           ),
         ) {
-    _dio.interceptors.add(
-        LogInterceptor(responseBody: true)); // لمشاهدة اللوج الخاص بالاستجابة
+    _dio.interceptors.add(LogInterceptor(
+        responseBody: true,
+        requestBody: true)); // لمشاهدة اللوج الخاص بالاستجابة
   }
 
-  Future<Response> post(String endpoint, Map<String, dynamic> data) async {
+  Future<Response> post(String endpoint, Map<String, dynamic> data,
+      {required Options options}) async {
     try {
-      final response = await _dio.post(endpoint, data: data);
+      final response = await _dio.post(endpoint, data: data, options: options);
       return response;
     } catch (e) {
       rethrow;

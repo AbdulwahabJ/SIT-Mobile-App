@@ -11,9 +11,11 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Drawer(
-      child: Column(
-        children: [
+    return Drawer(
+      child: ListView(
+        shrinkWrap: true,
+        padding: EdgeInsets.zero, // لضبط المسافات حول القائمة
+        children: const [
           SizedBox(height: 40),
           UserDrawerListTile(),
           Divider(

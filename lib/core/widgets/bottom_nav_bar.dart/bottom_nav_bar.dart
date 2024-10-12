@@ -4,25 +4,28 @@ import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/logic/bottom_nav_bar_cubit.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/home_screen.dart';
-import 'package:sit_app/features/auth/data/presentation/screens/login_screen.dart';
-import 'package:sit_app/features/auth/data/presentation/screens/signup_screen.dart';
+import 'package:sit_app/features/customer_app/data/presentation/screens/staff_screen.dart';
 
-class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+import '../../../features/customer_app/data/presentation/screens/moments_screen.dart';
+
+class CustomerScreen extends StatefulWidget {
+  const CustomerScreen({super.key});
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<CustomerScreen> createState() => _CustomerScreenState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _CustomerScreenState extends State<CustomerScreen> {
   @override
   Widget build(BuildContext context) {
+   
+
     return Scaffold(
       body: BlocBuilder<BottomNavBarCubit, int>(
         builder: (context, currentIndex) {
           return IndexedStack(
             index: currentIndex,
-            children: const [LogInScreen(), HomeScreen(), SignUpScreen()],
+            children: const [SttafScreen(), HomeScreen(), MomentsScreen()],
           );
         },
       ),

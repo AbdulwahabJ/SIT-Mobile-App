@@ -60,7 +60,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                 SnackBar(content: Text(state.message)),
               );
             });
-            Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+            Navigator.pushReplacementNamed(context, AppRoutes.customerScreen);
           } else if (state is AuthFailure) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -163,8 +163,8 @@ class SignUpScreenState extends State<SignUpScreen> {
             phoneNumber,
             groupController.text,
           );
-        print(
-            'ffff: ${nameController.text}\n${emailController.text}\n${confirmedPasswordController.text}\n${groupController.text}');
+      print(
+          'ffff: ${nameController.text}\n${emailController.text}\n${confirmedPasswordController.text}\n${groupController.text}');
     }
   }
 

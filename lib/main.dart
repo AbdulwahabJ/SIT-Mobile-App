@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.navScreen,
+        initialRoute: AppRoutes.customerScreen,
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );

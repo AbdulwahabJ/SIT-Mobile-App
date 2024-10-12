@@ -72,4 +72,8 @@ class AppIcons {
   //guide list icons
   static const Icon guideListIcon = Icon(Icons.arrow_forward_rounded,
       size: 22, color: AppColors.whaiteBackgroundColor);
+
+  //staff screen icons
+  static Icon staffSendIconIcon =
+      const Icon(Icons.send_sharp, size: 26, color: AppColors.primaryColor);
 }

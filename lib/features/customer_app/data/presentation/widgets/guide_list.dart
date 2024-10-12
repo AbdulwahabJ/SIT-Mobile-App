@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/guide_list_view_indecetor.dart';
-import 'package:sit_app/features/customer_app/data/presentation/widgets/list_view_item.dart';
+import 'package:sit_app/features/customer_app/data/presentation/widgets/list_view_guide_item.dart';
 
 class GuideListView extends StatefulWidget {
   const GuideListView({super.key});

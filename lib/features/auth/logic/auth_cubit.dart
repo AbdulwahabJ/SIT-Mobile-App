@@ -1,18 +1,21 @@
 import 'package:bloc/bloc.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
+import '../data/models/user_model.dart';
 import '../data/services/auth_service.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthService authService; // تعديل هنا لجعل authService متغيرًا.
   String verifiedEmail = '';
+  UserModel? userInfo;
 
   AuthCubit(this.authService) : super(AuthInitial());
-
   Future<void> logIn(String email, String password) async {
     emit(AuthLoading());
     try {
       final user = await authService.logIn(email, password);
       if (user != null) {
+        userInfo = await TokenStorage.getUser();
         emit(AuthSuccess('Login successful: ${user.name}'));
       }
     } catch (e) {
@@ -32,6 +35,7 @@ class AuthCubit extends Cubit<AuthState> {
         groupID,
       );
       if (user != null) {
+        userInfo = await TokenStorage.getUser();
         emit(AuthSuccess('Sign up successful: ${user.name}'));
       } else {
         emit(AuthFailure('Sign up failed: Could not create account.'));
@@ -41,7 +45,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> verfiyEmail(String email) async {
+  Future<void> verifyEmail(String email) async {
     verifiedEmail = email;
 
     emit(AuthLoading());
@@ -49,8 +53,6 @@ class AuthCubit extends Cubit<AuthState> {
       final success = await authService.verfiyEmail(email);
       if (success) {
         emit(AuthSuccess('Email verified successfully.'));
-      } else {
-        // emit(AuthFailure('Verification failed: Email not found.'));
       }
     } catch (e) {
       emit(AuthFailure('Verification failed: ${e.toString()}'));
@@ -68,6 +70,16 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } catch (e) {
       emit(AuthFailure('Password reset failed: ${e.toString()}'));
+    }
+  }
+
+  Future<void> logOut() async {
+    emit(AuthLoading());
+    try {
+      await authService.logOut();
+      emit(AuthSuccess('Sign out  successful'));
+    } catch (e) {
+      emit(AuthFailure('Sign out  failed : ${e.toString()}'));
     }
   }
 }

@@ -4,11 +4,18 @@ class AppTexts {
   static const String signUpHeader = 'Sign up';
   static const String verfiyHeader = 'Verfiy';
   static const String resetPasswordHeader = 'Reset Password';
+  static const String settingsHeader = 'Settings';
+  static const String staffHeader = 'Sara Staff Here For you';
+  static const String momentsHeader = 'Great Moments \nDeserve Preservation';
 
   static const String signInTextButton = 'SIGN IN';
   static const String signUpTextButton = 'SIGN UP';
+
   static const String verfiyTextButton = 'Verfiy';
   static const String saveTextButton = 'Save';
+
+  //
+  static const String groupDropDown = 'Group';
 
   static const String mailHintText = 'example@gmail.com';
   static const String fullNameHintText = 'Full name';
@@ -25,6 +32,7 @@ class AppTexts {
   static const String registerApi = '/register';
   static const String verfiyEmailApi = '/verify_email';
   static const String resetPasswordApi = '/reset_password';
+  static const String logoutApi = '/logout';
 
   //handle Exceptions
   static const String noInternetException =
@@ -52,4 +60,8 @@ class AppTexts {
   static const String passwordRequired = 'Please enter your password';
   static const String passwordInvalid =
       'Password must contain at least 8 characters, including letters and numbers';
+
+  //support 
+  static const String supportNumber = '966530869297';
+  static const String supoortText = 'Hi, I need help plz';
 }

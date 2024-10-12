@@ -11,7 +11,6 @@ class ListViewGuideItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // تغيير الطول بناءً على عرض الشاشة
     return Stack(
       children: [
         Container(
