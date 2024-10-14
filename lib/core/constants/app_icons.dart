@@ -6,7 +6,7 @@ class AppIcons {
   //
   static const double iconSize = 18.0;
   static const double secondIconSize = 20.0;
-  static const double thirdIconSize = 34.0;
+  static const double thirdIconSize = 30.0;
 
   //sign in screen   ###########
   static const Icon mailIcon = Icon(FontAwesomeIcons.solidEnvelope,
@@ -41,8 +41,8 @@ class AppIcons {
 
   //
   //
-  static const Icon successIcon = Icon(Icons.check_circle,
-      size: thirdIconSize, color: AppColors.successColor);
+  static const Icon successIcon =
+      Icon(Icons.check_circle, size: 34, color: AppColors.successColor);
   //
   //bottom nav bar icons
   static const Icon homeIcon =
@@ -61,13 +61,13 @@ class AppIcons {
       Icon(Icons.language, size: thirdIconSize, color: AppColors.primaryColor);
   //
   static Icon settingsIcon = const Icon(Icons.settings_outlined,
-      size: 30, color: AppColors.accentColor);
+      size: thirdIconSize, color: AppColors.accentColor);
   //
   static Icon supportIcon = const Icon(Icons.headset_mic_outlined,
-      size: 30, color: AppColors.accentColor);
+      size: thirdIconSize, color: AppColors.accentColor);
   //
-  static Icon signOutIcon =
-      const Icon(Icons.logout_rounded, size: 30, color: AppColors.accentColor);
+  static Icon signOutIcon = const Icon(Icons.logout_rounded,
+      size: thirdIconSize, color: AppColors.accentColor);
   //
   //guide list icons
   static const Icon guideListIcon = Icon(Icons.arrow_forward_rounded,
@@ -75,5 +75,5 @@ class AppIcons {
 
   //staff screen icons
   static Icon staffSendIconIcon =
-      const Icon(Icons.send_sharp, size: 26, color: AppColors.primaryColor);
+      const Icon(Icons.send_sharp, size: 22, color: AppColors.primaryColor);
 }

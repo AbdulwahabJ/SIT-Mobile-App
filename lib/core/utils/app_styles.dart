@@ -90,4 +90,12 @@ abstract class AppStyles {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w300,
   );
+
+  //styleLight14..
+  static const TextStyle styleLight14 = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w300,
+  );
 }

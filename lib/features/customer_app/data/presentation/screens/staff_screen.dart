@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
-import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 
 import '../../../../../core/constants/app_icons.dart';
+import '../../../../../generated/l10n.dart';
 
 class SttafScreen extends StatelessWidget {
   const SttafScreen({super.key});
@@ -40,7 +40,7 @@ class SttafScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 100),
             Text(
-              AppTexts.staffHeader,
+              S.of(context).staffScreenHeader,
               style: AppStyles.styleSemiBold22
                   .copyWith(color: AppColors.primaryColor),
             ),
@@ -72,12 +72,10 @@ class SttafScreen extends StatelessWidget {
                       item['date']!, // استخدام التاريخ من الـ Map
                       style: AppStyles.styleReguler13,
                     ),
-                    trailing: Transform.rotate(
-                        angle: 5.5,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: AppIcons.staffSendIconIcon,
-                        )),
+                    trailing: IconButton(
+                      onPressed: () {},
+                      icon: AppIcons.staffSendIconIcon,
+                    ),
                   ),
                 );
               },

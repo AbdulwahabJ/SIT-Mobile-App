@@ -1,3 +1,7 @@
+// ignore_for_file: constant_identifier_names
+
+import '../utils/app_images.dart';
+
 class AppTexts {
   //Auth
   static const String signInHeader = 'Sign in';
@@ -6,7 +10,8 @@ class AppTexts {
   static const String resetPasswordHeader = 'Reset Password';
   static const String settingsHeader = 'Settings';
   static const String staffHeader = 'Sara Staff Here For you';
-  static const String momentsHeader = 'Great Moments \nDeserve Preservation';
+  static const String momentsHeader =
+      'The Great Moments \nDeserve Preservation';
 
   static const String signInTextButton = 'SIGN IN';
   static const String signUpTextButton = 'SIGN UP';
@@ -50,6 +55,21 @@ class AppTexts {
   static const String unUniqueEmailException =
       'email already exist, try write another email';
 
+  static const String noInternetException_ar =
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.';
+  static const String timeOutException_ar =
+      'انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى لاحقًا.';
+  static const String dontHaveAccountException_ar =
+      'يرجى تصحيح بريدك الإلكتروني.';
+  static const String wrongPasswordException_ar =
+      'كلمة المرور خاطئة. يرجى كتابة كلمة المرور الصحيحة.';
+  static const String verfiyEmailException_ar =
+      'البريد الإلكتروني المدخل غير موجود. يرجى تصحيح البريد الإلكتروني أو التسجيل.';
+  static const String generalException_ar =
+      'حدث خطأ غير معروف، نعتذر وسنقوم بإصلاح الخطأ في أقرب وقت ممكن.';
+  static const String unUniqueEmailException_ar =
+      'البريد الإلكتروني موجود بالفعل، يرجى كتابة بريد إلكتروني آخر.';
+
   // validation
   static const String nameRequired = 'Please enter your full name';
   static const String nameInvalid = 'Please enter a valid name';
@@ -61,7 +81,64 @@ class AppTexts {
   static const String passwordInvalid =
       'Password must contain at least 8 characters, including letters and numbers';
 
-  //support 
+  // الإنجليزية
+  static const String loginSuccess = 'Login successful:';
+  static const String loginFailure = 'Login failed: ';
+  static const String signUpSuccess = 'Sign up successful: ';
+  static const String signUpFailure =
+      'Sign up failed: Could not create account.';
+  static const String verificationSuccess = 'Email verified successfully.';
+  static const String verificationFailure = 'Verification failed: ';
+  static const String resetPasswordSuccess = 'Password reset successful.';
+  static const String resetPasswordFailure = 'Password reset failed: ';
+  static const String signOutSuccess = 'Sign out successful.';
+  static const String signOutFailure = 'Sign out failed: ';
+
+  // العربية
+  static const String loginSuccess_ar = 'تسجيل الدخول بنجاح:';
+  static const String loginFailure_ar = 'فشل تسجيل الدخول: ';
+  static const String signUpSuccess_ar = 'تم التسجيل بنجاح: ';
+  static const String signUpFailure_ar =
+      'فشل التسجيل: لم يتمكن من إنشاء الحساب.';
+  static const String verificationSuccess_ar =
+      'تم التحقق من البريد الإلكتروني بنجاح.';
+  static const String verificationFailure_ar = 'فشل التحقق: ';
+  static const String resetPasswordSuccess_ar =
+      'تم إعادة تعيين كلمة المرور بنجاح.';
+  static const String resetPasswordFailure_ar = 'فشل إعادة تعيين كلمة المرور: ';
+  static const String signOutSuccess_ar = 'تسجيل الخروج بنجاح.';
+  static const String signOutFailure_ar = 'فشل تسجيل الخروج: ';
+
+  //support
   static const String supportNumber = '966530869297';
   static const String supoortText = 'Hi, I need help plz';
+
+  //guied section
+  static const String umrahGuiedLabel = 'Umrah Guide';
+  static const String madinaGuiedLabel = 'Madina Guide';
+  static const String mazaratGuiedLabel = 'Mazarat Guide';
+  static const String umrahGuiedLinke =
+      'https://media1.haj.gov.sa/storage/uploads/EN-105.pdf';
+  static const String madinaGuiedLinke =
+      'https://media1.haj.gov.sa/storage/uploads/EN-106.pdf';
+  static const String mazaratGuiedLinke =
+      'https://media1.haj.gov.sa/storage/uploads/EN-109.pdf';
+  //
+  static const List<Map<String, String>> guiedItems = [
+    {
+      'image': AppImages.umrahGuiedImage,
+      'label': umrahGuiedLabel,
+      'link': umrahGuiedLinke,
+    },
+    {
+      'image': AppImages.madinGuiedImage,
+      'label': madinaGuiedLabel,
+      'link': madinaGuiedLinke,
+    },
+    {
+      'image': AppImages.mazaratGuiedImage,
+      'label': mazaratGuiedLabel,
+      'link': mazaratGuiedLinke,
+    },
+  ];
 }

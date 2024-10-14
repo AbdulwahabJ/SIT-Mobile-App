@@ -1,0 +1,89 @@
+{
+    "@@locale": "en",
+    "hello": "Hello",
+    "have_a_nice_day": "have a nice day",
+    "todayProgram": "Today Program",
+
+     
+    "Arabic": "Arabic",
+    "English": "English",
+    "Urdu": "Urdu",
+
+    "umrahGuiedLabel": "Umrah Guied",
+    "madinaGuiedLabel": "Madina Guied",
+    "mazaratGuiedLabel": "Mazarat Guied",
+
+    "settings": "Settings",
+    "support": "Support",
+
+    "group": "Group",
+    "selectGroup": "Select Group",
+
+    "sign": "SIGN",
+
+
+    "signOut": "Sign Out",
+
+    "verfiy":"Verfiy",
+    "verf":"Verfiy",
+    "resetPassword": "Reset Password",
+    "save": "Save",
+
+    "signin": "Sign in",
+    "signup": "Sign up",
+
+    "signUp": "SIGN UP",
+    "signInButton": "SIGN IN",
+
+
+    "yourName":"your name",
+    "phoneNumber":"phone number",
+    "yourPassword":"your password",
+    "confirmYourPassword":"rewrite your password",
+    "writeGroupCode":"write group code if you have one",
+
+
+
+    "forgetPassword": "Forget Password?",
+    "dontHaveaccount": "Dont't have an account?",
+
+
+
+    "staffScreenHeader": "Sara Staff Here For You",
+    "momentsScreenHeader": "The Great Moments \nDeserve Preservation",
+
+
+    
+  "noInternetException": "No internet connection. \nPlease check your connection and try again.",
+  "timeOutException": "The connection timed out.\n Please try again later.",
+  "dontHaveAccountException": "Try correcting your email please.",
+  "wrongPasswordException": "Password wrong. \nTry writing the correct password.",
+  "verfiyEmailException": "The entered email does not exist.\n Try to correct the email or sign up.",
+  "generalException": "An unknown error occurred.\n Sorry, we will fix the error as soon as possible.",
+  "unUniqueEmailException": "Email already exists, \ntry writing another email.",
+  
+  "nameRequired": "Please enter your full name.",
+  "nameInvalid": "Please enter a valid name.",
+  "nameTooShort": "Your name is too short.",
+  "emailRequired": "Please enter your email.",
+  "emailInvalid": "Please enter a valid email.",
+  "emailEnglishOnly": "Email must be in English.",
+  "passwordRequired": "Please enter your password.",
+  "passwordInvalid": "8 letters and numbers at lest.",
+"phoneNumberRequired":"phone number required",
+"phoneNumberInvalid":" phone number invalid",
+"confirmPassword":"Please confirm your password",
+ "PasswordsNotMatch":"Passwords do not match",
+
+ "loginSuccess": "Login successful:",
+  "loginFailure": "Login failed: ",
+  "signUpSuccess": "Sign up successful: ",
+  "signUpFailure": "Sign up failed: Could not create account.",
+  "verificationSuccess": "Email verified successfully.",
+  "verificationFailure": "Verification failed: ",
+  "resetPasswordSuccess": "Password reset successful.",
+  "resetPasswordFailure": "Password reset failed: ",
+  "signOutSuccess": "Sign out successful.",
+  "signOutFailure": "Sign out failed: "
+
+}

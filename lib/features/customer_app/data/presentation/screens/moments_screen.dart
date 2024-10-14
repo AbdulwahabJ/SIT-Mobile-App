@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
-import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
-
+import '../../../../../core/helper/language.dart';
 import '../../../../../core/utils/app_images.dart';
-import '../widgets/moment_images_list_view.dart';
+import '../../../../../generated/l10n.dart';
+import '../widgets/MomentsScreenWidgets/moment_images_list_view.dart';
 
 class MomentsScreen extends StatefulWidget {
   const MomentsScreen({super.key});
@@ -19,10 +19,9 @@ class _MomentsScreenState extends State<MomentsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(
-          left: AppPadding.homeScreensPadding,
-          // right: AppPadding.homeScreensPadding,
-        ),
+        padding: isArabic()
+            ? const EdgeInsets.only(right: AppPadding.homeScreensPadding)
+            : const EdgeInsets.only(left: AppPadding.homeScreensPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,15 +36,15 @@ class _MomentsScreenState extends State<MomentsScreen> {
             Center(
               child: Text(
                 textAlign: TextAlign.center,
-                AppTexts.momentsHeader,
+                S.of(context).momentsScreenHeader,
                 style: AppStyles.styleSemiBold18
                     .copyWith(color: AppColors.primaryColor),
               ),
             ),
             const SizedBox(height: 20),
-            MomentsItem(),
-            MomentsItem(),
-            MomentsItem(),
+            const MomentsItem(
+              sectionText: 'Holy',
+            ),
           ],
         ),
       ),
@@ -56,18 +55,20 @@ class _MomentsScreenState extends State<MomentsScreen> {
 class MomentsItem extends StatelessWidget {
   const MomentsItem({
     super.key,
+    required this.sectionText,
   });
+  final String sectionText;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         Row(
           children: [
-            Image(image: AssetImage(AppImages.stteperImage)),
-            SizedBox(width: 8),
+            const Image(image: AssetImage(AppImages.stteperImage)),
+            const SizedBox(width: 8),
             Text(
-              'Holy Mosques',
+              sectionText,
               style: AppStyles.styleSemiBold16,
             ),
           ],
@@ -75,8 +76,10 @@ class MomentsItem extends StatelessWidget {
         Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: SizedBox(
+              padding: isArabic()
+                  ? const EdgeInsets.only(right: 8.0)
+                  : const EdgeInsets.only(left: 8.0),
+              child: const SizedBox(
                 height: 120,
                 child: VerticalDivider(
                   color: AppColors.primaryColor,
@@ -86,7 +89,7 @@ class MomentsItem extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: MomentImagesListView())
+            const Expanded(child: MomentImagesListView())
           ],
         )
       ],

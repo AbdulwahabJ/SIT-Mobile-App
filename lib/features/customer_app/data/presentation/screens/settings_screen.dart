@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 
 import '../../../../../core/constants/app_colors.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../auth/data/presentation/widgets/text_field_decoration.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -27,7 +29,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0, top: 16),
+          padding: isArabic()
+              ? const EdgeInsets.only(right: 8.0, top: 16)
+              : const EdgeInsets.only(left: 8.0, top: 16),
           child: IconButton(
             icon: AppIcons.backIcon,
             onPressed: () {
@@ -46,21 +50,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             const SizedBox(height: 28),
             Text(
-              AppTexts.settingsHeader,
+              S.of(context).settings,
               style: AppStyles.styleSemiBold22
                   .copyWith(color: AppColors.primaryColor),
             ),
             const SizedBox(height: 10),
             const Divider(),
             const SizedBox(height: 20),
-            const Text(AppTexts.groupDropDown,
-                style: AppStyles.styleReguler16W600),
+            Text(S.of(context).group, style: AppStyles.styleReguler16W600),
             const SizedBox(height: 10),
             DropdownButtonFormField<String>(
               iconSize: 24,
               icon: AppIcons.dropDownMenuIcon,
               decoration: _dropdownDecoration(),
-              hint: Text('select group'),
+              hint: Text(S.of(context).selectGroup),
               value: _selectedCode,
               items: _dropdownItems.map(_buildDropdownItem).toList(),
               onChanged: (value) => setState(() => _selectedCode = value),
