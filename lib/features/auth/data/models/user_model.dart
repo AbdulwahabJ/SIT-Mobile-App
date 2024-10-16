@@ -4,6 +4,7 @@ class UserModel {
   final String token;
   final String phoneNumber;
   final dynamic groupId;
+  final String role;
 
   UserModel({
     required this.email,
@@ -11,6 +12,7 @@ class UserModel {
     required this.token,
     required this.phoneNumber,
     this.groupId,
+    required this.role,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class UserModel {
       groupId: json['group_id'] != null
           ? json['group_id'] as dynamic
           : json['group_id'],
+      role: json['role'] as String,
     );
   }
   //  Map<String, String> getUserInfo() {

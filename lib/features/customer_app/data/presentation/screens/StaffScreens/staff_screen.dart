@@ -1,29 +1,25 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
-import '../widgets/HomeScreenWidgets/customer_drawer.dart';
-import '../../../../auth/logic/auth_cubit.dart';
-import '../widgets/HomeScreenWidgets/home_screen_body.dart';
+import 'package:sit_app/features/customer_app/data/presentation/widgets/StaffScreenWidgets/staff_screen_body.dart';
+import '../../widgets/HomeScreenWidgets/customer_drawer.dart';
+import '../../widgets/HomeScreenWidgets/home_screen_body.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({
+class StaffScreen extends StatefulWidget {
+  const StaffScreen({
     super.key,
   });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<StaffScreen> createState() => _StaffScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _StaffScreenState extends State<StaffScreen> {
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthCubit>().userInfo;
     return Scaffold(
       drawer: SizedBox(
         width: ScreenUtil.getWidth(context, 0.7),
@@ -61,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       backgroundColor: AppColors.backgroundColor,
-      body: const HomeScreenBody(),
+      body: const StaffScreenBody(),
     );
   }
 }

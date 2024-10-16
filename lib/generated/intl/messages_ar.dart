@@ -24,9 +24,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "English": MessageLookupByLibrary.simpleMessage("الانجليزية"),
+        "Name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "Password": MessageLookupByLibrary.simpleMessage("كلمة المرور "),
         "PasswordsNotMatch":
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير متطابقة"),
         "Urdu": MessageLookupByLibrary.simpleMessage("اوردو"),
+        "add": MessageLookupByLibrary.simpleMessage("اضافة"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("الرجاء تأكيد كلمة المرور "),
         "confirmYourPassword":
@@ -48,6 +51,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "group": MessageLookupByLibrary.simpleMessage("المجموعة"),
         "have_a_nice_day": MessageLookupByLibrary.simpleMessage("يومك سعيد"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
+        "imageSelected": MessageLookupByLibrary.simpleMessage("تم رفع الصورة"),
+        "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
+        "languagesRequired":
+            MessageLookupByLibrary.simpleMessage("الرجاء ادخال اللغات للعضو"),
         "loginFailure":
             MessageLookupByLibrary.simpleMessage("فشل تسجيل الدخول: "),
         "loginSuccess":
@@ -63,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameRequired":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال اسمك الكامل."),
         "nameTooShort": MessageLookupByLibrary.simpleMessage("اسمك قصير جدًا."),
+        "newStaffMember":
+            MessageLookupByLibrary.simpleMessage("اضافة عضو جديد"),
         "noInternetException": MessageLookupByLibrary.simpleMessage(
             "لا يوجد اتصال بالإنترنت\n. يرجى التحقق من اتصالك والمحاولة مرة أخرى."),
         "passwordInvalid": MessageLookupByLibrary.simpleMessage(
@@ -74,6 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صالح"),
         "phoneNumberRequired":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
+        "photo": MessageLookupByLibrary.simpleMessage("ارفع صورة العضو"),
+        "photoRequired":
+            MessageLookupByLibrary.simpleMessage("يرجى رفع الصورة"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("اعادة تعيين كلمة المرور"),
         "resetPasswordFailure": MessageLookupByLibrary.simpleMessage(
@@ -116,9 +128,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "writeGroupCode": MessageLookupByLibrary.simpleMessage(
             "اكتب كود المجموعة إذا كان لديك واحد"),
         "wrongPasswordException": MessageLookupByLibrary.simpleMessage(
-            "كلمة المرور غير صحيحة. حاول كتابة كلمة المرور الصحيحة."),
-        "yourName": MessageLookupByLibrary.simpleMessage("اسمك"),
-        "yourPassword":
-            MessageLookupByLibrary.simpleMessage("كلمة المرور الخاصة بك")
+            "كلمة المرور غير صحيحة. حاول كتابة كلمة المرور الصحيحة.")
       };
 }

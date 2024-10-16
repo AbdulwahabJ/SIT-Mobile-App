@@ -85,7 +85,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     const SizedBox(height: 20),
                     const SizedBox(height: 14),
                     CustomTextField(
-                      hintText: S.of(context).yourPassword,
+                      hintText: S.of(context).Password,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
                       validator: (value) => Validation.validateInput(

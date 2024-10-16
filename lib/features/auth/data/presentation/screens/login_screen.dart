@@ -92,7 +92,7 @@ class LogInScreenState extends State<LogInScreen> {
                     const SizedBox(height: 14),
                     CustomTextField(
                       controller: passwordController,
-                      hintText: S.of(context).yourPassword,
+                      hintText: S.of(context).Password,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
                       validator: (value) => Validation.validateInput(

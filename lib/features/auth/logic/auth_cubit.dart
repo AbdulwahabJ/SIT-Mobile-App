@@ -1,7 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:bloc/bloc.dart';
 import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
+import 'package:sit_app/features/customer_app/data/models/staff_model.dart';
 import '../data/models/user_model.dart';
 import '../data/services/auth_service.dart';
 import 'auth_state.dart';
@@ -10,6 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthService authService;
   String verifiedEmail = '';
   UserModel? userInfo;
+  StaffModel? staffInfo;
 
   AuthCubit(this.authService) : super(AuthInitial());
 
@@ -18,7 +22,11 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final user = await authService.logIn(email, password);
       if (user != null) {
-        userInfo = await TokenStorage.getUser();
+        if (user is UserModel) {
+          userInfo = user;
+        } else if (user is StaffModel) {
+          staffInfo = user;
+        }
         emit(AuthSuccess(isArabic()
             ? '${AppTexts.loginSuccess_ar} '
             : '${AppTexts.loginSuccess} '));

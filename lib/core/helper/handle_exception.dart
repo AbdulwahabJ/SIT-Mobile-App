@@ -35,7 +35,7 @@ Future<T> handleException<T>(Future<T> Function() action) async {
           ? AppTexts.verfiyEmailException_ar
           : AppTexts.verfiyEmailException);
     } else if (e is DioException &&
-        e.response?.data['message'] == 'unique email' &&
+        e.response?.data['message'] == 'Email is already in use' &&
         e.response?.statusCode == 400) {
       throw (isArabic()
           ? AppTexts.unUniqueEmailException_ar

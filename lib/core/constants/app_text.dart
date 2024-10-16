@@ -38,6 +38,7 @@ class AppTexts {
   static const String verfiyEmailApi = '/verify_email';
   static const String resetPasswordApi = '/reset_password';
   static const String logoutApi = '/logout';
+  // static const String addStaffApi = '/addStaff';
 
   //handle Exceptions
   static const String noInternetException =
@@ -108,6 +109,15 @@ class AppTexts {
   static const String resetPasswordFailure_ar = 'فشل إعادة تعيين كلمة المرور: ';
   static const String signOutSuccess_ar = 'تسجيل الخروج بنجاح.';
   static const String signOutFailure_ar = 'فشل تسجيل الخروج: ';
+
+//staff
+  static const String staffAddSuccess = 'member added successfuly';
+  static const String staffAddFailure = 'failed to add member ';
+
+  static const String staffAddFailure_ar = 'فشل اضافة العضو ';
+  static const String staffAddSuccess_ar = 'تم تسجيل العضو بنجاح';
+
+  //
 
   //support
   static const String supportNumber = '966530869297';

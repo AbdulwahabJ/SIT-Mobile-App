@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
-import 'package:sit_app/features/customer_app/data/presentation/screens/settings_screen.dart';
+import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/settings_screen.dart';
 
 import '../../../../../auth/logic/auth_cubit.dart';
 import '../../../services/whats_app_service.dart';

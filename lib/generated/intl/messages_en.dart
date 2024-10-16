@@ -24,9 +24,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "English": MessageLookupByLibrary.simpleMessage("English"),
+        "Name": MessageLookupByLibrary.simpleMessage(" name"),
+        "Password": MessageLookupByLibrary.simpleMessage(" password"),
         "PasswordsNotMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "Urdu": MessageLookupByLibrary.simpleMessage("Urdu"),
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
         "confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Please confirm your password"),
         "confirmYourPassword":
@@ -49,6 +52,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "have_a_nice_day":
             MessageLookupByLibrary.simpleMessage("have a nice day"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "imageSelected": MessageLookupByLibrary.simpleMessage("image selected"),
+        "languages": MessageLookupByLibrary.simpleMessage("languages"),
+        "languagesRequired":
+            MessageLookupByLibrary.simpleMessage("languages required"),
         "loginFailure": MessageLookupByLibrary.simpleMessage("Login failed: "),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("Login successful:"),
@@ -64,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your full name."),
         "nameTooShort":
             MessageLookupByLibrary.simpleMessage("Your name is too short."),
+        "newStaffMember":
+            MessageLookupByLibrary.simpleMessage("New Staff Member"),
         "noInternetException": MessageLookupByLibrary.simpleMessage(
             "No internet connection. \nPlease check your connection and try again."),
         "passwordInvalid": MessageLookupByLibrary.simpleMessage(
@@ -75,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" phone number invalid"),
         "phoneNumberRequired":
             MessageLookupByLibrary.simpleMessage("phone number required"),
+        "photo": MessageLookupByLibrary.simpleMessage("upload member photo"),
+        "photoRequired": MessageLookupByLibrary.simpleMessage("photo required"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "resetPasswordFailure":
             MessageLookupByLibrary.simpleMessage("Password reset failed: "),
@@ -117,8 +128,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "writeGroupCode": MessageLookupByLibrary.simpleMessage(
             "write group code if you have one"),
         "wrongPasswordException": MessageLookupByLibrary.simpleMessage(
-            "Password wrong. \nTry writing the correct password."),
-        "yourName": MessageLookupByLibrary.simpleMessage("your name"),
-        "yourPassword": MessageLookupByLibrary.simpleMessage("your password")
+            "Password wrong. \nTry writing the correct password.")
       };
 }

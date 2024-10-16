@@ -10,27 +10,27 @@ class AppIcons {
 
   //sign in screen   ###########
   static const Icon mailIcon = Icon(FontAwesomeIcons.solidEnvelope,
-      size: 16, color: AppColors.iconColor);
+      size: secondIconSize, color: AppColors.iconColor);
   //
   static const Icon passwordIcon =
-      Icon(FontAwesomeIcons.lock, size: 16, color: AppColors.iconColor);
+      Icon(FontAwesomeIcons.lock, size: iconSize, color: AppColors.iconColor);
   //
   static const Icon passwordVisibilityIcon =
-      Icon(Icons.visibility, size: secondIconSize, color: AppColors.iconColor);
+      Icon(Icons.visibility, size: 30, color: AppColors.iconColor);
   //
-  static const Icon passwordNotVisibilityIcon = Icon(Icons.visibility_off,
-      size: secondIconSize, color: AppColors.iconColor);
+  static const Icon passwordNotVisibilityIcon =
+      Icon(Icons.visibility_off, size: 26, color: AppColors.iconColor);
   // sign in screen   ###########
 //
   // sign up screen ###########
   static const Icon fullNameIcon =
-      Icon(Icons.account_circle, size: iconSize, color: AppColors.iconColor);
+      Icon(Icons.account_circle, size: 28, color: AppColors.iconColor);
 
   static const Icon dropDownMenuIcon =
       Icon(Icons.arrow_drop_down, size: iconSize, color: AppColors.iconColor);
 
   static const Icon phoneIcon =
-      Icon(Icons.phone, size: secondIconSize, color: AppColors.iconColor);
+      Icon(Icons.phone, size: 24, color: AppColors.iconColor);
 
   static const Icon groupIcon = Icon(Icons.groups_2_rounded,
       size: secondIconSize, color: AppColors.iconColor);
@@ -74,6 +74,15 @@ class AppIcons {
       size: 22, color: AppColors.whaiteBackgroundColor);
 
   //staff screen icons
-  static Icon staffSendIconIcon =
+  static Icon staffSendIcon =
       const Icon(Icons.send_sharp, size: 22, color: AppColors.primaryColor);
+  static Icon staffAddIcon = const Icon(
+    Icons.person_add_alt_1,
+    size: 28,
+    color: AppColors.primaryColor,
+  );
+  static const Icon photoMemberIcon =
+      Icon(Icons.photo_camera_front_outlined, color: AppColors.primaryColor);
+  static const Icon uploadImage =
+      Icon(Icons.file_upload_outlined, color: AppColors.primaryColor);
 }

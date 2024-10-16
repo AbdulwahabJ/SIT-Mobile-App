@@ -36,9 +36,9 @@
     "signInButton": "SIGN IN",
 
 
-    "yourName":"your name",
+    "Name":" name",
     "phoneNumber":"phone number",
-    "yourPassword":"your password",
+    "Password":" password",
     "confirmYourPassword":"rewrite your password",
     "writeGroupCode":"write group code if you have one",
 
@@ -71,6 +71,8 @@
   "passwordRequired": "Please enter your password.",
   "passwordInvalid": "8 letters and numbers at lest.",
 "phoneNumberRequired":"phone number required",
+"languagesRequired":"languages required",
+
 "phoneNumberInvalid":" phone number invalid",
 "confirmPassword":"Please confirm your password",
  "PasswordsNotMatch":"Passwords do not match",
@@ -84,6 +86,15 @@
   "resetPasswordSuccess": "Password reset successful.",
   "resetPasswordFailure": "Password reset failed: ",
   "signOutSuccess": "Sign out successful.",
-  "signOutFailure": "Sign out failed: "
+  "signOutFailure": "Sign out failed: ",
+"photoRequired":"photo required",
 
-}
+  "newStaffMember":"New Staff Member", 
+   "languages":"languages",
+   "photo":"upload member photo",
+   "imageSelected":"image selected",
+   "add":"Add"
+
+
+
+} 

@@ -63,10 +63,10 @@ class Validation {
 
   static String? _validatePhoneNumber(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
-      return S.of(context).phoneNumberRequired; // الرسالة باللغة المطلوبة
+      return S.of(context).phoneNumberRequired;
     }
     if (!RegExp(r'^[0-9]{10,15}$').hasMatch(value)) {
-      return S.of(context).phoneNumberInvalid; // الرسالة باللغة المطلوبة
+      return S.of(context).phoneNumberInvalid;
     }
     return null;
   }

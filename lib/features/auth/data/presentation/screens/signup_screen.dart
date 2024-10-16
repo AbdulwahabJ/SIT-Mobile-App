@@ -90,7 +90,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 20),
                     CustomTextField(
                       controller: nameController,
-                      hintText: S.of(context).yourName,
+                      hintText: S.of(context).Name,
                       icon: AppIcons.fullNameIcon,
                       validator: (value) => Validation.validateInput(
                           InputType.name, value, context),
@@ -109,7 +109,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
-                      hintText: S.of(context).yourPassword,
+                      hintText: S.of(context).Password,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
                       validator: (value) => Validation.validateInput(

@@ -5,9 +5,9 @@ import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 
-import '../../../../../core/constants/app_colors.dart';
-import '../../../../../generated/l10n.dart';
-import '../../../../auth/data/presentation/widgets/text_field_decoration.dart';
+import '../../../../../../core/constants/app_colors.dart';
+import '../../../../../../generated/l10n.dart';
+import '../../../../../auth/data/presentation/widgets/text_field_decoration.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});

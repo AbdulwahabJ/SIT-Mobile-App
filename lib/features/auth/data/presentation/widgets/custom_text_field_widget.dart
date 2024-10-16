@@ -41,14 +41,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     : AppIcons.passwordNotVisibilityIcon,
                 onPressed: () {
                   setState(() {
-                    passwordVisible =
-                        !passwordVisible; 
+                    passwordVisible = !passwordVisible;
                   });
                 },
               )
             : null,
         hintText: widget.hintText,
-        hintStyle: AppStyles.styleLight12,
+        hintStyle: AppStyles.styleLight14,
         prefixIcon: widget.icon,
         enabledBorder: TextFieldDecoration.enabledBorder(),
         focusedBorder: TextFieldDecoration.focusedBorder(),

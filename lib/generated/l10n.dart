@@ -280,11 +280,11 @@ class S {
     );
   }
 
-  /// `your name`
-  String get yourName {
+  /// ` name`
+  String get Name {
     return Intl.message(
-      'your name',
-      name: 'yourName',
+      ' name',
+      name: 'Name',
       desc: '',
       args: [],
     );
@@ -300,11 +300,11 @@ class S {
     );
   }
 
-  /// `your password`
-  String get yourPassword {
+  /// ` password`
+  String get Password {
     return Intl.message(
-      'your password',
-      name: 'yourPassword',
+      ' password',
+      name: 'Password',
       desc: '',
       args: [],
     );
@@ -530,6 +530,16 @@ class S {
     );
   }
 
+  /// `languages required`
+  String get languagesRequired {
+    return Intl.message(
+      'languages required',
+      name: 'languagesRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ` phone number invalid`
   String get phoneNumberInvalid {
     return Intl.message(
@@ -655,6 +665,66 @@ class S {
     return Intl.message(
       'Sign out failed: ',
       name: 'signOutFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `photo required`
+  String get photoRequired {
+    return Intl.message(
+      'photo required',
+      name: 'photoRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Staff Member`
+  String get newStaffMember {
+    return Intl.message(
+      'New Staff Member',
+      name: 'newStaffMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `languages`
+  String get languages {
+    return Intl.message(
+      'languages',
+      name: 'languages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `upload member photo`
+  String get photo {
+    return Intl.message(
+      'upload member photo',
+      name: 'photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `image selected`
+  String get imageSelected {
+    return Intl.message(
+      'image selected',
+      name: 'imageSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
       desc: '',
       args: [],
     );

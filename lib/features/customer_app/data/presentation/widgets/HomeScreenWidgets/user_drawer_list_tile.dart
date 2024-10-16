@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import '../../../../../auth/logic/auth_cubit.dart';
+import '../../../../logic/staff_cubit.dart';
 
 class UserDrawerListTile extends StatefulWidget {
   const UserDrawerListTile({
@@ -29,10 +30,8 @@ class _UserDrawerListTileState extends State<UserDrawerListTile> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthCubit>().userInfo;
-
-    return ListTile(
-      leading: const CircleAvatar(
+    return const ListTile(
+      leading: CircleAvatar(
           backgroundImage: AssetImage(AppImages.umrahProgramImage)),
       title: Text(
         // user!.name, // استخدام العنوان من الـ Map

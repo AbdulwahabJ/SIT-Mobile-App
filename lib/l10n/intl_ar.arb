@@ -36,9 +36,9 @@
     "forgetPassword": "هل نسيت كلمة المرور؟",
     "dontHaveaccount": "ليس لديك حساب؟",
 
-    "yourName": "اسمك",
+    "Name": "الاسم",
     "phoneNumber": "رقم الهاتف",
-    "yourPassword": "كلمة المرور الخاصة بك",
+    "Password": "كلمة المرور ",
     "confirmYourPassword": "أعد كتابة كلمة المرور",
     "writeGroupCode": "اكتب كود المجموعة إذا كان لديك واحد",
 
@@ -65,6 +65,9 @@
  "passwordRequired": "يرجى إدخال كلمة المرور الخاصة بك.",
  "passwordInvalid": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل\n، بما في ذلك الحروف والأرقام.",
 "phoneNumberRequired": "رقم الهاتف مطلوب",
+"languagesRequired":"الرجاء ادخال اللغات للعضو",
+"photoRequired":"يرجى رفع الصورة",
+
 "phoneNumberInvalid": "رقم الهاتف غير صالح",
 "confirmPassword":"الرجاء تأكيد كلمة المرور ",
  "PasswordsNotMatch":"كلمة المرور غير متطابقة",
@@ -79,5 +82,15 @@
   "resetPasswordSuccess": "إعادة تعيين كلمة المرور ناجحة.",
   "resetPasswordFailure": "فشل إعادة تعيين كلمة المرور: ",
   "signOutSuccess": "تسجيل الخروج ناجح.",
-  "signOutFailure": "فشل تسجيل الخروج: "
+  "signOutFailure": "فشل تسجيل الخروج: ",
+
+  "newStaffMember":"اضافة عضو جديد",
+
+  "languages":"اللغات",
+  "photo":"ارفع صورة العضو",
+"imageSelected":"تم رفع الصورة",
+"add":"اضافة"
+
+
+
 }

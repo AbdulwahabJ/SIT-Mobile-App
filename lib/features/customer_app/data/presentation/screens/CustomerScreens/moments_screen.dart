@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
-import '../../../../../core/helper/language.dart';
-import '../../../../../core/utils/app_images.dart';
-import '../../../../../generated/l10n.dart';
-import '../widgets/MomentsScreenWidgets/moment_images_list_view.dart';
+import '../../../../../../core/helper/language.dart';
+import '../../../../../../core/utils/app_images.dart';
+import '../../../../../../generated/l10n.dart';
+import '../../widgets/MomentsScreenWidgets/moment_images_list_view.dart';
 
 class MomentsScreen extends StatefulWidget {
   const MomentsScreen({super.key});
