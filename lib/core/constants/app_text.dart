@@ -38,6 +38,9 @@ class AppTexts {
   static const String verfiyEmailApi = '/verify_email';
   static const String resetPasswordApi = '/reset_password';
   static const String logoutApi = '/logout';
+  static const String staffLogoutApi = '/staff_logout';
+  static const String getStaffApi = '/get_staff';
+
   // static const String addStaffApi = '/addStaff';
 
   //handle Exceptions

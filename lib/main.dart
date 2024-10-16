@@ -8,6 +8,8 @@ import 'package:sit_app/core/widgets/bottom_nav_bar.dart/logic/bottom_nav_bar_cu
 import 'package:sit_app/features/auth/data/services/auth_service.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:sit_app/features/customer_app/data/services/staff_service.dart';
+import 'package:sit_app/features/customer_app/logic/staff_cubit.dart';
 import 'package:sit_app/generated/l10n.dart';
 
 void main() async {
@@ -46,6 +48,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: (context) => AuthCubit(GetIt.I<AuthService>()),
+        ),
+        BlocProvider(
+          create: (context) => StaffCubit(GetIt.I<StaffService>()),
         ),
         BlocProvider(
           create: (context) => BottomNavBarCubit(),

@@ -729,6 +729,16 @@ class S {
       args: [],
     );
   }
+
+  /// `What an honor it is to serve the guests of Allah\n isn't it?`
+  String get staffMessage {
+    return Intl.message(
+      'What an honor it is to serve the guests of Allah\n isn\'t it?',
+      name: 'staffMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

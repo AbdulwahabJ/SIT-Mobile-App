@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
+import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
-import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/guide_list.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/today_program_list_view.dart';
 import 'package:sit_app/generated/l10n.dart';
 
-class StaffScreenBody extends StatelessWidget {
+class StaffScreenBody extends StatefulWidget {
   const StaffScreenBody({
     super.key,
   });
+
+  @override
+  State<StaffScreenBody> createState() => _StaffScreenBodyState();
+}
+
+class _StaffScreenBodyState extends State<StaffScreenBody> {
+  dynamic user;
+  @override
+  void initState() {
+    super.initState();
+    getUsertypeInfo();
+  }
+
+  Future<dynamic> getUsertypeInfo() async {
+    dynamic usertype = await getUserInfo(context);
+    setState(() {
+      user = usertype;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +42,12 @@ class StaffScreenBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.homeScreensTextPadding),
+            Center(
               child: Text(
-                S.of(context).hello,
-                style: AppStyles.styleSemiBold26,
+                textAlign: TextAlign.center,
+                S.of(context).staffMessage,
+                style: AppStyles.styleLight14
+                    .copyWith(color: AppColors.unSelectedNavBarIconColor),
               ),
             ),
             const SizedBox(height: 20),

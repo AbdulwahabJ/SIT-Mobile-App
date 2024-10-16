@@ -6,10 +6,16 @@ class StaffInitial extends StaffState {}
 
 class StaffLoading extends StaffState {}
 
-class StaffAdded extends StaffState {
-  final String message;
+class StaffSuccess extends StaffState {
+  String message = '';
 
-  StaffAdded(this.message);
+  StaffSuccess(this.message);
+}
+
+class StaffLodedd extends StaffState {
+  List<Map<String, dynamic>> staffData;
+
+  StaffLodedd(this.staffData);
 }
 
 class StaffFailure extends StaffState {

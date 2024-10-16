@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/generated/l10n.dart';
 
-enum InputType { name, email, password, confirmPassword, phoneNumber }
+enum InputType { name, email, password, confirmPassword, phoneNumber,languages }
 
 class Validation {
   static String? validateInput(

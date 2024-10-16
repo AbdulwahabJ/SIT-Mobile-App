@@ -108,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sign up successful: "),
         "signin": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "staffMessage": MessageLookupByLibrary.simpleMessage(
+            "What an honor it is to serve the guests of Allah\n isn\'t it?"),
         "staffScreenHeader":
             MessageLookupByLibrary.simpleMessage("Sara Staff Here For You"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),

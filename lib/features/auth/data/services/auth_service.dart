@@ -4,6 +4,7 @@ import 'package:sit_app/core/network/dio_client.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
 
 import '../../../../core/constants/app_text.dart';
+import '../../../../core/helper/user_info.dart';
 import '../../../../core/helper/handle_exception.dart';
 import '../../../customer_app/data/models/staff_model.dart';
 import '../models/user_model.dart';
@@ -132,9 +133,12 @@ class AuthService {
   Future<void> logOut() async {
     return handleException(() async {
       final token = await TokenStorage.getToken();
+      dynamic user = getLoggedInUser();
+      dynamic logoutApi =
+          user is UserModel ? AppTexts.logoutApi : AppTexts.staffLogoutApi;
 
       final response = await dioClient.post(
-        AppTexts.logoutApi,
+        logoutApi,
         {},
         options: Options(headers: {
           'Authorization': 'Bearer $token',
@@ -144,10 +148,12 @@ class AuthService {
 
       if (response.statusCode == 200) {
         await TokenStorage.deleteToken();
+        user is UserModel
+            ? await TokenStorage.deleteUser()
+            : await TokenStorage.deleteStaff();
       } else {
         throw Exception('Failed to log out');
       }
     });
   }
-
 }

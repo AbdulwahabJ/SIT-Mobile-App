@@ -43,4 +43,24 @@ class StaffService {
       }
     });
   }
+
+  Future<List<Map<String, dynamic>>> getStaff() async {
+    return handleException(() async {
+      final response = await dioClient.get(
+        AppTexts.getStaffApi,
+      );
+
+      if (response.statusCode == 200) {
+        List staffData = response.data['staff_data'];
+        return List<Map<String, dynamic>>.from(staffData.map((item) => {
+              'image': item['image'],
+              'name': item['name'],
+              'languages': item['languages'],
+              'phone_number': item['phone_number'],
+            })); // ignore: avoid_print
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
 }
