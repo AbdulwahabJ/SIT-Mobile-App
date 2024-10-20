@@ -33,5 +33,5 @@ Future<dynamic> getUserInfo(BuildContext context) async {
 }
 
 bool isAdmin() {
-  return false;
+  return true;
 }

@@ -58,6 +58,8 @@ class AppTexts {
       'An unknown error occurred,sorry we will fix the error as soon as possible';
   static const String unUniqueEmailException =
       'email already exist, try write another email';
+  static const String noStaffAddedException =
+      'staff will be shown when trip started';
 
   static const String noInternetException_ar =
       'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.';
@@ -73,6 +75,8 @@ class AppTexts {
       'حدث خطأ غير معروف، نعتذر وسنقوم بإصلاح الخطأ في أقرب وقت ممكن.';
   static const String unUniqueEmailException_ar =
       'البريد الإلكتروني موجود بالفعل، يرجى كتابة بريد إلكتروني آخر.';
+  static const String noStaffAddedException_ar =
+      'سيتم اضافة الفريق عند بدأ الرحلة ';
 
   // validation
   static const String nameRequired = 'Please enter your full name';

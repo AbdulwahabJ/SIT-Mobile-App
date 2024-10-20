@@ -18,6 +18,12 @@ class StaffLodedd extends StaffState {
   StaffLodedd(this.staffData);
 }
 
+class StaffNotLodedd extends StaffState {
+  final String error;
+
+  StaffNotLodedd(this.error);
+}
+
 class StaffFailure extends StaffState {
   final String error;
 

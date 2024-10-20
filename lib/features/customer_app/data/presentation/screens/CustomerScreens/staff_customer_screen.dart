@@ -19,9 +19,14 @@ import '../../../../logic/staff_cubit.dart';
 import '../../widgets/HomeScreenWidgets/staff_list_view_customer.dart';
 import '../../widgets/StaffScreenWidgets/custom_image_upload_field.dart';
 
-class StaffCustomerScreen extends StatelessWidget {
+class StaffCustomerScreen extends StatefulWidget {
   const StaffCustomerScreen({super.key});
 
+  @override
+  State<StaffCustomerScreen> createState() => _StaffCustomerScreenState();
+}
+
+class _StaffCustomerScreenState extends State<StaffCustomerScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -55,9 +60,12 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
       body: BlocConsumer<StaffCubit, StaffState>(
         listener: (context, state) {
           if (state is StaffSuccess) {
+            debugPrint("Staff added successfully");
             context.read<StaffCubit>().getStaff();
 
             _showSnackBar(state.message);
+            setState(() {});
+
             Navigator.pop(context);
           } else if (state is StaffFailure) {
             _showSnackBar(state.error);
@@ -78,7 +86,6 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
                   const Divider(),
                   const SizedBox(height: 10),
                   const StaffListViewCustomer(),
-                  // _buildAddStaffButton(context, state),
                 ],
               ),
             ),
@@ -88,7 +95,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, StaffState state) {
+  Widget _buildHeader(context, StaffState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -99,7 +106,11 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
         ),
         isAdmin()
             ? IconButton(
-                onPressed: () => _showAddStaffBottomSheet(context, state),
+                onPressed: () {
+                  _clearFields();
+
+                  _showAddStaffBottomSheet(context, state);
+                },
                 icon: AppIcons.staffAddIcon,
               )
             : Container(),
@@ -107,11 +118,11 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  void _showAddStaffBottomSheet(BuildContext context, StaffState state) {
+  void _showAddStaffBottomSheet(context, StaffState state) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (BuildContext context) {
+      builder: (context) {
         return DraggableScrollableSheet(
           initialChildSize: 0.78,
           minChildSize: 0.3,
@@ -208,23 +219,6 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  // Widget _buildAddStaffButton(BuildContext context, StaffState state) {
-  //   return ElevatedButton(
-  //     onPressed: () => _showAddStaffBottomSheet(context, state),
-  //     style: ElevatedButton.styleFrom(
-  //       iconColor: AppColors.primaryColor,
-  //       padding: const EdgeInsets.symmetric(vertical: 16.0),
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(8.0),
-  //       ),
-  //     ),
-  //     child: Text(
-  //       S.of(context).add,
-  //       style: const TextStyle(color: Colors.white, fontSize: 16),
-  //     ),
-  //   );
-  // }
-
   Widget _buildSubmitButton(StaffState state) {
     return Center(
       child: InkWell(
@@ -241,7 +235,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
   void _onAddStaffTap() {
     FocusScope.of(context).unfocus();
     if (_formKey.currentState?.validate() == true) {
-      final phoneNumber = '+' +
+      final phoneNumber = '+'
           '${phoneNumberController.value!.countryCode}${phoneNumberController.value!.nsn}';
       // استخدام الـ Cubit لإضافة موظف جديد
       context.read<StaffCubit>().addmember(
@@ -259,6 +253,18 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  void _clearFields() {
+    nameController.clear();
+    emailController.clear();
+    phoneNumberController.value =
+        const PhoneNumber(isoCode: IsoCode.US, nsn: ''); // تصفية الهاتف
+    passwordController.clear();
+    languagesController.clear();
+    // setState(() {
+    //   _selectedImage = null;
+    // });
   }
 
   @override

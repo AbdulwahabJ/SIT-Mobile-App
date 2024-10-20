@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/customer_app/logic/staff_cubit.dart';
+
+import '../../../services/whats_app_service.dart';
 
 class StaffListViewCustomer extends StatefulWidget {
   const StaffListViewCustomer({
@@ -26,11 +29,9 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
     return BlocBuilder<StaffCubit, StaffState>(
       builder: (context, state) {
         if (state is StaffLoading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (state is StaffLodedd) {
-          // هنا نستخدم البيانات المحملة
           List<Map<String, dynamic>> items = state.staffData;
-          print('dffffffffffd:$items');
 
           return ListView.builder(
             padding: EdgeInsets.zero,
@@ -46,32 +47,43 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  // leading: CircleAvatar(
-                  //   backgroundImage: NetworkImage(
-                  //       item['image']!), // استخدام الصورة من الشبكة
-                  // ),
+                  leading: CircleAvatar(
+                    backgroundImage:
+                        item['image'] != null && item['image'] != ''
+                            ? NetworkImage(item['image'])
+                            : const AssetImage(
+                                AppImages.umrahProgramImage,
+                              ),
+                    onBackgroundImageError: (exception, stackTrace) {
+                      // ignore: avoid_print
+                      print('Error loading image: $exception');
+                    },
+                  ),
                   title: Text(
-                    item['name']!,
+                    item['name'],
                     style: AppStyles.styleSemiBold16,
                   ),
                   subtitle: Text(
-                    item[
-                        'languages']!, // استخدم اللغات أو أي بيانات أخرى تريد عرضها
+                    item['languages'],
                     style: AppStyles.styleReguler13,
                   ),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      openWhatsApp(
+                          phoneNumber: item['phone_number'],
+                          text: 'Hi ${item['name']}');
+                    },
                     icon: AppIcons.staffSendIcon,
                   ),
                 ),
               );
             },
           );
-        } else if (state is StaffFailure) {
-          return Center(child: Text('خطأ: ${state.error}'));
+        } else if (state is StaffNotLodedd) {
+          return Center(child: Text(state.error));
         }
 
-        return Center(child: Text('لا توجد بيانات'));
+        return const Center(child: Text('لا توجد بيانات'));
       },
     );
   }

@@ -42,7 +42,7 @@ class AppIcons {
   //
   //
   static const Icon successIcon =
-      Icon(Icons.check_circle, size: 34, color: AppColors.successColor);
+      Icon(Icons.check_circle, size: 24, color: AppColors.successColor);
   //
   //bottom nav bar icons
   static const Icon homeIcon =

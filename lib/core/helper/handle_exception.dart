@@ -35,6 +35,12 @@ Future<T> handleException<T>(Future<T> Function() action) async {
           ? AppTexts.verfiyEmailException_ar
           : AppTexts.verfiyEmailException);
     } else if (e is DioException &&
+        e.response?.data['message'] == 'No Staff Found' &&
+        e.response?.statusCode == 404) {
+      throw (isArabic()
+          ? AppTexts.noStaffAddedException_ar
+          : AppTexts.noStaffAddedException);
+    } else if (e is DioException &&
         e.response?.data['message'] == 'Email is already in use' &&
         e.response?.statusCode == 400) {
       throw (isArabic()

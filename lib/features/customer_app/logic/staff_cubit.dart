@@ -42,9 +42,8 @@ class StaffCubit extends Cubit<StaffState> {
       print('cubit staff:$staffData');
       emit(StaffLodedd(staffData));
     } catch (e) {
-      print('eeeee:$e');
-
-      emit(StaffFailure(e.toString()));
+      emit(StaffNotLodedd(e.toString()));
+      print('get stafff:$e');
     }
   }
 }

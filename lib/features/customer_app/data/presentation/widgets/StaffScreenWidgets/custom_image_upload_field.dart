@@ -33,7 +33,7 @@ class _CustomImageUploadWidgetState extends State<CustomImageUploadWidget> {
         _imageFile = pickedFile;
       });
       if (_imageFile != null) {
-        widget.onImageSelected(_imageFile); 
+        widget.onImageSelected(_imageFile);
       }
     } else {
       _showPermissionDeniedMessage();
@@ -77,11 +77,14 @@ class _CustomImageUploadWidgetState extends State<CustomImageUploadWidget> {
             widget.icon,
             const SizedBox(width: 10),
             Text(
-              _imageFile == null ? S.of(context).photo : _imageFile!.name,
+              overflow: TextOverflow.ellipsis,
+              _imageFile == null
+                  ? S.of(context).photo
+                  : 'image selected successfuly',
               style: AppStyles.styleLight14,
             ),
             const Spacer(),
-            AppIcons.uploadImage,
+            _imageFile == null ? AppIcons.uploadImage : AppIcons.successIcon,
           ],
         ),
       ),
