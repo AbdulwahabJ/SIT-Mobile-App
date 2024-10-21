@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_input/phone_input_package.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/constants/app_text.dart';
@@ -12,6 +12,8 @@ import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_phone_field.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
+import 'package:sit_app/features/auth/logic/auth_cubit.dart';
+import 'package:sit_app/features/auth/logic/auth_state.dart';
 import 'package:sit_app/features/customer_app/data/services/staff_service.dart';
 import '../../../../../../core/constants/app_icons.dart';
 import '../../../../../../generated/l10n.dart';
@@ -57,16 +59,16 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<StaffCubit, StaffState>(
+      body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is StaffSuccess) {
+          if (state is AuthSuccess) {
+            Navigator.pop(context);
             debugPrint("Staff added successfully");
             context.read<StaffCubit>().getStaff();
-            Navigator.pop(context);
 
             _showSnackBar(state.message);
             // setState(() {});
-          } else if (state is StaffFailure) {
+          } else if (state is AuthFailure) {
             _showSnackBar(state.error);
             Navigator.pop(context);
           }
@@ -94,7 +96,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  Widget _buildHeader(context, StaffState state) {
+  Widget _buildHeader(context, AuthState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -117,7 +119,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  void _showAddStaffBottomSheet(context, StaffState state) {
+  void _showAddStaffBottomSheet(context, AuthState state) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -218,7 +220,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  Widget _buildSubmitButton(StaffState state) {
+  Widget _buildSubmitButton(AuthState state) {
     return Center(
       child: InkWell(
         onTap: _onAddStaffTap,
@@ -237,13 +239,16 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
       final phoneNumber = '+'
           '${phoneNumberController.value!.countryCode}${phoneNumberController.value!.nsn}';
       // استخدام الـ Cubit لإضافة موظف جديد
-      context.read<StaffCubit>().addmember(
-            name: nameController.text,
-            email: emailController.text,
-            password: passwordController.text,
-            phoneNumber: phoneNumber,
-            languages: languagesController.text,
-            image: _selectedImage,
+
+      context.read<AuthCubit>().signUp(
+            nameController.text,
+            emailController.text,
+            passwordController.text,
+            phoneNumber,
+            null,
+            'staff',
+            languagesController.text,
+            _selectedImage,
           );
     }
   }

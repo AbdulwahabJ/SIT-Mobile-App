@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
 import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
+import 'package:sit_app/features/auth/data/models/user_model.dart';
 
 class UserDrawerListTile extends StatefulWidget {
   const UserDrawerListTile({
@@ -12,32 +14,30 @@ class UserDrawerListTile extends StatefulWidget {
 }
 
 class _UserDrawerListTileState extends State<UserDrawerListTile> {
-  // UserModel? _user;
+  UserModel? _user;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _loadUser();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
 
-  // Future<void> _loadUser() async {
-  //   _user = await TokenStorage.getUser();
-  //   setState(() {});
-  // }
+  Future<void> _loadUser() async {
+    _user = await TokenStorage.getUser();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      leading: CircleAvatar(
+    return ListTile(
+      leading: const CircleAvatar(
           backgroundImage: AssetImage(AppImages.umrahProgramImage)),
       title: Text(
-        // user!.name, // استخدام العنوان من الـ Map
-        ',',
+        _user != null ? _user!.name : ',',
         style: AppStyles.styleReguler16W600,
       ),
       subtitle: Text(
-        // user.email'',
-        '',
+        _user != null ? _user!.email : ',',
         style: AppStyles.styleReguler11,
       ),
     );

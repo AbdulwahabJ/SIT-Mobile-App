@@ -10,11 +10,6 @@ Future<dynamic> getLoggedInUser() async {
     return user;
   }
 
-  final staff = await TokenStorage.getStaff();
-  if (staff != null) {
-    return staff;
-  }
-
   return null;
 }
 
@@ -22,11 +17,6 @@ Future<dynamic> getUserInfo(BuildContext context) async {
   final user = await TokenStorage.getUser();
   if (user != null) {
     return context.read<AuthCubit>().userInfo;
-  }
-
-  final staff = await TokenStorage.getStaff();
-  if (staff != null) {
-    return context.read<AuthCubit>().staffInfo;
   }
 
   return null;

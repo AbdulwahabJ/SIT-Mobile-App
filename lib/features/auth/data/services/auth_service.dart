@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sit_app/core/network/dio_client.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
 
 import '../../../../core/constants/app_text.dart';
-import '../../../../core/helper/user_info.dart';
 import '../../../../core/helper/handle_exception.dart';
-import '../../../customer_app/data/models/staff_model.dart';
 import '../models/user_model.dart';
 
 class AuthService {
@@ -14,7 +13,7 @@ class AuthService {
 
   AuthService(this.dioClient);
 
-  Future<dynamic> logIn(String email, String password) async {
+  Future<UserModel?> logIn(String email, String password) async {
     return handleException(() async {
       final response = await dioClient.post(
         AppTexts.loginApi,
@@ -27,62 +26,69 @@ class AuthService {
         }),
       );
 
-      if (response.data != null && response.data is Map) {
-        if (response.data.containsKey('user') &&
-            response.data['user'] != null) {
-          return await _handleUserLogin(response.data);
-        } else if (response.data.containsKey('staff') &&
-            response.data['staff'] != null) {
-          return await _handleStaffLogin(response.data);
-        } else {
-          throw Exception('Invalid response structure');
-        }
+      if (response.data != null) {
+        //
+        final user = UserModel.fromJson(response.data['user']);
+        await TokenStorage.saveToken(user.token);
+        await TokenStorage.saveUser(user);
+        return user;
+        //
       } else {
-        throw Exception('Failed to log in, invalid response');
+        throw Exception();
       }
     });
   }
 
-  Future<UserModel?> _handleUserLogin(dynamic data) async {
-    final user = UserModel.fromJson(data['user']);
-    await TokenStorage.saveToken(user.token);
-    await TokenStorage.saveUser(user);
-    return user;
-  }
+  // Future<UserModel?> _handleUserLogin(dynamic data) async {
+  //   final user = UserModel.fromJson(data['user']);
+  //   await TokenStorage.saveToken(user.token);
+  //   await TokenStorage.saveUser(user);
+  //   return user;
+  // }
 
-  Future<StaffModel?> _handleStaffLogin(dynamic data) async {
-    final staffUser = StaffModel.fromJson(data['staff']);
-    await TokenStorage.saveToken(staffUser.token);
-    await TokenStorage.saveStaff(staffUser);
+  // Future<StaffModel?> _handleStaffLogin(dynamic data) async {
+  //   final staffUser = StaffModel.fromJson(data['staff']);
+  //   await TokenStorage.saveToken(staffUser.token);
+  //   await TokenStorage.saveStaff(staffUser);
 
-    return staffUser;
-  }
+  //   return staffUser;
+  // }
 
-  Future<UserModel?> signUp(String name, String email, String password,
-      String phoneNumber, String? groupID) async {
+  Future<void> signUp(
+    String name,
+    String email,
+    String password,
+    String phoneNumber,
+    String? groupID,
+    String role,
+    dynamic languages,
+    XFile? image,
+  ) async {
     return handleException(() async {
-      final response = await dioClient.post(
+      final formData = FormData.fromMap({
+        'name': name,
+        'email': email,
+        'password': password,
+        'phone_number': phoneNumber,
+        'group_id': groupID,
+        'role': role,
+        'languages': languages,
+        'image':
+            image != null ? await MultipartFile.fromFile(image.path) : 'null',
+      });
+      //
+      final response = await dioClient.staffpost(
         AppTexts.registerApi,
-        {
-          'name': name,
-          'email': email,
-          'password': password,
-          'phone_number': phoneNumber,
-          'group_id': groupID,
-          'role': 'user',
-        },
+        formData,
         options: Options(headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         }),
       );
 
-      if (response.statusCode == 200) {
-        final user = UserModel.fromJson(response.data['user']);
-        await TokenStorage.saveToken(user.token); // Save the token
-        await TokenStorage.saveUser(user);
-        var userr = await TokenStorage.getUser();
-        print('sasasas::${userr!.name}');
-        return UserModel.fromJson(response.data['user']);
+      if (response.statusCode == 201) {
+        // final user = response.data['message'];
+        // await TokenStorage.saveToken(user.token); // Save the token
+        // await TokenStorage.saveUser(user);
       } else {
         throw Exception(response.data['message']);
       }
@@ -133,12 +139,9 @@ class AuthService {
   Future<void> logOut() async {
     return handleException(() async {
       final token = await TokenStorage.getToken();
-      dynamic user = getLoggedInUser();
-      dynamic logoutApi =
-          user is UserModel ? AppTexts.logoutApi : AppTexts.staffLogoutApi;
 
       final response = await dioClient.post(
-        logoutApi,
+        AppTexts.logoutApi,
         {},
         options: Options(headers: {
           'Authorization': 'Bearer $token',
@@ -148,9 +151,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         await TokenStorage.deleteToken();
-        user is UserModel
-            ? await TokenStorage.deleteUser()
-            : await TokenStorage.deleteStaff();
+        await TokenStorage.deleteUser();
       } else {
         throw Exception('Failed to log out');
       }

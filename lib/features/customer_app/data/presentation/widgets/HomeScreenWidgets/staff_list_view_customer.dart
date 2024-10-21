@@ -64,7 +64,7 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
                     style: AppStyles.styleSemiBold16,
                   ),
                   subtitle: Text(
-                    item['languages'],
+                    item['languages']??'',
                     style: AppStyles.styleReguler13,
                   ),
                   trailing: IconButton(
