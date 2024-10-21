@@ -4,7 +4,7 @@ import 'package:sit_app/core/utils/app_styles.dart';
 import '../../../../../core/constants/app_icons.dart';
 import '../../../../../core/utils/app_screen_utils.dart';
 
-class CustomMainButton extends StatelessWidget {
+class CustomMainButton extends StatefulWidget {
   const CustomMainButton({
     super.key,
     required this.isLoading,
@@ -16,6 +16,11 @@ class CustomMainButton extends StatelessWidget {
   final bool isLoading;
   final bool isSuccess;
 
+  @override
+  State<CustomMainButton> createState() => _CustomMainButtonState();
+}
+
+class _CustomMainButtonState extends State<CustomMainButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,16 +35,16 @@ class CustomMainButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              buttonText,
+              widget.buttonText,
               style: AppStyles.styleSemiBold22,
             ),
             const SizedBox(width: 10),
-            if (isLoading)
+            if (widget.isLoading)
               const CircularProgressIndicator(
                 color: AppColors.accentColor,
                 strokeWidth: 2,
               ),
-            if (isSuccess) AppIcons.successIcon, // علامة الصح
+            if (widget.isSuccess) AppIcons.successIcon, // علامة الصح
           ],
         ),
       ),

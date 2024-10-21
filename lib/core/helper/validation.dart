@@ -5,7 +5,7 @@ enum InputType { name, email, password, confirmPassword, phoneNumber,languages }
 
 class Validation {
   static String? validateInput(
-      InputType inputType, String? value, BuildContext context) {
+      InputType ?inputType, String? value, BuildContext context) {
     switch (inputType) {
       case InputType.name:
         return _validateFullName(value, context);

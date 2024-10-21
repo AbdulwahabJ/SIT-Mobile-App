@@ -40,6 +40,7 @@ class AppTexts {
   static const String logoutApi = '/logout';
   static const String staffLogoutApi = '/staff_logout';
   static const String getStaffApi = '/get_staff';
+  static const String addGroupApi = '/add_group';
 
   // static const String addStaffApi = '/addStaff';
 
@@ -60,6 +61,8 @@ class AppTexts {
       'email already exist, try write another email';
   static const String noStaffAddedException =
       'staff will be shown when trip started';
+  static const String cantAddGroupException =
+      'Cannot add a group now. Try again later, or contact the application administrator';
 
   static const String noInternetException_ar =
       'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.';
@@ -77,6 +80,8 @@ class AppTexts {
       'البريد الإلكتروني موجود بالفعل، يرجى كتابة بريد إلكتروني آخر.';
   static const String noStaffAddedException_ar =
       'سيتم اضافة الفريق عند بدأ الرحلة ';
+  static const String cantAddGroupException_ar =
+      'لايمكن اضافة مجموعة الان حاول لاحقا, او تواصل مع مشرف التطبيق';
 
   // validation
   static const String nameRequired = 'Please enter your full name';

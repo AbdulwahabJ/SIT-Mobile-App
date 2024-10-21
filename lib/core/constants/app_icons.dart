@@ -85,4 +85,14 @@ class AppIcons {
       Icon(Icons.photo_camera_front_outlined, color: AppColors.primaryColor);
   static const Icon uploadImage =
       Icon(Icons.file_upload_outlined, color: AppColors.primaryColor);
+
+  //settings admin screen icons
+  static const Icon groupAdminIcon =
+      Icon(Icons.groups_2_rounded, size: 28, color: AppColors.accentColor);
+  static const Icon addAdminIcon = Icon(Icons.add_circle_outline,
+      size: 28, color: AppColors.blueAddIconColor);
+  static const Icon editAdminIcon =
+      Icon(Icons.edit, size: 28, color: AppColors.yellowEditIconColor);
+  static const Icon deleteAdminIcon =
+      Icon(Icons.delete, size: 28, color: AppColors.deleteIconColor);
 }

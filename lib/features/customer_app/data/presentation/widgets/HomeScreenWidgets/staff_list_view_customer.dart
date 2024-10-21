@@ -4,7 +4,7 @@ import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
-import 'package:sit_app/features/customer_app/logic/staff_cubit.dart';
+import 'package:sit_app/features/customer_app/logic/StaffCubit/staff_cubit.dart';
 
 import '../../../services/whats_app_service.dart';
 

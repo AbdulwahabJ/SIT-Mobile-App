@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "Urdu": MessageLookupByLibrary.simpleMessage("Urdu"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "addGroupHeader": MessageLookupByLibrary.simpleMessage("New Group"),
         "confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Please confirm your password"),
         "confirmYourPassword":
@@ -49,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "generalException": MessageLookupByLibrary.simpleMessage(
             "An unknown error occurred.\n Sorry, we will fix the error as soon as possible."),
         "group": MessageLookupByLibrary.simpleMessage("Group"),
+        "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
+        "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "have_a_nice_day":
             MessageLookupByLibrary.simpleMessage("have a nice day"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
@@ -86,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("phone number required"),
         "photo": MessageLookupByLibrary.simpleMessage("upload member photo"),
         "photoRequired": MessageLookupByLibrary.simpleMessage("photo required"),
+        "programs": MessageLookupByLibrary.simpleMessage("Programs"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "resetPasswordFailure":
             MessageLookupByLibrary.simpleMessage("Password reset failed: "),

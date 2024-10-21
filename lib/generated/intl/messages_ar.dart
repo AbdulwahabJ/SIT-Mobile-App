@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير متطابقة"),
         "Urdu": MessageLookupByLibrary.simpleMessage("اوردو"),
         "add": MessageLookupByLibrary.simpleMessage("اضافة"),
+        "addGroupHeader":
+            MessageLookupByLibrary.simpleMessage("اضف مجموعة جديدة"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("الرجاء تأكيد كلمة المرور "),
         "confirmYourPassword":
@@ -49,6 +51,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "generalException": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ غير معروف. عذرًا\n، سنقوم بإصلاح الخطأ في أقرب وقت ممكن."),
         "group": MessageLookupByLibrary.simpleMessage("المجموعة"),
+        "groupName":
+            MessageLookupByLibrary.simpleMessage("اسم المجموعة الجديدة"),
+        "groups": MessageLookupByLibrary.simpleMessage("المجموعات"),
         "have_a_nice_day": MessageLookupByLibrary.simpleMessage("يومك سعيد"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "imageSelected": MessageLookupByLibrary.simpleMessage("تم رفع الصورة"),
@@ -86,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "photo": MessageLookupByLibrary.simpleMessage("ارفع صورة العضو"),
         "photoRequired":
             MessageLookupByLibrary.simpleMessage("يرجى رفع الصورة"),
+        "programs": MessageLookupByLibrary.simpleMessage("البرامج"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("اعادة تعيين كلمة المرور"),
         "resetPasswordFailure": MessageLookupByLibrary.simpleMessage(

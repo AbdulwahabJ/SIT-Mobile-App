@@ -9,7 +9,7 @@ import 'package:sit_app/features/auth/data/services/auth_service.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:sit_app/features/customer_app/data/services/staff_service.dart';
-import 'package:sit_app/features/customer_app/logic/staff_cubit.dart';
+import 'package:sit_app/features/customer_app/logic/StaffCubit/staff_cubit.dart';
 import 'package:sit_app/generated/l10n.dart';
 
 void main() async {
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
         // useInheritedMediaQuery: true,
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.splashScreen,
+        initialRoute: AppRoutes.loginScreen,
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );

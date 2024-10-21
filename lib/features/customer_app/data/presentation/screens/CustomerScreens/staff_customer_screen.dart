@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:image_picker/image_picker.dart'; // مكتبة رفع الصور
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_input/phone_input_package.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // إضافة المكتبة الخاصة بالـ Bloc
+import 'package:flutter_bloc/flutter_bloc.dart'; 
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/constants/app_text.dart';
@@ -15,7 +15,7 @@ import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_fiel
 import 'package:sit_app/features/customer_app/data/services/staff_service.dart';
 import '../../../../../../core/constants/app_icons.dart';
 import '../../../../../../generated/l10n.dart';
-import '../../../../logic/staff_cubit.dart';
+import '../../../../logic/StaffCubit/staff_cubit.dart';
 import '../../widgets/HomeScreenWidgets/staff_list_view_customer.dart';
 import '../../widgets/StaffScreenWidgets/custom_image_upload_field.dart';
 
@@ -62,11 +62,10 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
           if (state is StaffSuccess) {
             debugPrint("Staff added successfully");
             context.read<StaffCubit>().getStaff();
+            Navigator.pop(context);
 
             _showSnackBar(state.message);
-            setState(() {});
-
-            Navigator.pop(context);
+            // setState(() {});
           } else if (state is StaffFailure) {
             _showSnackBar(state.error);
             Navigator.pop(context);

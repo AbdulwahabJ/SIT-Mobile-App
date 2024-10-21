@@ -46,6 +46,12 @@ Future<T> handleException<T>(Future<T> Function() action) async {
       throw (isArabic()
           ? AppTexts.unUniqueEmailException_ar
           : AppTexts.unUniqueEmailException);
+    } else if (e is DioException &&
+        e.response?.data['message'] == 'Failed to add group' &&
+        e.response?.statusCode == 500) {
+      throw (isArabic()
+          ? AppTexts.cantAddGroupException_ar
+          : AppTexts.cantAddGroupException);
     }
     throw Exception(
         '${isArabic() ? AppTexts.generalException_ar : AppTexts.generalException} : $e');

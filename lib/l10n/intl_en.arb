@@ -94,7 +94,13 @@
    "photo":"upload member photo",
    "imageSelected":"image selected",
    "add":"Add",
-   "staffMessage":"What an honor it is to serve the guests of Allah\n isn't it?"
+   "staffMessage":"What an honor it is to serve the guests of Allah\n isn't it?",
+  "groups":"Groups",
+  "programs":"Programs",
+  "addGroupHeader":"New Group",
+  "groupName":"Group Name"
+
+
 
 
 

@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_text.dart';
 
-import '../../../core/helper/language.dart';
-import '../data/services/staff_service.dart';
+import '../../../../core/helper/language.dart';
+import '../../data/services/staff_service.dart';
 
 part 'staff_state.dart';
 

@@ -739,6 +739,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Groups`
+  String get groups {
+    return Intl.message(
+      'Groups',
+      name: 'groups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Programs`
+  String get programs {
+    return Intl.message(
+      'Programs',
+      name: 'programs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Group`
+  String get addGroupHeader {
+    return Intl.message(
+      'New Group',
+      name: 'addGroupHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group Name`
+  String get groupName {
+    return Intl.message(
+      'Group Name',
+      name: 'groupName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
