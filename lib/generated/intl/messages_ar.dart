@@ -32,14 +32,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("اضافة"),
         "addGroupHeader":
             MessageLookupByLibrary.simpleMessage("اضف مجموعة جديدة"),
+        "addProgramHeader":
+            MessageLookupByLibrary.simpleMessage("اضف برنامج جديد"),
+        "chooseDateHint": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
+        "chooseTimeHint": MessageLookupByLibrary.simpleMessage("اختر الوقت"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("الرجاء تأكيد كلمة المرور "),
         "confirmYourPassword":
             MessageLookupByLibrary.simpleMessage("أعد كتابة كلمة المرور"),
+        "deletGroupButton": MessageLookupByLibrary.simpleMessage("حذف"),
+        "deleteGroupHeader": MessageLookupByLibrary.simpleMessage("حذف مجموعة"),
+        "deleteProgramHeader":
+            MessageLookupByLibrary.simpleMessage("حذف برنامج"),
         "dontHaveAccountException": MessageLookupByLibrary.simpleMessage(
             "حاول تصحيح بريدك الإلكتروني من فضلك."),
         "dontHaveaccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "editGroupHeader": MessageLookupByLibrary.simpleMessage("تعديل مجموعة"),
+        "editProgramHeader":
+            MessageLookupByLibrary.simpleMessage("تعديل برنامج"),
         "emailEnglishOnly": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون البريد الإلكتروني باللغة الإنجليزية."),
         "emailInvalid": MessageLookupByLibrary.simpleMessage(
@@ -100,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "إعادة تعيين كلمة المرور ناجحة."),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "selectGroup": MessageLookupByLibrary.simpleMessage("اختر المجموعة"),
+        "selectProgram": MessageLookupByLibrary.simpleMessage("اختر برنامج"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "sign": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "signInButton": MessageLookupByLibrary.simpleMessage("دخول"),
@@ -125,6 +137,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "umrahGuiedLabel": MessageLookupByLibrary.simpleMessage("دليل العمرة"),
         "unUniqueEmailException": MessageLookupByLibrary.simpleMessage(
             "البريد الإلكتروني موجود بالفعل\n، حاول كتابة بريد إلكتروني آخر."),
+        "updatGroupName":
+            MessageLookupByLibrary.simpleMessage("تعديل اسم المجموعة"),
+        "updatGroupNameHint":
+            MessageLookupByLibrary.simpleMessage("الاسم الجديد"),
+        "updateGroupButton": MessageLookupByLibrary.simpleMessage("تعديل"),
         "verf": MessageLookupByLibrary.simpleMessage("تحقق"),
         "verfiy": MessageLookupByLibrary.simpleMessage("تحقق من الايميل"),
         "verfiyEmailException": MessageLookupByLibrary.simpleMessage(

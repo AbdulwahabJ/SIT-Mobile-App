@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `Select Program`
+  String get selectProgram {
+    return Intl.message(
+      'Select Program',
+      name: 'selectProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `SIGN`
   String get sign {
     return Intl.message(
@@ -730,6 +740,26 @@ class S {
     );
   }
 
+  /// `Update`
+  String get updateGroupButton {
+    return Intl.message(
+      'Update',
+      name: 'updateGroupButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deletGroupButton {
+    return Intl.message(
+      'Delete',
+      name: 'deletGroupButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `What an honor it is to serve the guests of Allah\n isn't it?`
   String get staffMessage {
     return Intl.message(
@@ -770,11 +800,101 @@ class S {
     );
   }
 
+  /// `Edit Group`
+  String get editGroupHeader {
+    return Intl.message(
+      'Edit Group',
+      name: 'editGroupHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Group`
+  String get deleteGroupHeader {
+    return Intl.message(
+      'Delete Group',
+      name: 'deleteGroupHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Program`
+  String get addProgramHeader {
+    return Intl.message(
+      'New Program',
+      name: 'addProgramHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Program`
+  String get editProgramHeader {
+    return Intl.message(
+      'Edit Program',
+      name: 'editProgramHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Program`
+  String get deleteProgramHeader {
+    return Intl.message(
+      'Delete Program',
+      name: 'deleteProgramHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Group Name`
   String get groupName {
     return Intl.message(
       'Group Name',
       name: 'groupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `update group name`
+  String get updatGroupName {
+    return Intl.message(
+      'update group name',
+      name: 'updatGroupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `new name`
+  String get updatGroupNameHint {
+    return Intl.message(
+      'new name',
+      name: 'updatGroupNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `choose date`
+  String get chooseDateHint {
+    return Intl.message(
+      'choose date',
+      name: 'chooseDateHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `choose time`
+  String get chooseTimeHint {
+    return Intl.message(
+      'choose time',
+      name: 'chooseTimeHint',
       desc: '',
       args: [],
     );

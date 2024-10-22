@@ -26,14 +26,18 @@ class AppIcons {
   static const Icon fullNameIcon =
       Icon(Icons.account_circle, size: 28, color: AppColors.iconColor);
 
-  static const Icon dropDownMenuIcon =
-      Icon(Icons.arrow_drop_down, size: iconSize, color: AppColors.iconColor);
+  static const Icon dropDownMenuIcon = Icon(Icons.arrow_drop_down,
+      size: thirdIconSize, color: AppColors.iconColor);
 
   static const Icon phoneIcon =
       Icon(Icons.phone, size: 24, color: AppColors.iconColor);
 
-  static const Icon groupIcon = Icon(Icons.groups_2_rounded,
-      size: secondIconSize, color: AppColors.iconColor);
+  static const Icon groupIcon =
+      Icon(Icons.groups_2_rounded, size: 25, color: AppColors.iconColor);
+  static const Icon programIcon =
+      Icon(Icons.list_alt, size: 28, color: AppColors.accentColor);
+  static const Icon programFieldIcon =
+      Icon(Icons.list_alt, size: 24, color: AppColors.primaryColor);
   //
   static const Icon backIcon =
       Icon(Icons.arrow_back_rounded, size: 28, color: AppColors.iconColor);

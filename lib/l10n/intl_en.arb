@@ -18,6 +18,8 @@
 
     "group": "Group",
     "selectGroup": "Select Group",
+    "selectProgram": "Select Program",
+
 
     "sign": "SIGN",
 
@@ -94,11 +96,30 @@
    "photo":"upload member photo",
    "imageSelected":"image selected",
    "add":"Add",
+   "updateGroupButton":"Update",
+   "deletGroupButton":"Delete",
+
+
    "staffMessage":"What an honor it is to serve the guests of Allah\n isn't it?",
   "groups":"Groups",
   "programs":"Programs",
   "addGroupHeader":"New Group",
-  "groupName":"Group Name"
+  "editGroupHeader":"Edit Group",
+  "deleteGroupHeader":"Delete Group",
+
+  "addProgramHeader":"New Program",
+  "editProgramHeader":"Edit Program",
+  "deleteProgramHeader":"Delete Program",
+
+  "groupName":"Group Name",
+  "updatGroupName":"update group name",
+  "updatGroupNameHint":"new name",
+  "chooseDateHint":"choose date",
+"chooseTimeHint":"choose time"
+
+
+
+
 
 
 

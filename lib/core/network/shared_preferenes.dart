@@ -52,6 +52,16 @@ class TokenStorage {
     return null;
   }
 
+  static Future<void> updateGroupId(String newGroupId) async {
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('group_id', newGroupId);
+  } catch (e) {
+    print('خطأ في تحديث group_id في الشيرد برفرنس: $e');
+  }
+}
+
+
   static Future<void> deleteUser() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('name');

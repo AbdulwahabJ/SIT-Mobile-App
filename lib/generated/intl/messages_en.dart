@@ -31,14 +31,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "Urdu": MessageLookupByLibrary.simpleMessage("Urdu"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addGroupHeader": MessageLookupByLibrary.simpleMessage("New Group"),
+        "addProgramHeader": MessageLookupByLibrary.simpleMessage("New Program"),
+        "chooseDateHint": MessageLookupByLibrary.simpleMessage("choose date"),
+        "chooseTimeHint": MessageLookupByLibrary.simpleMessage("choose time"),
         "confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Please confirm your password"),
         "confirmYourPassword":
             MessageLookupByLibrary.simpleMessage("rewrite your password"),
+        "deletGroupButton": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteGroupHeader":
+            MessageLookupByLibrary.simpleMessage("Delete Group"),
+        "deleteProgramHeader":
+            MessageLookupByLibrary.simpleMessage("Delete Program"),
         "dontHaveAccountException": MessageLookupByLibrary.simpleMessage(
             "Try correcting your email please."),
         "dontHaveaccount":
             MessageLookupByLibrary.simpleMessage("Dont\'t have an account?"),
+        "editGroupHeader": MessageLookupByLibrary.simpleMessage("Edit Group"),
+        "editProgramHeader":
+            MessageLookupByLibrary.simpleMessage("Edit Program"),
         "emailEnglishOnly":
             MessageLookupByLibrary.simpleMessage("Email must be in English."),
         "emailInvalid":
@@ -97,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password reset successful."),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "selectGroup": MessageLookupByLibrary.simpleMessage("Select Group"),
+        "selectProgram": MessageLookupByLibrary.simpleMessage("Select Program"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sign": MessageLookupByLibrary.simpleMessage("SIGN"),
         "signInButton": MessageLookupByLibrary.simpleMessage("SIGN IN"),
@@ -123,6 +135,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "umrahGuiedLabel": MessageLookupByLibrary.simpleMessage("Umrah Guied"),
         "unUniqueEmailException": MessageLookupByLibrary.simpleMessage(
             "Email already exists, \ntry writing another email."),
+        "updatGroupName":
+            MessageLookupByLibrary.simpleMessage("update group name"),
+        "updatGroupNameHint": MessageLookupByLibrary.simpleMessage("new name"),
+        "updateGroupButton": MessageLookupByLibrary.simpleMessage("Update"),
         "verf": MessageLookupByLibrary.simpleMessage("Verfiy"),
         "verfiy": MessageLookupByLibrary.simpleMessage("Verfiy"),
         "verfiyEmailException": MessageLookupByLibrary.simpleMessage(

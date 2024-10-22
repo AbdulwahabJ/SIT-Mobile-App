@@ -52,6 +52,12 @@ Future<T> handleException<T>(Future<T> Function() action) async {
       throw (isArabic()
           ? AppTexts.cantAddGroupException_ar
           : AppTexts.cantAddGroupException);
+    } else if (e is DioException &&
+        e.response?.data['message'] == 'Group already exist' &&
+        e.response?.statusCode == 500) {
+      throw (isArabic()
+          ? AppTexts.groupNameExistException_ar
+          : AppTexts.groupNameExistException);
     }
     throw Exception(
         '${isArabic() ? AppTexts.generalException_ar : AppTexts.generalException} : $e');

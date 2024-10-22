@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sit_app/core/network/dio_client.dart';
-import 'package:sit_app/features/customer_app/data/models/staff_model.dart';
 
 import '../../../../core/constants/app_text.dart';
 import '../../../../core/helper/handle_exception.dart';

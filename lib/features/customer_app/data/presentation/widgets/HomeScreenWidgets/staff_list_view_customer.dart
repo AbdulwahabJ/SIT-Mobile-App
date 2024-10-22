@@ -47,24 +47,42 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  leading: CircleAvatar(
-                    backgroundImage:
-                        item['image'] != null && item['image'] != ''
-                            ? NetworkImage(item['image'])
-                            : const AssetImage(
-                                AppImages.umrahProgramImage,
-                              ),
-                    onBackgroundImageError: (exception, stackTrace) {
-                      // ignore: avoid_print
-                      print('Error loading image: $exception');
+                  leading: GestureDetector(
+                    onTap: () {
+                      // عند الضغط على الصورة، افتحها في حوار
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            child: Image.network(
+                              item['image'] != null && item['image'] != ''
+                                  ? item['image']
+                                  : AppImages.umrahProgramImage,
+                              fit: BoxFit.cover,
+                              // يمكن تعديل الحجم حسب الحاجة
+                            ),
+                          ),
+                        ),
+                      );
                     },
+                    child: CircleAvatar(
+                      backgroundImage:
+                          item['image'] != null && item['image'] != ''
+                              ? NetworkImage(item['image'])
+                              : const AssetImage(AppImages.umrahProgramImage),
+                      onBackgroundImageError: (exception, stackTrace) {
+                        // ignore: avoid_print
+                        print('Error loading image: $exception');
+                      },
+                    ),
                   ),
                   title: Text(
                     item['name'],
                     style: AppStyles.styleSemiBold16,
                   ),
                   subtitle: Text(
-                    item['languages']??'',
+                    item['languages'] ?? '',
                     style: AppStyles.styleReguler13,
                   ),
                   trailing: IconButton(
