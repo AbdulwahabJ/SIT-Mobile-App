@@ -9,62 +9,55 @@ class BottomSheetIcon extends StatelessWidget {
     required this.sheetSize,
     required this.icon,
   });
+
   final Icon icon;
   final String sheetTitle;
   final List textFields;
   final double sheetSize;
-  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (context) {
-            return DraggableScrollableSheet(
-              initialChildSize: sheetSize,
-              minChildSize: 0.3,
-              maxChildSize: 0.9,
-              expand: false,
-              builder: (context, scrollController) {
-                return SingleChildScrollView(
-                  controller: scrollController,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildModalHeader(),
-                        const SizedBox(height: 28),
-                        Text(sheetTitle, style: AppStyles.styleSemiBold20W600),
-                        const SizedBox(height: 20),
-                        ...textFields,
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        );
+        showBottomSheet(context); // استدعاء دالة عرض Bottom Sheet
       },
       icon: icon,
     );
   }
 
-  // Widget _buildSubmitButton( state) {
-  //   return Center(
-  //     child: InkWell(
-  //       onTap: _onAddStaffTap,
-  //       child: CustomMainButton(
-  //         isSuccess: state is StaffSuccess,
-  //         isLoading: state is StaffLoading,
-  //         buttonText: S.of(context).add,
-  //       ),
-  //     ),
-  //   );
-  // }
+  // دالة لعرض Bottom Sheet
+  void showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          initialChildSize: sheetSize,
+          minChildSize: 0.3,
+          maxChildSize: 0.9,
+          expand: false,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildModalHeader(),
+                    const SizedBox(height: 28),
+                    Text(sheetTitle, style: AppStyles.styleSemiBold20W600),
+                    const SizedBox(height: 20),
+                    ...textFields,
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 
   Widget _buildModalHeader() {
     return Center(

@@ -55,6 +55,17 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
   final TextEditingController languagesController = TextEditingController();
   XFile? _selectedImage;
   String? password;
+  bool isAdmin = false;
+
+  void initState() {
+    super.initState();
+    _ifUserAdmin();
+  }
+
+  _ifUserAdmin() async {
+    isAdmin = await isUserAdmin();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +116,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
           style:
               AppStyles.styleSemiBold22.copyWith(color: AppColors.primaryColor),
         ),
-        isAdmin()
+        isAdmin
             ? IconButton(
                 onPressed: () {
                   _clearFields();

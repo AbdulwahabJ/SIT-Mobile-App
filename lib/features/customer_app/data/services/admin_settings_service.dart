@@ -131,5 +131,114 @@ class AdminSettingsService {
       }
     });
   }
-}
+
+//..............................................................................
 //
+//program functions
+  Future<Response<dynamic>> addProgram(String? groupName, String? programName,
+      String? date, String? time) async {
+    return handleException(() async {
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.post(
+        AppTexts.addProgramApi,
+        {
+          'name': programName,
+          'group_name': groupName,
+          'date': date,
+          'time': time,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<List<dynamic>> getProgramData(
+      String? groupName, String? programName) async {
+    return handleException(() async {
+      //
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.getProgram(
+        AppTexts.getProgramApi,
+        {
+          'group_name': groupName,
+          'name': programName,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print('lll:${response.data['data']}');
+        return response.data['data'];
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<List<dynamic>> getAllProgramForGroup(String? groupName) async {
+    return handleException(() async {
+      //
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.getProgram(
+        AppTexts.getAllProgramsForGroupApi,
+        {
+          'group_name': groupName,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print('lll:${response.data}');
+        return response.data['data'];
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<Response<dynamic>> updateProgramForGroup(
+      String? programId,
+      String? programUpdatedName,
+      String? programUpdatedDate,
+      String? programUpdatedTime) async {
+    return handleException(() async {
+      //
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.post(
+        AppTexts.updateProgramForGroupApi,
+        {
+          'program_id': programId,
+          'updated_program_name': programUpdatedName,
+          'updated_program_date': programUpdatedDate,
+          'updated_program_time': programUpdatedTime,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // print('lll:${response.data['data']}');
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+}

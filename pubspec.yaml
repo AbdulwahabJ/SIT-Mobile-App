@@ -33,6 +33,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   device_preview: ^1.2.0
   dio: ^5.7.0
+  dropdown_button2: ^2.3.9
   equatable: ^2.0.5
   flutter:
     sdk: flutter

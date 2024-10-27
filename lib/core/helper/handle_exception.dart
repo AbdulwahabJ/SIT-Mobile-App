@@ -58,8 +58,15 @@ Future<T> handleException<T>(Future<T> Function() action) async {
       throw (isArabic()
           ? AppTexts.groupNameExistException_ar
           : AppTexts.groupNameExistException);
+    } else if (e is DioException &&
+        e.response?.data['message'] == 'unauthorized user' &&
+        e.response?.statusCode == 401) {
+      throw (isArabic()
+          ? AppTexts.unAuthrizedUserException_ar
+          : AppTexts.unAuthrizedUserException);
     }
     throw Exception(
         '${isArabic() ? AppTexts.generalException_ar : AppTexts.generalException} : $e');
   }
 }
+//unauthorized user

@@ -40,6 +40,8 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
+              final hasImage = item['image'] != null && item['image'] != '';
+
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6.0),
                 child: ListTile(
@@ -49,30 +51,27 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
                   ),
                   leading: GestureDetector(
                     onTap: () {
-                      // عند الضغط على الصورة، افتحها في حوار
-                      showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                          child: Container(
-                            margin: EdgeInsets.all(10),
-                            child: Image.network(
-                              item['image'] != null && item['image'] != ''
-                                  ? item['image']
-                                  : AppImages.umrahProgramImage,
-                              fit: BoxFit.cover,
-                              // يمكن تعديل الحجم حسب الحاجة
+                      if (hasImage) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              child: Image.network(
+                                item['image'],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                     child: CircleAvatar(
-                      backgroundImage:
-                          item['image'] != null && item['image'] != ''
-                              ? NetworkImage(item['image'])
-                              : const AssetImage(AppImages.umrahProgramImage),
+                      backgroundImage: hasImage
+                          ? NetworkImage(item['image'])
+                          : const AssetImage(AppImages.umrahProgramImage)
+                              as ImageProvider,
                       onBackgroundImageError: (exception, stackTrace) {
-                        // ignore: avoid_print
                         print('Error loading image: $exception');
                       },
                     ),
@@ -88,8 +87,9 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
                   trailing: IconButton(
                     onPressed: () {
                       openWhatsApp(
-                          phoneNumber: item['phone_number'],
-                          text: 'Hi ${item['name']}');
+                        phoneNumber: item['phone_number'],
+                        text: 'Hi ${item['name']}',
+                      );
                     },
                     icon: AppIcons.staffSendIcon,
                   ),

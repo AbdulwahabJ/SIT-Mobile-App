@@ -22,6 +22,16 @@ Future<dynamic> getUserInfo(BuildContext context) async {
   return null;
 }
 
-bool isAdmin() {
-  return true;
+Future<bool> isUserAdmin() async {
+  final user = await TokenStorage.getUser();
+
+  return user?.role == 'admin' ? true : false;
 }
+
+
+
+// Future<bool> isAdmin() async {
+//   final isAdmin = await isUserAdmin();
+
+//   return isAdmin;
+// }

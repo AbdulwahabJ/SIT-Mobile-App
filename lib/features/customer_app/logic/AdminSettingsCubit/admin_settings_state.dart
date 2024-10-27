@@ -45,16 +45,17 @@ class DeleteGroupNameSuccess extends AdminSettingsState {
 //
 //Admin ..Program
 
+class DataProgramForUpdateSuccess extends AdminSettingsState {
+  List<dynamic> dataForUpdate = [];
+  DataProgramForUpdateSuccess(this.dataForUpdate);
+}
 
+class GetAllProgramsForGroupSuccess extends AdminSettingsState {
+  List<dynamic> allPrograms = [];
+  GetAllProgramsForGroupSuccess(this.allPrograms);
+}
 
-// class StaffLodedd extends GroupState {
-//   List<Map<String, dynamic>> staffData;
-
-//   StaffLodedd(this.staffData);
-// }
-
-// class StaffNotLodedd extends GroupState {
-//   final String error;
-
-//   StaffNotLodedd(this.error);
-// }
+class UpdateProgramForGroup extends AdminSettingsState {
+  String message;
+  UpdateProgramForGroup(this.message);
+}

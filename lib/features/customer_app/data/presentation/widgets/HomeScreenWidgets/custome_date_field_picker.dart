@@ -4,10 +4,16 @@ import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
 
 class CustomDateFieldPicker extends StatefulWidget {
-  const CustomDateFieldPicker(
-      {super.key, required this.textLabel, required this.onDateSelected});
+  const CustomDateFieldPicker({
+    super.key,
+    required this.textLabel,
+    required this.onDateSelected,
+    this.oldDate,
+  });
 
   final String textLabel;
+  final String? oldDate;
+
   final Function(DateTime) onDateSelected;
 
   @override
@@ -48,9 +54,11 @@ class _CustomDateFieldPickerState extends State<CustomDateFieldPicker> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              selectedDate == null
-                  ? widget.textLabel
-                  : DateFormat('dd/MM/yyyy').format(selectedDate!),
+              widget.oldDate != null && selectedDate == null
+                  ? widget.oldDate.toString()
+                  : selectedDate != null
+                      ? DateFormat('dd/MM/yyyy').format(selectedDate!)
+                      : widget.textLabel,
               // style: const TextStyle(fontSize: 16),
             ),
             const Icon(

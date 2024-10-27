@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dontHaveaccount":
             MessageLookupByLibrary.simpleMessage("Dont\'t have an account?"),
         "editGroupHeader": MessageLookupByLibrary.simpleMessage("Edit Group"),
+        "editProgramButton": MessageLookupByLibrary.simpleMessage("Edit"),
         "editProgramHeader":
             MessageLookupByLibrary.simpleMessage("Edit Program"),
         "emailEnglishOnly":
@@ -138,6 +139,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "updatGroupName":
             MessageLookupByLibrary.simpleMessage("update group name"),
         "updatGroupNameHint": MessageLookupByLibrary.simpleMessage("new name"),
+        "updatProgramName":
+            MessageLookupByLibrary.simpleMessage("update program"),
         "updateGroupButton": MessageLookupByLibrary.simpleMessage("Update"),
         "verf": MessageLookupByLibrary.simpleMessage("Verfiy"),
         "verfiy": MessageLookupByLibrary.simpleMessage("Verfiy"),

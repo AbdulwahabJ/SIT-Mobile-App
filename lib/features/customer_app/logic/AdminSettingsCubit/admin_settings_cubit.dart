@@ -7,6 +7,7 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
   AdminSettingsCubit(this.adminSettingsService) : super(AdminSettingsInitial());
   final AdminSettingsService adminSettingsService;
   List<dynamic>? allGroups;
+
   //
   //............................................................................
   //Group functions
@@ -64,6 +65,82 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       final response = await adminSettingsService.updateUserGroup(groupName);
 
       emit(UpdateUserGroupSuccess(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+//..............................................................................
+//
+//Program functions
+  Future<void> addProgram(String? groupName, String? programName, String? date,
+      String? time) async {
+    //
+    // print(
+    //     "ddd:${date.runtimeType} , ${time.runtimeType} ,${groupName.runtimeType},${programName.runtimeType}");
+    emit(AdminSettingsLoading());
+    try {
+      //
+      final response = await adminSettingsService.addProgram(
+          groupName, programName, date, time);
+      emit(AdminSettingsSuccess(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+  Future<void> getProgramDataForUpdate(
+      String? groupName, String? programName) async {
+    emit(AdminSettingsLoading());
+    //
+    try {
+      //
+      final response =
+          await adminSettingsService.getProgramData(groupName, programName);
+      print('rr:${response}');
+      emit(DataProgramForUpdateSuccess(response));
+
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+  Future<void> getAllProgramsForGroup(String? groupName) async {
+    emit(AdminSettingsLoading());
+    //
+    try {
+      //
+      final response =
+          await adminSettingsService.getAllProgramForGroup(groupName);
+      // print('rr:${response}');
+      emit(GetAllProgramsForGroupSuccess(response));
+
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+  Future<void> updateProgramForGroup(
+      String? programId,
+      String? programUpdatedName,
+      String? programUpdatedDate,
+      String? programUpdatedTime) async {
+    emit(AdminSettingsLoading());
+    //
+    try {
+      //
+      final response = await adminSettingsService.updateProgramForGroup(
+          programId,
+          programUpdatedName,
+          programUpdatedDate,
+          programUpdatedTime);
+      // print('rr:${response}');
+      emit(AdminSettingsSuccess(response.data['message']));
+
       //
     } catch (e) {
       emit(AdminSettingsFailure(e.toString()));

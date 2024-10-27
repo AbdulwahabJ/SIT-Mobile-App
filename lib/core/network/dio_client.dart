@@ -52,6 +52,17 @@ class DioClient {
     }
   }
 
+  Future<Response> getProgram(String endpoint, Map<String, dynamic> data,
+      {required Options options}) async {
+    try {
+      final response = await _dio.get(endpoint, data: data, options: options);
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   // إضافة دالة deleteGroup
   Future<Response> delete(String endpoint, Map<String, dynamic> data,
       {required Options options}) async {

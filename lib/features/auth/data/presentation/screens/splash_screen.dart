@@ -19,8 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    TokenStorage.deleteToken();
-    TokenStorage.deleteUser();
+    // TokenStorage.deleteToken();
+    // TokenStorage.deleteUser();
     _timer = Timer(const Duration(seconds: 3), () {
       _checkLoginStatus();
       _navigateToLoginScreen();
@@ -28,12 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _checkLoginStatus() async {
-    String? token = await TokenStorage.getToken(); // استرجاع التوكن
+    String? token = await TokenStorage.getToken();
 
     if (!mounted) return;
 
     if (token != null) {
-      Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+      Navigator.pushReplacementNamed(context, AppRoutes.customerScreen);
     } else {
       Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
     }

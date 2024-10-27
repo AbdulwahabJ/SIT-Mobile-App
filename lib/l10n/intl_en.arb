@@ -98,6 +98,7 @@
    "add":"Add",
    "updateGroupButton":"Update",
    "deletGroupButton":"Delete",
+"editProgramButton":"Edit",
 
 
    "staffMessage":"What an honor it is to serve the guests of Allah\n isn't it?",
@@ -110,6 +111,7 @@
   "addProgramHeader":"New Program",
   "editProgramHeader":"Edit Program",
   "deleteProgramHeader":"Delete Program",
+  "updatProgramName":"update program",
 
   "groupName":"Group Name",
   "updatGroupName":"update group name",

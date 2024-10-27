@@ -45,6 +45,12 @@ class AppTexts {
   static const String updateUserGroupApi = '/update_user_group';
   static const String updateGroupNameApi = '/update-group-name';
   static const String deleteGroupNameApi = '/delete-group-name';
+//program
+  static const String addProgramApi = '/add_program';
+  static const String getProgramApi = '/get_program';
+  static const String getAllProgramsForGroupApi = '/get-all-programs';
+    static const String updateProgramForGroupApi = '/update-program';
+
 
   // static const String addStaffApi = '/addStaff';
 
@@ -69,6 +75,8 @@ class AppTexts {
       'Cannot add a group now. Try again later, or contact the application administrator';
   static const String groupNameExistException =
       'Group already exist,write another name';
+  static const String unAuthrizedUserException =
+      'You must be an admin, you are not authorized';
 
   static const String noInternetException_ar =
       'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.';
@@ -90,6 +98,8 @@ class AppTexts {
       'لايمكن اضافة مجموعة الان حاول لاحقا, او تواصل مع مشرف التطبيق';
   static const String groupNameExistException_ar =
       'اسم المجموعة موجود بالفعل ,حاول كتباة اسم اخر';
+  static const String unAuthrizedUserException_ar =
+      'يجب ان تكون الادمن ,غير مصرح لك';
 
   // validation
   static const String nameRequired = 'Please enter your full name';

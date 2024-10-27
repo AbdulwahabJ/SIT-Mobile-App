@@ -3,10 +3,15 @@ import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
 
 class CustomTimeFieldPicker extends StatefulWidget {
-  const CustomTimeFieldPicker(
-      {super.key, required this.textLabel, required this.onTimeSelected});
+  const CustomTimeFieldPicker({
+    super.key,
+    required this.textLabel,
+    required this.onTimeSelected,
+    this.oldTime,
+  });
 
   final String textLabel;
+  final String? oldTime;
   final Function(TimeOfDay) onTimeSelected;
 
   @override
@@ -46,9 +51,11 @@ class _CustomTimeFieldPickerState extends State<CustomTimeFieldPicker> {
           children: [
             // نص الوقت
             Text(
-              selectedTime == null
-                  ? widget.textLabel
-                  : '${(selectedTime!.hourOfPeriod == 0 ? 12 : selectedTime!.hourOfPeriod).toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')} ${selectedTime!.period == DayPeriod.am ? 'AM' : 'PM'}',
+              widget.oldTime != null && selectedTime == null
+                  ? widget.oldTime.toString()
+                  : selectedTime != null
+                      ? '${(selectedTime!.hourOfPeriod == 0 ? 12 : selectedTime!.hourOfPeriod).toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')} ${selectedTime!.period == DayPeriod.am ? 'AM' : 'PM'}'
+                      : widget.textLabel,
             ),
             // أيقونة الساعة
             const Icon(Icons.access_time,

@@ -760,6 +760,16 @@ class S {
     );
   }
 
+  /// `Edit`
+  String get editProgramButton {
+    return Intl.message(
+      'Edit',
+      name: 'editProgramButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `What an honor it is to serve the guests of Allah\n isn't it?`
   String get staffMessage {
     return Intl.message(
@@ -845,6 +855,16 @@ class S {
     return Intl.message(
       'Delete Program',
       name: 'deleteProgramHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `update program`
+  String get updatProgramName {
+    return Intl.message(
+      'update program',
+      name: 'updatProgramName',
       desc: '',
       args: [],
     );

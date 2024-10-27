@@ -93,6 +93,8 @@
 "add":"اضافة",
 "updateGroupButton":"تعديل",
 "deletGroupButton":"حذف",
+"editProgramButton":"تعديل",
+
 
 
 "staffMessage":"انت محظوظ لان الله عز وجل اختارك لخدمة ضيوفه...",
@@ -105,6 +107,8 @@
 "addProgramHeader":"اضف برنامج جديد",
 "editProgramHeader":"تعديل برنامج",
 "deleteProgramHeader":"حذف برنامج",
+"updatProgramName":"تعديل بيانات البرنامج",
+
 
 "groupName":"اسم المجموعة الجديدة",
 "updatGroupName":"تعديل اسم المجموعة",

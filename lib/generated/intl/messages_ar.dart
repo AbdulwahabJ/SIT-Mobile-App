@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dontHaveaccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "editGroupHeader": MessageLookupByLibrary.simpleMessage("تعديل مجموعة"),
+        "editProgramButton": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editProgramHeader":
             MessageLookupByLibrary.simpleMessage("تعديل برنامج"),
         "emailEnglishOnly": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تعديل اسم المجموعة"),
         "updatGroupNameHint":
             MessageLookupByLibrary.simpleMessage("الاسم الجديد"),
+        "updatProgramName":
+            MessageLookupByLibrary.simpleMessage("تعديل بيانات البرنامج"),
         "updateGroupButton": MessageLookupByLibrary.simpleMessage("تعديل"),
         "verf": MessageLookupByLibrary.simpleMessage("تحقق"),
         "verfiy": MessageLookupByLibrary.simpleMessage("تحقق من الايميل"),
