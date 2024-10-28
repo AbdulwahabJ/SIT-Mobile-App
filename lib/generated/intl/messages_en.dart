@@ -59,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your email."),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "formValidation":
+            MessageLookupByLibrary.simpleMessage("complete all field please"),
         "generalException": MessageLookupByLibrary.simpleMessage(
             "An unknown error occurred.\n Sorry, we will fix the error as soon as possible."),
         "group": MessageLookupByLibrary.simpleMessage("Group"),

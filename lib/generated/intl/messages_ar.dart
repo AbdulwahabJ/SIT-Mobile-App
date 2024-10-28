@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى إدخال بريدك الإلكتروني."),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
+        "formValidation":
+            MessageLookupByLibrary.simpleMessage("الرجاء اكمال جميع الحقول"),
         "generalException": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ غير معروف. عذرًا\n، سنقوم بإصلاح الخطأ في أقرب وقت ممكن."),
         "group": MessageLookupByLibrary.simpleMessage("المجموعة"),

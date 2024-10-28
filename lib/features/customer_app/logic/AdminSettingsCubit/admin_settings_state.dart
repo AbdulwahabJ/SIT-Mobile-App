@@ -59,3 +59,8 @@ class UpdateProgramForGroup extends AdminSettingsState {
   String message;
   UpdateProgramForGroup(this.message);
 }
+
+class DeleteProgramSuccesse extends AdminSettingsState {
+  String message;
+  DeleteProgramSuccesse(this.message);
+}

@@ -919,6 +919,16 @@ class S {
       args: [],
     );
   }
+
+  /// `complete all field please`
+  String get formValidation {
+    return Intl.message(
+      'complete all field please',
+      name: 'formValidation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

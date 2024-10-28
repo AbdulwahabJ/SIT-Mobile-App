@@ -241,4 +241,30 @@ class AdminSettingsService {
       }
     });
   }
+
+  Future<Response<dynamic>> deleteProgram(String? prgramId) async {
+    return handleException(() async {
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.delete(
+        AppTexts.deleteProgramApi,
+        {
+          'id': prgramId,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // ignore: avoid_print
+        // await TokenStorage.updateGroupId(
+        //     '${response.data['user']['group_id']}');
+
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
 }

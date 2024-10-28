@@ -147,6 +147,20 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
     }
   }
 
+  Future<void> deleteProgram(String? prgramId) async {
+    //
+    emit(AdminSettingsLoading());
+    try {
+      //
+      final response = await adminSettingsService.deleteProgram(prgramId);
+
+      emit(DeleteProgramSuccesse(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
 //..............................................................................
 //
 //General functions

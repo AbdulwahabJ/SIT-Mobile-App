@@ -117,7 +117,10 @@
   "updatGroupName":"update group name",
   "updatGroupNameHint":"new name",
   "chooseDateHint":"choose date",
-"chooseTimeHint":"choose time"
+"chooseTimeHint":"choose time",
+
+
+"formValidation":"complete all field please"
 
 
 

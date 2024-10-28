@@ -114,10 +114,11 @@
 "updatGroupName":"تعديل اسم المجموعة",
 "updatGroupNameHint":"الاسم الجديد",
 "chooseDateHint":"اختر التاريخ",
-"chooseTimeHint":"اختر الوقت"
+"chooseTimeHint":"اختر الوقت",
 
 
 
+"formValidation":"الرجاء اكمال جميع الحقول"
 
 
 
