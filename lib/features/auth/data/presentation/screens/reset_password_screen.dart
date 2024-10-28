@@ -4,6 +4,7 @@ import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
+import 'package:sit_app/generated/l10n.dart';
 import '../../../../../core/constants/app_icons.dart';
 import '../../../../../core/constants/app_padding.dart';
 import '../../../../../core/helper/validation.dart';
@@ -34,7 +35,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           child: IconButton(
             icon: AppIcons.backIcon, // تغيير الأيقونة إلى أيقونة أخرى
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(
+                context,
+                AppRoutes.loginScreen,
+              );
             },
           ),
         ),
@@ -74,18 +78,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 28),
-                    const Text(
-                      AppTexts.resetPasswordHeader,
+                    Text(
+                      S.of(context).resetPassword,
                       style: AppStyles.styleSemiBold26,
                     ),
                     const SizedBox(height: 20),
                     const SizedBox(height: 14),
                     CustomTextField(
-                      hintText: AppTexts.passwordHintText,
+                      hintText: S.of(context).Password,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
-                      validator: (value) =>
-                          Validation.validateInput(InputType.password, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.password, value, context),
                       onChanged: (value) {
                         setState(() {
                           password = value; // تخزين الباسورد المدخل
@@ -96,16 +100,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     // Confirm Password Field
                     CustomTextField(
                       controller: confirmedPasswordController,
-                      hintText: 'Confirm Password',
+                      hintText: S.of(context).confirmYourPassword,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please confirm your password';
+                          return S.of(context).confirmPassword;
                         }
                         if (value != password) {
                           // مقارنة كلمة المرور المدخلة بالتأكيد
-                          return 'Passwords do not match';
+                          return S.of(context).PasswordsNotMatch;
                         }
                         return null;
                       },
@@ -115,7 +119,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       child: InkWell(
                         child: CustomMainButton(
                           isLoading: state is AuthLoading,
-                          buttonText: AppTexts.saveTextButton,
+                          buttonText: S.of(context).save,
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();

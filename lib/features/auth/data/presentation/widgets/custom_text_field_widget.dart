@@ -41,14 +41,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     : AppIcons.passwordNotVisibilityIcon,
                 onPressed: () {
                   setState(() {
-                    passwordVisible =
-                        !passwordVisible; 
+                    passwordVisible = !passwordVisible;
                   });
                 },
               )
             : null,
         hintText: widget.hintText,
-        hintStyle: AppStyles.styleLight12,
+        hintStyle: AppStyles.styleLight14,
         prefixIcon: widget.icon,
         enabledBorder: TextFieldDecoration.enabledBorder(),
         focusedBorder: TextFieldDecoration.focusedBorder(),
@@ -56,7 +55,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         focusedErrorBorder: TextFieldDecoration.focusedErrorBorder(),
       ),
       validator: widget.validator, // إضافة الفالديشن
-      onChanged: widget.onChanged, // رد فعل عند تغيير النص
+      onChanged: widget.onChanged,
     );
   }
 }

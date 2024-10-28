@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
+import 'package:sit_app/generated/l10n.dart';
 import '../../../logic/auth_state.dart';
 import '../../../../../core/constants/app_icons.dart';
 import '../../../../../core/constants/app_padding.dart';
@@ -61,6 +63,12 @@ class LogInScreenState extends State<LogInScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 60),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        LanguageIcon(),
+                      ],
+                    ),
                     Center(
                       child: Image.asset(
                         AppImages.companyLogo,
@@ -69,8 +77,8 @@ class LogInScreenState extends State<LogInScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      AppTexts.signInHeader,
+                    Text(
+                      S.of(context).signin,
                       style: AppStyles.styleSemiBold26,
                     ),
                     const SizedBox(height: 12),
@@ -78,28 +86,30 @@ class LogInScreenState extends State<LogInScreen> {
                       controller: emailController,
                       hintText: AppTexts.mailHintText,
                       icon: AppIcons.mailIcon,
-                      validator: (value) =>
-                          Validation.validateInput(InputType.email, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.email, value, context),
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
                       controller: passwordController,
-                      hintText: AppTexts.passwordHintText,
+                      hintText: S.of(context).Password,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
-                      validator: (value) =>
-                          Validation.validateInput(InputType.password, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.password, value, context),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: isArabic()
+                          ? MainAxisAlignment.start
+                          : MainAxisAlignment.end,
                       children: [
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacementNamed(
                                 context, AppRoutes.verfiyScreen);
                           },
-                          child: const Text(
-                            AppTexts.forgetPassword,
+                          child: Text(
+                            S.of(context).forgetPassword,
                             style: AppStyles.styleReguler13,
                           ),
                         )
@@ -117,7 +127,7 @@ class LogInScreenState extends State<LogInScreen> {
                         },
                         child: CustomMainButton(
                           isLoading: state is AuthLoading,
-                          buttonText: AppTexts.signInTextButton,
+                          buttonText: S.of(context).signInButton,
                         ),
                       ),
                     ),
@@ -125,14 +135,14 @@ class LogInScreenState extends State<LogInScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(AppTexts.dontHaveAccount),
+                        Text(S.of(context).dontHaveaccount),
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.signupScreen);
                           },
-                          child: const Text(
-                            AppTexts.signUpHeader,
+                          child: Text(
+                            S.of(context).signup,
                             style: AppStyles.styleReguler13,
                           ),
                         ),

@@ -1,0 +1,129 @@
+{
+    "hello": "مرحبا",
+    "have_a_nice_day": "يومك سعيد",
+    "todayProgram": "برنامج اليوم",
+
+    "Arabic": "العربية",
+    "English": "الانجليزية",
+    "Urdu": "اوردو",
+
+    "umrahGuiedLabel": "دليل العمرة",
+    "madinaGuiedLabel": "دليل المدينة المنورة",
+    "mazaratGuiedLabel": "دليل المزارات",
+
+    "settings": "الاعدادات",
+    "support": "الدعم",
+
+    "group": "المجموعة",
+    "selectGroup": "اختر المجموعة",
+    "selectProgram": "اختر برنامج",
+
+    "signOut": "تسجيل الخروج",
+    
+    "signin": "تسجيل الدخول",
+    "signUp": "تسجيل جديد",
+
+    "sign": "تسجيل",
+
+    "verfiy":"تحقق من الايميل",
+    "verf":"تحقق",
+    "resetPassword": "اعادة تعيين كلمة المرور",
+    "save": "حفظ",
+
+    "signup": "تسجيل جديد",
+
+    "signInButton": "دخول",
+
+    "forgetPassword": "هل نسيت كلمة المرور؟",
+    "dontHaveaccount": "ليس لديك حساب؟",
+
+    "Name": "الاسم",
+    "phoneNumber": "رقم الهاتف",
+    "Password": "كلمة المرور ",
+    "confirmYourPassword": "أعد كتابة كلمة المرور",
+    "writeGroupCode": "اكتب كود المجموعة إذا كان لديك واحد",
+
+
+    "staffScreenHeader": "فريق سارا هنا للمساعدتك",
+
+ "momentsScreenHeader": "اللحظات العظيمة تستحق الحفاظ عليها",
+
+
+ "noInternetException": "لا يوجد اتصال بالإنترنت\n. يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
+ "timeOutException": "انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى لاحقًا.",
+ "dontHaveAccountException": "حاول تصحيح بريدك الإلكتروني من فضلك.",
+ "wrongPasswordException": "كلمة المرور غير صحيحة. حاول كتابة كلمة المرور الصحيحة.",
+ "verfiyEmailException": "البريد الإلكتروني المدخل غير موجود\n. حاول تصحيح البريد الإلكتروني أو التسجيل.",
+ "generalException": "حدث خطأ غير معروف. عذرًا\n، سنقوم بإصلاح الخطأ في أقرب وقت ممكن.",
+ "unUniqueEmailException": "البريد الإلكتروني موجود بالفعل\n، حاول كتابة بريد إلكتروني آخر.",
+ 
+ "nameRequired": "يرجى إدخال اسمك الكامل.",
+ "nameInvalid": "يرجى إدخال اسم صحيح.",
+ "nameTooShort": "اسمك قصير جدًا.",
+ "emailRequired": "يرجى إدخال بريدك الإلكتروني.",
+ "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح.",
+ "emailEnglishOnly": "يجب أن يكون البريد الإلكتروني باللغة الإنجليزية.",
+ "passwordRequired": "يرجى إدخال كلمة المرور الخاصة بك.",
+ "passwordInvalid": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل\n، بما في ذلك الحروف والأرقام.",
+"phoneNumberRequired": "رقم الهاتف مطلوب",
+"languagesRequired":"الرجاء ادخال اللغات للعضو",
+"photoRequired":"يرجى رفع الصورة",
+
+"phoneNumberInvalid": "رقم الهاتف غير صالح",
+"confirmPassword":"الرجاء تأكيد كلمة المرور ",
+ "PasswordsNotMatch":"كلمة المرور غير متطابقة",
+
+
+ "loginSuccess": "تسجيل الدخول ناجح: ",
+  "loginFailure": "فشل تسجيل الدخول: ",
+  "signUpSuccess": "التسجيل ناجح: ",
+  "signUpFailure": "فشل التسجيل: لم يتمكن من إنشاء الحساب.",
+  "verificationSuccess": "تم التحقق من البريد الإلكتروني بنجاح.",
+  "verificationFailure": "فشل التحقق:",
+  "resetPasswordSuccess": "إعادة تعيين كلمة المرور ناجحة.",
+  "resetPasswordFailure": "فشل إعادة تعيين كلمة المرور: ",
+  "signOutSuccess": "تسجيل الخروج ناجح.",
+  "signOutFailure": "فشل تسجيل الخروج: ",
+
+  "newStaffMember":"اضافة عضو جديد",
+
+  "languages":"اللغات",
+  "photo":"ارفع صورة العضو",
+"imageSelected":"تم رفع الصورة",
+"add":"اضافة",
+"updateGroupButton":"تعديل",
+"deletGroupButton":"حذف",
+"editProgramButton":"تعديل",
+
+
+
+"staffMessage":"انت محظوظ لان الله عز وجل اختارك لخدمة ضيوفه...",
+"groups":"المجموعات",
+"programs":"البرامج",
+"addGroupHeader":"اضف مجموعة جديدة",
+"editGroupHeader":"تعديل مجموعة",
+"deleteGroupHeader":"حذف مجموعة",
+
+"addProgramHeader":"اضف برنامج جديد",
+"editProgramHeader":"تعديل برنامج",
+"deleteProgramHeader":"حذف برنامج",
+"updatProgramName":"تعديل بيانات البرنامج",
+
+
+"groupName":"اسم المجموعة الجديدة",
+"updatGroupName":"تعديل اسم المجموعة",
+"updatGroupNameHint":"الاسم الجديد",
+"chooseDateHint":"اختر التاريخ",
+"chooseTimeHint":"اختر الوقت",
+
+
+
+"formValidation":"الرجاء اكمال جميع الحقول"
+
+
+
+
+
+
+
+}

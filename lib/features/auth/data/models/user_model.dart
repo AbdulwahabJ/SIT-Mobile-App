@@ -4,13 +4,19 @@ class UserModel {
   final String token;
   final String phoneNumber;
   final dynamic groupId;
+  final dynamic languages;
+  final dynamic image;
+  final String role;
 
   UserModel({
-    required this.email,
+    this.languages,
+    this.groupId,
+    this.image,
     required this.name,
+    required this.email,
     required this.token,
     required this.phoneNumber,
-    this.groupId,
+    required this.role,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -19,16 +25,10 @@ class UserModel {
       email: json['email'] as String,
       token: json['token'] as String,
       phoneNumber: json['phone_number'] as String,
-      groupId: json['group_id'] != null
-          ? json['group_id'] as dynamic
-          : json['group_id'],
+      role: json['role'] as String,
+      groupId: json['group_id'],
+      image: json['image'] as dynamic,
+      languages: json['languages'] as dynamic,
     );
   }
-  //  Map<String, String> getUserInfo() {
-  //   return {
-  //     'name': name,
-  //     'email': email,
-  //     'phoneNumber': phoneNumber,
-  //   };
-  // }
 }

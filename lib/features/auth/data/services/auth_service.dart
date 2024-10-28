@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sit_app/core/network/dio_client.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
 
@@ -25,42 +26,69 @@ class AuthService {
         }),
       );
 
-      if (response.statusCode == 200) {
+      if (response.data != null) {
+        //
         final user = UserModel.fromJson(response.data['user']);
         await TokenStorage.saveToken(user.token);
         await TokenStorage.saveUser(user);
-
         return user;
+        //
       } else {
         throw Exception();
       }
     });
   }
 
-  Future<UserModel?> signUp(String name, String email, String password,
-      String phoneNumber, String? groupID) async {
+  // Future<UserModel?> _handleUserLogin(dynamic data) async {
+  //   final user = UserModel.fromJson(data['user']);
+  //   await TokenStorage.saveToken(user.token);
+  //   await TokenStorage.saveUser(user);
+  //   return user;
+  // }
+
+  // Future<StaffModel?> _handleStaffLogin(dynamic data) async {
+  //   final staffUser = StaffModel.fromJson(data['staff']);
+  //   await TokenStorage.saveToken(staffUser.token);
+  //   await TokenStorage.saveStaff(staffUser);
+
+  //   return staffUser;
+  // }
+
+  Future<void> signUp(
+    String name,
+    String email,
+    String password,
+    String phoneNumber,
+    String? groupID,
+    String role,
+    dynamic languages,
+    XFile? image,
+  ) async {
     return handleException(() async {
-      final response = await dioClient.post(
+      final formData = FormData.fromMap({
+        'name': name,
+        'email': email,
+        'password': password,
+        'phone_number': phoneNumber,
+        'group_id': groupID,
+        'role': role,
+        'languages': languages,
+        'image':
+            image != null ? await MultipartFile.fromFile(image.path) : 'null',
+      });
+      //
+      final response = await dioClient.staffpost(
         AppTexts.registerApi,
-        {
-          'name': name,
-          'email': email,
-          'password': password,
-          'phone_number': phoneNumber,
-          'group_id': groupID,
-        },
+        formData,
         options: Options(headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         }),
       );
 
-      if (response.statusCode == 200) {
-        final user = UserModel.fromJson(response.data['user']);
-        await TokenStorage.saveToken(user.token); // Save the token
-        await TokenStorage.saveUser(user);
-        var userr = await TokenStorage.getUser();
-        print('sasasas::${userr!.name}');
-        return UserModel.fromJson(response.data['user']);
+      if (response.statusCode == 201) {
+        // final user = response.data['message'];
+        // await TokenStorage.saveToken(user.token); // Save the token
+        // await TokenStorage.saveUser(user);
       } else {
         throw Exception(response.data['message']);
       }
@@ -123,6 +151,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         await TokenStorage.deleteToken();
+        await TokenStorage.deleteUser();
       } else {
         throw Exception('Failed to log out');
       }

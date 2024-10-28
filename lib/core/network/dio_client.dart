@@ -31,9 +31,47 @@ class DioClient {
     }
   }
 
+  Future<Response> staffpost(String endpoint, FormData data,
+      {required Options options}) async {
+    try {
+      final response = await _dio.post(endpoint, data: data, options: options);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<Response> get(String endpoint) async {
     try {
-      final response = await _dio.get(endpoint);
+      final response = await _dio.get(
+        endpoint,
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Response> getProgram(String endpoint, Map<String, dynamic> data,
+      {required Options options}) async {
+    try {
+      final response = await _dio.get(endpoint, data: data, options: options);
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // إضافة دالة deleteGroup
+  Future<Response> delete(String endpoint, Map<String, dynamic> data,
+      {required Options options}) async {
+    try {
+      final response = await _dio.delete(
+        endpoint,
+        data: data,
+        options: options,
+      );
       return response;
     } catch (e) {
       rethrow;

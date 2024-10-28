@@ -7,6 +7,7 @@ import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
+import 'package:sit_app/generated/l10n.dart';
 import '../../../../../core/helper/validation.dart';
 import '../../../logic/auth_cubit.dart';
 import '../../../logic/auth_state.dart';
@@ -43,6 +44,9 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
           if (state is AuthSuccess) {
             isSuccess = true;
             WidgetsBinding.instance.addPostFrameCallback((_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
               Navigator.pushReplacementNamed(
                 context,
                 AppRoutes.resetPasswordScreen,
@@ -70,8 +74,8 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 28),
-                    const Text(
-                      AppTexts.verfiyTextButton,
+                    Text(
+                      S.of(context).verfiy,
                       style: AppStyles.styleSemiBold26,
                     ),
                     const SizedBox(height: 20),
@@ -80,8 +84,8 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
                       controller: emailController,
                       hintText: AppTexts.mailHintText,
                       icon: AppIcons.mailIcon,
-                      validator: (value) =>
-                          Validation.validateInput(InputType.email, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.email, value, context),
                     ),
                     const SizedBox(height: 38),
                     Center(
@@ -98,7 +102,7 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
                           isSuccess: isSuccess,
                           isLoading:
                               state is AuthLoading, // استخدام الحالة مباشرة
-                          buttonText: AppTexts.verfiyTextButton,
+                          buttonText: S.of(context).verf,
                         ),
                       ),
                     ),

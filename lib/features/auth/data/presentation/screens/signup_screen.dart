@@ -8,6 +8,7 @@ import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_butt
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
 import 'package:sit_app/features/auth/logic/auth_state.dart';
+import 'package:sit_app/generated/l10n.dart';
 import '../../../../../core/constants/app_icons.dart';
 import '../../../../../core/constants/app_padding.dart';
 import '../../../../../core/helper/validation.dart';
@@ -60,7 +61,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                 SnackBar(content: Text(state.message)),
               );
             });
-            Navigator.pushReplacementNamed(context, AppRoutes.customerScreen);
+            Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
           } else if (state is AuthFailure) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -82,25 +83,25 @@ class SignUpScreenState extends State<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 28),
-                    const Text(
-                      AppTexts.signUpHeader,
+                    Text(
+                      S.of(context).signup,
                       style: AppStyles.styleSemiBold26,
                     ),
                     const SizedBox(height: 20),
                     CustomTextField(
                       controller: nameController,
-                      hintText: AppTexts.fullNameHintText,
+                      hintText: S.of(context).Name,
                       icon: AppIcons.fullNameIcon,
-                      validator: (value) =>
-                          Validation.validateInput(InputType.name, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.name, value, context),
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
                       controller: emailController,
                       hintText: AppTexts.mailHintText,
                       icon: AppIcons.mailIcon,
-                      validator: (value) =>
-                          Validation.validateInput(InputType.email, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.email, value, context),
                     ),
                     const SizedBox(height: 14),
                     CustomPhoneField(
@@ -108,26 +109,34 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
-                      hintText: AppTexts.passwordHintText,
+                      hintText: S.of(context).Password,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
-                      validator: (value) =>
-                          Validation.validateInput(InputType.password, value),
+                      validator: (value) => Validation.validateInput(
+                          InputType.password, value, context),
                       onChanged: (value) => password = value,
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
                       controller: confirmedPasswordController,
-                      hintText: AppTexts.confirmPasswordHintText,
+                      hintText: S.of(context).confirmYourPassword,
                       icon: AppIcons.passwordIcon,
                       type: 'password',
-                      validator: (value) => Validation.validateInput(
-                          InputType.confirmidPassword, value),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return S.of(context).confirmYourPassword;
+                        }
+                        if (value != password) {
+                          // مقارنة كلمة المرور المدخلة بالتأكيد
+                          return S.of(context).PasswordsNotMatch;
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
                       controller: groupController,
-                      hintText: AppTexts.groupHintText,
+                      hintText: S.of(context).writeGroupCode,
                       icon: AppIcons.groupIcon,
                     ),
                     const SizedBox(height: 38),
@@ -136,7 +145,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                         onTap: _onSignUpTap,
                         child: CustomMainButton(
                           isLoading: state is AuthLoading,
-                          buttonText: AppTexts.signUpTextButton,
+                          buttonText: S.of(context).sign,
                         ),
                       ),
                     ),
@@ -162,6 +171,9 @@ class SignUpScreenState extends State<SignUpScreen> {
             confirmedPasswordController.text,
             phoneNumber,
             groupController.text,
+            'user',
+            null,
+            null,
           );
       print(
           'ffff: ${nameController.text}\n${emailController.text}\n${confirmedPasswordController.text}\n${groupController.text}');
