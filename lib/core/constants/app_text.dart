@@ -49,6 +49,7 @@ class AppTexts {
   static const String addProgramApi = '/add_program';
   static const String getProgramApi = '/get_program';
   static const String getAllProgramsForGroupApi = '/get-all-programs';
+  static const String getProgramsForTodayApi = '/get-programs-for-today';
   static const String updateProgramForGroupApi = '/update-program';
   static const String deleteProgramApi = '/delete-program';
 

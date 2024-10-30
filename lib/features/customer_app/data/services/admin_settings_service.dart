@@ -267,4 +267,29 @@ class AdminSettingsService {
       }
     });
   }
+
+  Future<Response<dynamic>> getProgramsForToday(String? groupName) async {
+    return handleException(() async {
+      //
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.getProgram(
+        AppTexts.getProgramsForTodayApi,
+        {
+          'group_name': groupName,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // ignore: avoid_print
+        print('lll:${response.data['data']}');
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
 }

@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/main.dart';
 import '../../../../../generated/l10n.dart';
 
@@ -15,8 +16,33 @@ class LanguageIcon extends StatefulWidget {
 }
 
 class _LanguageIconState extends State<LanguageIcon> {
-  String _selectedLanguage = 'en';
+  String? _selectedLanguage;
   Timer? _languageChangeTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    // updateLanguage(_selectedLanguage);
+  }
+
+  void updateLanguage(String value) {
+    MyApp.setLocale(context, Locale(value));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CustomerScreen()),
+      );
+    });
+
+    // _languageChangeTimer = Timer(const Duration(seconds: 1), () {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => const CustomerScreen()),
+    //     );
+    //   });
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +64,7 @@ class _LanguageIconState extends State<LanguageIcon> {
               child: Row(
                 children: [
                   Text(S.of(context).Arabic),
-                  if (_selectedLanguage == 'ar')
+                  if (Intl.getCurrentLocale() == 'ar')
                     const Icon(Icons.check, color: Colors.green),
                 ],
               ),
@@ -48,30 +74,30 @@ class _LanguageIconState extends State<LanguageIcon> {
               child: Row(
                 children: [
                   Text(S.of(context).English),
-                  if (_selectedLanguage == 'en')
+                  if (Intl.getCurrentLocale() == 'en')
                     const Icon(Icons.check, color: Colors.green),
                 ],
               ),
             ),
-            PopupMenuItem<String>(
-              value: 'ur',
-              child: Row(
-                children: [
-                  Text(S.of(context).Urdu),
-                  if (_selectedLanguage == 'ur')
-                    const Icon(Icons.check, color: Colors.green),
-                ],
-              ),
-            ),
+            // PopupMenuItem<String>(
+            //   value: 'ur',
+            //   child: Row(
+            //     children: [
+            //       Text(S.of(context).Urdu),
+            //       if (_selectedLanguage == 'ur')
+            //         const Icon(Icons.check, color: Colors.green),
+            //     ],
+            //   ),
+            // ),
           ],
         ).then((value) {
           if (value != null && value != _selectedLanguage) {
             setState(() {
               _selectedLanguage = value;
-              _languageChangeTimer = Timer(const Duration(seconds: 1), () {
-                MyApp.setLocale(context, Locale(value));
-              });
+
+              // _languageChangeTimer = Timer(const Duration(seconds: 1), () {});
             });
+            updateLanguage(value);
           }
         });
       },

@@ -8,6 +8,7 @@ class AppImages {
   //Today program images
   static const String umrahProgramImage = "assets/images/umrah_program.png";
   static const String darsProgramImage = "assets/images/dars_program.png";
+  static const String mazaratProgramImage = "assets/images/mazarat_program.png";
 
 //moments Screen images
   static const String momentsImage = "assets/images/moments.png";

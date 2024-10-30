@@ -5,7 +5,10 @@ import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/helper/user_info.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
+import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
+import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/core/widgets/bottom_sheet_icon.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
@@ -32,6 +35,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   List<dynamic> allProgramsForGroup = [];
 
   String? _selectedGroup;
+  String? _selectedGroupUser;
+
   String? selectedProgram;
   String? selectedProgramIdForUpdate;
 
@@ -43,25 +48,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? selectedTimeFromPicker;
   String? selectedDateFromPicker;
   bool isAdmin = false;
+  String? ifUserHaveGroupName;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
+    _initializeData();
+  }
+
+  _initializeData() async {
+    await _loadGroups();
+    await isUserhaveGroup();
     _ifUserAdmin();
-    _loadUser();
+  }
+
+  _loadGroups() async {
+    await context.read<AdminSettingsCubit>().getGroup();
+    setState(() {
+      dropdownItems =
+          context.read<AdminSettingsCubit>().allGroups?.cast<String>();
+    });
+    print('Loaded groups: $dropdownItems');
+  }
+
+  isUserhaveGroup() async {
+    String? userGroupName = await isUserHaveGroup();
+    setState(() {
+      ifUserHaveGroupName = userGroupName;
+    });
+    print('User group: $ifUserHaveGroupName');
   }
 
   _ifUserAdmin() async {
     isAdmin = await isUserAdmin();
-    setState(() {});
-  }
-
-  _loadUser() async {
-    await context.read<AdminSettingsCubit>().getGroup();
-    dropdownItems =
-        context.read<AdminSettingsCubit>().allGroups?.cast<String>();
-    // print('list :$dropdownItems');
     setState(() {});
   }
 
@@ -70,13 +91,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: isArabic()
-              ? const EdgeInsets.only(right: 8.0, top: 16)
-              : const EdgeInsets.only(left: 8.0, top: 16),
+          padding: EdgeInsets.only(
+            left: Directionality.of(context) == TextDirection.LTR ? 8.0 : 0.0,
+            right: Directionality.of(context) == TextDirection.RTL ? 8.0 : 0.0,
+            top: 16,
+          ),
+          // ? const EdgeInsets.only(right: 8.0, top: 16)
+          // : const EdgeInsets.only(left: 8.0, top: 16),
           child: IconButton(
             icon: AppIcons.backIcon,
             onPressed: () {
-              Navigator.of(context, rootNavigator: true).pop();
+              // Navigator.of(context, rootNavigator: true).pop();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CustomerScreen(),
+                ),
+              );
             },
           ),
         ),
@@ -90,7 +121,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
 
             //
@@ -110,7 +141,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
 
             //
@@ -121,7 +152,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
 //
             //
@@ -132,7 +163,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
 
             //
@@ -157,7 +188,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
           }
         },
@@ -297,7 +328,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 selectedDateFromPicker,
                                 selectedTimeFromPicker,
                               );
-                          _loadUser();
+                          _loadGroups();
                           _clearFields();
                         } else {
                           Navigator.of(context).pop();
@@ -523,7 +554,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           context.read<AdminSettingsCubit>().deleteProgram(
                                 selectedProgramIdForUpdate,
                               );
-                          _loadUser();
+                          _loadGroups();
                           _clearFields();
                         } else {
                           Navigator.of(context).pop();
@@ -693,24 +724,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
           icon: AppIcons.dropDownMenuIcon,
           decoration: _dropdownDecoration(),
           hint: Text(S.of(context).selectGroup),
-          value: _selectedGroup,
+          value: ifUserHaveGroupName != null && ifUserHaveGroupName!.isNotEmpty
+              ? ifUserHaveGroupName
+              : _selectedGroupUser,
+          // value: ifUserHaveGroupName != null && ifUserHaveGroupName!.isNotEmpty
+          //    \ ? ifUserHaveGroupName
+          //     : _selectedGroupUser,
           items: dropdownItems!.map(_buildDropdownItem).toList(),
           onChanged: (value) async {
-            setState(() => _selectedGroup = value);
+            setState(() => _selectedGroupUser = value);
             await context
                 .read<AdminSettingsCubit>()
-                .updateUserGroup(_selectedGroup);
+                .updateUserGroup(_selectedGroupUser);
+
+            // await context
+            //     .read<AdminSettingsCubit>()
+            //     .getProgramsForToday(_selectedGroupUser);
+
+            // _clearFields();
           },
         ),
       ],
     );
   }
 
+// ifUserHaveGroup != null && ifUserHaveGroup!.isNotEmpty
+//              \ ? ifUserHaveGroup
+//               : _selectedGroup,
   void _clearFields() {
     textFieldController.clear();
 
     setState(() {
       _selectedGroup = null;
+      _selectedGroupUser = null;
       selectedProgram = null;
       selectedDateFromPicker = null;
       selectedTimeFromPicker = null;

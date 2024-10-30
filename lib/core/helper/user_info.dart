@@ -28,6 +28,15 @@ Future<bool> isUserAdmin() async {
   return user?.role == 'admin' ? true : false;
 }
 
+Future<String> isUserHaveGroup() async {
+  final user = await TokenStorage.getUser();
+  if (user != null && user.name.isNotEmpty) {
+    return user.groupId;
+  }
+  return '';
+}
+
+
 
 
 // Future<bool> isAdmin() async {

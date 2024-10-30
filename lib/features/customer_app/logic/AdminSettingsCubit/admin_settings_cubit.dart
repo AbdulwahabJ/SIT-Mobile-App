@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
 import 'package:sit_app/features/customer_app/data/services/admin_settings_service.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_state.dart';
 
@@ -65,6 +67,7 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       final response = await adminSettingsService.updateUserGroup(groupName);
 
       emit(UpdateUserGroupSuccess(response.data['message']));
+      // emit(GetProgramsForTodayUpdateSuccesse());
       //
     } catch (e) {
       emit(AdminSettingsFailure(e.toString()));
@@ -155,6 +158,25 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       final response = await adminSettingsService.deleteProgram(prgramId);
 
       emit(DeleteProgramSuccesse(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+  Future<void> getProgramsForToday(String? groupName) async {
+    emit(AdminSettingsLoading());
+
+    try {
+      Response<dynamic> response =
+          await adminSettingsService.getProgramsForToday(groupName);
+
+      // ignore: avoid_print
+      print('rr: ${response.data['data']}');
+
+      emit(GetProgramsForTodaySuccesse(response.data['data']));
+      // emit(GetProgramsForTodayUpdateSuccesse());
+
       //
     } catch (e) {
       emit(AdminSettingsFailure(e.toString()));

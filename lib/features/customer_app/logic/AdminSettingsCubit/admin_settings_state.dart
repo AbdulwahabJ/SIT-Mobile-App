@@ -64,3 +64,10 @@ class DeleteProgramSuccesse extends AdminSettingsState {
   String message;
   DeleteProgramSuccesse(this.message);
 }
+
+class GetProgramsForTodaySuccesse extends AdminSettingsState {
+  List<dynamic> programsList;
+  GetProgramsForTodaySuccesse(this.programsList);
+}
+
+class GetProgramsForTodayUpdateSuccesse extends AdminSettingsState {}
