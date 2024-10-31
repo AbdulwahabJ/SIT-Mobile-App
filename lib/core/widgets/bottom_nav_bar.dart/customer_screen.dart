@@ -47,39 +47,38 @@ class _CustomerScreenState extends State<CustomerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (user is UserModel) {
-      return Scaffold(
-        body: screens[currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: AppColors.selectedNavBarIconColor,
-          unselectedItemColor: AppColors.unSelectedNavBarIconColor,
-          currentIndex: currentIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: AppIcons.staffIcon,
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons.homeIcon,
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons.momenstIcon,
-              label: '',
-            ),
-          ],
-          onTap: _onItemTapped, // استدعاء دالة تغيير التبويب
-        ),
-      );
-    }
-    return const StaffScreen();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   Navigator.pushReplacementNamed(
-    //     context,
-    //     AppRoutes.staffScreen,
-    //   );
-    // });
+    return Scaffold(
+      body: screens[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: AppColors.selectedNavBarIconColor,
+        unselectedItemColor: AppColors.unSelectedNavBarIconColor,
+        currentIndex: currentIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: AppIcons.staffIcon,
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcons.homeIcon,
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcons.momenstIcon,
+            label: '',
+          ),
+        ],
+        onTap: _onItemTapped, // استدعاء دالة تغيير التبويب
+      ),
+    );
   }
+  //   return const StaffScreen();
+  //   // WidgetsBinding.instance.addPostFrameCallback((_) {
+  //   //   Navigator.pushReplacementNamed(
+  //   //     context,
+  //   //     AppRoutes.staffScreen,
+  //   //   );
+  //   // });
+  // }
 }

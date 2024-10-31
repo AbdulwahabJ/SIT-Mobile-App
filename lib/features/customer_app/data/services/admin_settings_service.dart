@@ -154,6 +154,7 @@ class AdminSettingsService {
       );
 
       if (response.statusCode == 200) {
+        print('notification:${response.data['notification_sent']}');
         return response;
       } else {
         throw Exception(response.data['message']);

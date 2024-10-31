@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
-import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/helper/user_info.dart';
-import 'package:sit_app/core/network/shared_preferenes.dart';
-import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/core/widgets/bottom_sheet_icon.dart';
@@ -15,6 +12,7 @@ import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_fiel
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_cubit.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_state.dart';
 import '../../../../../../core/constants/app_colors.dart';
+import '../../../../../../core/utils/app_screen_utils.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../auth/data/presentation/widgets/text_field_decoration.dart';
 import '../../widgets/HomeScreenWidgets/custome_date_field_picker.dart';
@@ -49,6 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? selectedDateFromPicker;
   bool isAdmin = false;
   String? ifUserHaveGroupName;
+  double bottomSheettSize = 0.65;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -170,6 +169,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           } else if (state is DataProgramForUpdateSuccess) {
             //
             setState(() {
+              bottomSheettSize = 0.8;
               updatedProgram = state.dataForUpdate[0].toString();
               updatedDate = state.dataForUpdate[1].toString();
               updatedTime = state.dataForUpdate[2].toString();
@@ -229,21 +229,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AppIcons.groupAdminIcon,
-            const SizedBox(width: 20),
-            Text(S.of(context).groups, style: AppStyles.styleSemiBold20W600),
-            const Spacer(flex: 7),
+            Row(
+              children: [
+                AppIcons.groupAdminIcon,
+                const SizedBox(width: 20),
+                Text(S.of(context).groups, style: AppStyles.styleSemiBold18),
+              ],
+            ),
+            // SizedBox(width: ScreenUtil.getWidth(context, 0.12)),
+            // const Spacer(flex: 7),
             adminGroupSettings(context, state),
           ],
         ),
         const SizedBox(height: 24),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AppIcons.programIcon,
-            const SizedBox(width: 20),
-            Text(S.of(context).programs, style: AppStyles.styleSemiBold20W600),
-            const Spacer(flex: 7),
+            Row(
+              children: [
+                AppIcons.programIcon,
+                const SizedBox(width: 20),
+                Text(S.of(context).programs, style: AppStyles.styleSemiBold18),
+              ],
+            ),
+            // const Spacer(flex: 7),
             adminProgramSettings(context, state),
           ],
         ),
@@ -256,7 +267,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: [
         BottomSheetIcon(
           icon: AppIcons.addAdminIcon,
-          sheetSize: 0.53,
+          sheetSize: 0.58,
           sheetTitle: S.of(context).addProgramHeader,
           textFields: [
             Form(
@@ -351,10 +362,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 20),
         BottomSheetIcon(
           icon: AppIcons.editAdminIcon,
-          sheetSize: 0.65,
+          sheetSize: 0.72,
           sheetTitle: S.of(context).editProgramHeader,
           textFields: [
             DropdownButtonFormField<String>(
@@ -490,7 +501,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 10),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 20),
         BottomSheetIcon(
           icon: AppIcons.deleteAdminIcon,
           sheetSize: 0.45,
@@ -619,10 +630,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 10),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 10),
         BottomSheetIcon(
           icon: AppIcons.editAdminIcon,
-          sheetSize: 0.5,
+          sheetSize: 0.56,
           sheetTitle: S.of(context).editGroupHeader,
           textFields: [
             DropdownButtonFormField<String>(
@@ -670,10 +681,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 10),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 10),
         BottomSheetIcon(
           icon: AppIcons.deleteAdminIcon,
-          sheetSize: 0.35,
+          sheetSize: 0.38,
           sheetTitle: S.of(context).deleteGroupHeader,
           textFields: [
             DropdownButtonFormField<String>(

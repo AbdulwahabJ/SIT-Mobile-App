@@ -94,9 +94,9 @@ class AppIcons {
   static const Icon groupAdminIcon =
       Icon(Icons.groups_2_rounded, size: 28, color: AppColors.accentColor);
   static const Icon addAdminIcon = Icon(Icons.add_circle_outline,
-      size: 28, color: AppColors.blueAddIconColor);
+      size: 24, color: AppColors.blueAddIconColor);
   static const Icon editAdminIcon =
-      Icon(Icons.edit, size: 28, color: AppColors.yellowEditIconColor);
+      Icon(Icons.edit, size: 24, color: AppColors.yellowEditIconColor);
   static const Icon deleteAdminIcon =
-      Icon(Icons.delete, size: 28, color: AppColors.deleteIconColor);
+      Icon(Icons.delete, size: 24, color: AppColors.deleteIconColor);
 }

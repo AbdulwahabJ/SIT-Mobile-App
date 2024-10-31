@@ -1,4 +1,4 @@
-package com.example.sit_app
+package com.saracompany.sitapp
 
 import io.flutter.embedding.android.FlutterActivity
 

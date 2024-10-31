@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "31896415185",
+    "project_id": "sit-app-4902c",
+    "storage_bucket": "sit-app-4902c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31896415185:android:64611e265355d0b48acef0",
+        "android_client_info": {
+          "package_name": "com.saracompany.sitapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyxtiDmEB0j0yzXpn2IhOeaA3foB39eMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
