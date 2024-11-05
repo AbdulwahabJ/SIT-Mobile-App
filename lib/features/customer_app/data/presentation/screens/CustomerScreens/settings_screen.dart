@@ -341,6 +341,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               );
                           _loadGroups();
                           _clearFields();
+                          context.read<AdminSettingsCubit>().resetState();
                         } else {
                           Navigator.of(context).pop();
 
@@ -480,6 +481,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   selectedDateFromPicker,
                                   selectedTimeFromPicker,
                                 );
+                            context.read<AdminSettingsCubit>().resetState();
 
                             // Navigator.of(context).pop();
                             _clearFields();
@@ -567,10 +569,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               );
                           _loadGroups();
                           _clearFields();
+                          context.read<AdminSettingsCubit>().resetState();
                         } else {
                           Navigator.of(context).pop();
-                          _clearFields();
-
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(S.of(context).formValidation)));
                           _clearFields();
@@ -708,7 +709,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         _selectedGroup!,
                       );
                   context.read<AdminSettingsCubit>().resetState();
-                  // _clearFields();
+                  _clearFields();
                 },
                 child: CustomMainButton(
                   isSuccess: state is AdminSettingsSuccess,

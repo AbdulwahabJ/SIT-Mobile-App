@@ -52,6 +52,8 @@ class AppTexts {
   static const String getProgramsForTodayApi = '/get-programs-for-today';
   static const String updateProgramForGroupApi = '/update-program';
   static const String deleteProgramApi = '/delete-program';
+  static const String addMomentsImagesApi = '/upload-moment-images';
+  static const String getAllMomentsApi = '/get-all-moments';
 
   // static const String addStaffApi = '/addStaff';
 
@@ -158,6 +160,8 @@ class AppTexts {
   static const String umrahGuiedLabel = 'Umrah Guide';
   static const String madinaGuiedLabel = 'Madina Guide';
   static const String mazaratGuiedLabel = 'Mazarat Guide';
+  static const String umrahGuiedfile = 'assets/pdf/umrah_guied.pdf';
+  //
   static const String umrahGuiedLinke =
       'https://media1.haj.gov.sa/storage/uploads/EN-105.pdf';
   static const String madinaGuiedLinke =

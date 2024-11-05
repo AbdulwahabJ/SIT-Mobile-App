@@ -1,9 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.saracompany.sitapp">
-    <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.CAMERA"/>
+        <!-- أذونات الإنترنت -->
+        <uses-permission android:name="android.permission.INTERNET" />
+
+        <!-- أذونات الكاميرا -->
+        <uses-permission android:name="android.permission.CAMERA" />
+
+        <!-- أذونات القراءة والكتابة للوسائط -->
+        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+        <!-- أذونات حالة الشبكة -->
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:label="sit_app"
         android:name="${applicationName}"

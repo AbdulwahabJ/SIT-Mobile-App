@@ -62,7 +62,7 @@ class AppIcons {
       Icon(Icons.menu, size: thirdIconSize, color: AppColors.primaryColor);
   //
   static const Icon langugeIcon =
-      Icon(Icons.language, size: thirdIconSize, color: AppColors.primaryColor);
+      Icon(Icons.language, size: 28, color: AppColors.primaryColor);
   //
   static Icon settingsIcon = const Icon(Icons.settings_outlined,
       size: thirdIconSize, color: AppColors.accentColor);
@@ -99,4 +99,8 @@ class AppIcons {
       Icon(Icons.edit, size: 24, color: AppColors.yellowEditIconColor);
   static const Icon deleteAdminIcon =
       Icon(Icons.delete, size: 24, color: AppColors.deleteIconColor);
+
+  //
+  static const Icon addMomentIcon =
+      Icon(Icons.add_circle_outline, size: 30, color: AppColors.primaryColor);
 }

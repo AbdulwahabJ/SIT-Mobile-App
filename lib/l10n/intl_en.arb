@@ -19,6 +19,8 @@
     "group": "Group",
     "selectGroup": "Select Group",
     "selectProgram": "Select Program",
+    "selectSection": "Select Section",
+
 
 
     "sign": "SIGN",
@@ -93,9 +95,13 @@
 
   "newStaffMember":"New Staff Member", 
    "languages":"languages",
-   "photo":"upload member photo",
+   "memberPhoto":"upload member photo",
+   "momentsPhoto":"upload photos",
+
    "imageSelected":"image selected",
    "add":"Add",
+   "Upload":"Upload",
+
    "updateGroupButton":"Update",
    "deletGroupButton":"Delete",
 "editProgramButton":"Edit",
@@ -119,11 +125,14 @@
   "chooseDateHint":"choose date",
 "chooseTimeHint":"choose time",
 
-
-"formValidation":"complete all field please"
-
+"addMomentsHeader":"New Moments",
 
 
+"formValidation":"complete all field please",
+
+"holyMosques":"Holy Mosques",
+"mazarat":"Mazarat",
+"religiousLectures":"Religious Lectures"
 
 
 

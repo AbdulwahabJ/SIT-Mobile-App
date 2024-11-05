@@ -28,9 +28,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Password": MessageLookupByLibrary.simpleMessage(" password"),
         "PasswordsNotMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "Upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "Urdu": MessageLookupByLibrary.simpleMessage("Urdu"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addGroupHeader": MessageLookupByLibrary.simpleMessage("New Group"),
+        "addMomentsHeader": MessageLookupByLibrary.simpleMessage("New Moments"),
         "addProgramHeader": MessageLookupByLibrary.simpleMessage("New Program"),
         "chooseDateHint": MessageLookupByLibrary.simpleMessage("choose date"),
         "chooseTimeHint": MessageLookupByLibrary.simpleMessage("choose time"),
@@ -69,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "have_a_nice_day":
             MessageLookupByLibrary.simpleMessage("have a nice day"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "holyMosques": MessageLookupByLibrary.simpleMessage("Holy Mosques"),
         "imageSelected": MessageLookupByLibrary.simpleMessage("image selected"),
         "languages": MessageLookupByLibrary.simpleMessage("languages"),
         "languagesRequired":
@@ -78,8 +81,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login successful:"),
         "madinaGuiedLabel":
             MessageLookupByLibrary.simpleMessage("Madina Guied"),
+        "mazarat": MessageLookupByLibrary.simpleMessage("Mazarat"),
         "mazaratGuiedLabel":
             MessageLookupByLibrary.simpleMessage("Mazarat Guied"),
+        "memberPhoto":
+            MessageLookupByLibrary.simpleMessage("upload member photo"),
+        "momentsPhoto": MessageLookupByLibrary.simpleMessage("upload photos"),
         "momentsScreenHeader": MessageLookupByLibrary.simpleMessage(
             "The Great Moments \nDeserve Preservation"),
         "nameInvalid":
@@ -101,9 +108,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" phone number invalid"),
         "phoneNumberRequired":
             MessageLookupByLibrary.simpleMessage("phone number required"),
-        "photo": MessageLookupByLibrary.simpleMessage("upload member photo"),
         "photoRequired": MessageLookupByLibrary.simpleMessage("photo required"),
         "programs": MessageLookupByLibrary.simpleMessage("Programs"),
+        "religiousLectures":
+            MessageLookupByLibrary.simpleMessage("Religious Lectures"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "resetPasswordFailure":
             MessageLookupByLibrary.simpleMessage("Password reset failed: "),
@@ -112,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "selectGroup": MessageLookupByLibrary.simpleMessage("Select Group"),
         "selectProgram": MessageLookupByLibrary.simpleMessage("Select Program"),
+        "selectSection": MessageLookupByLibrary.simpleMessage("Select Section"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sign": MessageLookupByLibrary.simpleMessage("SIGN"),
         "signInButton": MessageLookupByLibrary.simpleMessage("SIGN IN"),

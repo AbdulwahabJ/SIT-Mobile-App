@@ -33,7 +33,7 @@ class BottomSheetIcon extends StatelessWidget {
       builder: (context) {
         return DraggableScrollableSheet(
           initialChildSize: sheetSize,
-          minChildSize: 0.3,
+          // minChildSize: 0.3,
           maxChildSize: 0.9,
           expand: false,
           builder: (context, scrollController) {

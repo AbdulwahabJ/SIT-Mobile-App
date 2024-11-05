@@ -74,7 +74,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
         listener: (context, state) {
           if (state is AuthSuccess) {
             Navigator.pop(context);
-            debugPrint("Staff added successfully");
+            // debugPrint("Staff added successfully");
             context.read<StaffCubit>().getStaff();
 
             _showSnackBar(state.message);
@@ -117,13 +117,15 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
               AppStyles.styleSemiBold22.copyWith(color: AppColors.primaryColor),
         ),
         isAdmin
-            ? IconButton(
-                onPressed: () {
-                  _clearFields();
+            ? Expanded(
+                child: IconButton(
+                  onPressed: () {
+                    _clearFields();
 
-                  _showAddStaffBottomSheet(context, state);
-                },
-                icon: AppIcons.staffAddIcon,
+                    _showAddStaffBottomSheet(context, state);
+                  },
+                  icon: AppIcons.staffAddIcon,
+                ),
               )
             : Container(),
       ],

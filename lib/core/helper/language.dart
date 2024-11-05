@@ -27,12 +27,12 @@ class _LanguageIconState extends State<LanguageIcon> {
 
   void updateLanguage(String value) {
     MyApp.setLocale(context, Locale(value));
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const CustomerScreen()),
-      );
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => const MyApp()),
+    //   );
+    // });
 
     // _languageChangeTimer = Timer(const Duration(seconds: 1), () {
     //   WidgetsBinding.instance.addPostFrameCallback((_) {

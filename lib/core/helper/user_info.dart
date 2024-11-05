@@ -25,7 +25,7 @@ Future<dynamic> getUserInfo(BuildContext context) async {
 Future<bool> isUserAdmin() async {
   final user = await TokenStorage.getUser();
 
-  return user?.role == 'admin' ? true : false;
+  return user?.role == 'admin' ? true : true;
 }
 
 Future<String> isUserHaveGroup() async {

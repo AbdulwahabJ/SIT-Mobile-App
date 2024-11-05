@@ -190,6 +190,16 @@ class S {
     );
   }
 
+  /// `Select Section`
+  String get selectSection {
+    return Intl.message(
+      'Select Section',
+      name: 'selectSection',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `SIGN`
   String get sign {
     return Intl.message(
@@ -711,10 +721,20 @@ class S {
   }
 
   /// `upload member photo`
-  String get photo {
+  String get memberPhoto {
     return Intl.message(
       'upload member photo',
-      name: 'photo',
+      name: 'memberPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `upload photos`
+  String get momentsPhoto {
+    return Intl.message(
+      'upload photos',
+      name: 'momentsPhoto',
       desc: '',
       args: [],
     );
@@ -735,6 +755,16 @@ class S {
     return Intl.message(
       'Add',
       name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload`
+  String get Upload {
+    return Intl.message(
+      'Upload',
+      name: 'Upload',
       desc: '',
       args: [],
     );
@@ -920,11 +950,51 @@ class S {
     );
   }
 
+  /// `New Moments`
+  String get addMomentsHeader {
+    return Intl.message(
+      'New Moments',
+      name: 'addMomentsHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `complete all field please`
   String get formValidation {
     return Intl.message(
       'complete all field please',
       name: 'formValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Holy Mosques`
+  String get holyMosques {
+    return Intl.message(
+      'Holy Mosques',
+      name: 'holyMosques',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mazarat`
+  String get mazarat {
+    return Intl.message(
+      'Mazarat',
+      name: 'mazarat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religious Lectures`
+  String get religiousLectures {
+    return Intl.message(
+      'Religious Lectures',
+      name: 'religiousLectures',
       desc: '',
       args: [],
     );

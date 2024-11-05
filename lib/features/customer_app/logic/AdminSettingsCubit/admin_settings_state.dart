@@ -71,3 +71,17 @@ class GetProgramsForTodaySuccesse extends AdminSettingsState {
 }
 
 class GetProgramsForTodayUpdateSuccesse extends AdminSettingsState {}
+
+class UploadAllMomentsSuccesse extends AdminSettingsState {
+  String message;
+  UploadAllMomentsSuccesse(this.message);
+}
+
+class GetMomentsSuccesse extends AdminSettingsState {
+  List<dynamic> holyMosquesList;
+  List<dynamic> mazaratList;
+  List<dynamic> religiousLecturesList;
+
+  GetMomentsSuccesse(
+      this.holyMosquesList, this.mazaratList, this.religiousLecturesList);
+}

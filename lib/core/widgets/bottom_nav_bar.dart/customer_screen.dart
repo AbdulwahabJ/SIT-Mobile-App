@@ -3,8 +3,6 @@ import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/home_screen.dart';
 import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/staff_customer_screen.dart';
-import 'package:sit_app/features/customer_app/data/presentation/screens/StaffScreens/staff_screen.dart';
-import '../../../features/auth/data/models/user_model.dart';
 import '../../../features/customer_app/data/presentation/screens/CustomerScreens/moments_screen.dart';
 import '../../helper/user_info.dart';
 
