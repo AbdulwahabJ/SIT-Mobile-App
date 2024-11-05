@@ -343,4 +343,26 @@ class AdminSettingsService {
       }
     });
   }
+
+  Future<Response<dynamic>> deleteImage(String? imagePath) async {
+    return handleException(() async {
+      // final token = await TokenStorage.getToken();
+      final response = await dioClient.delete(
+        AppTexts.deleteMomentImageApi,
+        {
+          'image_path': imagePath,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
 }

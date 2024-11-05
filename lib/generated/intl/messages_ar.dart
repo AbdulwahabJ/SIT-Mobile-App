@@ -47,6 +47,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteGroupHeader": MessageLookupByLibrary.simpleMessage("حذف مجموعة"),
         "deleteProgramHeader":
             MessageLookupByLibrary.simpleMessage("حذف برنامج"),
+        "dialogCancelButton": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "dialogDeleteHeader":
+            MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
+        "dialogYesButton": MessageLookupByLibrary.simpleMessage("نعم"),
         "dontHaveAccountException": MessageLookupByLibrary.simpleMessage(
             "حاول تصحيح بريدك الإلكتروني من فضلك."),
         "dontHaveaccount":

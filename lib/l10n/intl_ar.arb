@@ -128,8 +128,12 @@
 
 "holyMosques":"الحرمين الشريفين",
 "mazarat":"المزارات",
-"religiousLectures":"المحاضرات الدينية"
+"religiousLectures":"المحاضرات الدينية",
 
+"dialogDeleteHeader":"تأكيد الحذف",
+"dialogDeleteQuestionr":"هل متأكد من حذف الصورة؟",
+"dialogYesButton":"نعم",
+"dialogCancelButton":"الغاء"
 
 
 

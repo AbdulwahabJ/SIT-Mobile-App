@@ -40,7 +40,11 @@ class _MomentsScreenState extends State<MomentsScreen> {
               religiousLecturesList = state.religiousLecturesList;
             });
 
-            print('list hh ${holyMosquesList}');
+            // print('list hh ${holyMosquesList}');
+          } else if (state is DeleteMomentImageSuccesse) {
+            context.read<AdminSettingsCubit>().getMoments();
+
+            _showSnackBar(state.message);
           }
         },
         child: Padding(
@@ -84,5 +88,11 @@ class _MomentsScreenState extends State<MomentsScreen> {
         ),
       ),
     );
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }

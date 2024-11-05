@@ -54,6 +54,7 @@ class AppTexts {
   static const String deleteProgramApi = '/delete-program';
   static const String addMomentsImagesApi = '/upload-moment-images';
   static const String getAllMomentsApi = '/get-all-moments';
+  static const String deleteMomentImageApi = '/delete-moment-image';
 
   // static const String addStaffApi = '/addStaff';
 

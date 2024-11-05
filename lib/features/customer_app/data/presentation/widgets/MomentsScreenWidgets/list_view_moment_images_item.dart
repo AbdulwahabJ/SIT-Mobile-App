@@ -28,12 +28,10 @@ class _ListViewMomentImagesItemState extends State<ListViewMomentImagesItem> {
                 imageUrl: widget.item,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => const Center(
-                  child:
-                      CircularProgressIndicator(), // عنصر تحميل أثناء تحميل الصورة
+                  child: CircularProgressIndicator(),
                 ),
                 errorWidget: (context, url, error) => const Center(
-                  child: Text(
-                      'Can\'t display the image'), // رسالة خطأ إذا لم يتم تحميل الصورة
+                  child: Text('Can\'t display the image'),
                 ),
               ),
             ),
@@ -47,7 +45,7 @@ class _ListViewMomentImagesItemState extends State<ListViewMomentImagesItem> {
           child: CachedNetworkImage(
             imageUrl: widget.item,
             placeholder: (context, url) => const Center(
-              child: CircularProgressIndicator(), // عنصر تحميل
+              child: CircularProgressIndicator(),
             ),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             fit: BoxFit.cover,

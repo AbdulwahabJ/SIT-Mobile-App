@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/MomentsScreenWidgets/list_view_moment_images_item.dart';
 import '../../../../../../core/utils/app_screen_utils.dart';
+import '../../../../../../generated/l10n.dart';
+import '../../../../logic/AdminSettingsCubit/admin_settings_cubit.dart';
 
 class MomentImagesListView extends StatefulWidget {
   const MomentImagesListView({super.key, required this.imagesList});
@@ -54,17 +57,18 @@ class _MomentImagesListViewState extends State<MomentImagesListView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("تأكيد الحذف"),
-          content: const Text("هل تريد حذف هذه الصورة؟"),
+          title: Text(S.of(context).dialogDeleteHeader),
+          content: Text(S.of(context).dialogDeleteQuestion),
           actions: <Widget>[
             TextButton(
-              child: const Text("لا"),
+              child: Text(S.of(context).dialogYesButton),
               onPressed: () {
-                Navigator.of(context).pop(); 
+                context.read<AdminSettingsCubit>().deleteMomentsImage(item);
+                Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text("نعم"),
+              child: Text(S.of(context).dialogCancelButton),
               onPressed: () {
                 Navigator.of(context).pop();
               },

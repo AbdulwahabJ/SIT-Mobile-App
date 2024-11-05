@@ -999,6 +999,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Confirm Deletion`
+  String get dialogDeleteHeader {
+    return Intl.message(
+      'Confirm Deletion',
+      name: 'dialogDeleteHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sure you want to delete?`
+  String get dialogDeleteQuestion {
+    return Intl.message(
+      'sure you want to delete?',
+      name: 'dialogDeleteQuestion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `yes`
+  String get dialogYesButton {
+    return Intl.message(
+      'yes',
+      name: 'dialogYesButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cancel`
+  String get dialogCancelButton {
+    return Intl.message(
+      'cancel',
+      name: 'dialogCancelButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

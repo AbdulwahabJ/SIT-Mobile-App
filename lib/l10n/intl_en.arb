@@ -132,7 +132,14 @@
 
 "holyMosques":"Holy Mosques",
 "mazarat":"Mazarat",
-"religiousLectures":"Religious Lectures"
+"religiousLectures":"Religious Lectures",
+
+"dialogDeleteHeader":"Confirm Deletion",
+"dialogDeleteQuestion":"sure you want to delete?",
+"dialogYesButton":"yes",
+"dialogCancelButton":"cancel"
+
+
 
 
 

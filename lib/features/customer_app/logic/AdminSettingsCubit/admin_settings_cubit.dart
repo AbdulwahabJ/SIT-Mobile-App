@@ -216,6 +216,20 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
     }
   }
 
+  Future<void> deleteMomentsImage(String? imagepath) async {
+    //
+    emit(AdminSettingsLoading());
+    try {
+      //
+      final response = await adminSettingsService.deleteImage(imagepath);
+
+      emit(DeleteMomentImageSuccesse(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
 //..............................................................................
 //
 //General functions
