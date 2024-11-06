@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
         // useInheritedMediaQuery: true,
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.customerScreen,
+        initialRoute: AppRoutes.splashScreen,
         onGenerateRoute: AppRoutes.generateRoute,
       ),
     );

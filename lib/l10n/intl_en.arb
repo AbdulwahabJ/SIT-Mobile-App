@@ -137,8 +137,9 @@
 "dialogDeleteHeader":"Confirm Deletion",
 "dialogDeleteQuestion":"sure you want to delete?",
 "dialogYesButton":"yes",
-"dialogCancelButton":"cancel"
+"dialogCancelButton":"cancel",
 
+"dialogDeleteQuestionStaff":"Are you sure you want to remove this employee?"
 
 
 

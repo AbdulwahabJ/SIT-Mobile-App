@@ -50,6 +50,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "dialogCancelButton": MessageLookupByLibrary.simpleMessage("الغاء"),
         "dialogDeleteHeader":
             MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
+        "dialogDeleteQuestion":
+            MessageLookupByLibrary.simpleMessage("هل متأكد من حذف الصورة؟"),
+        "dialogDeleteQuestionStaff":
+            MessageLookupByLibrary.simpleMessage("هل متأكد من حذف الموظف؟"),
         "dialogYesButton": MessageLookupByLibrary.simpleMessage("نعم"),
         "dontHaveAccountException": MessageLookupByLibrary.simpleMessage(
             "حاول تصحيح بريدك الإلكتروني من فضلك."),

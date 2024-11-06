@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm Deletion"),
         "dialogDeleteQuestion":
             MessageLookupByLibrary.simpleMessage("sure you want to delete?"),
+        "dialogDeleteQuestionStaff": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to remove this employee?"),
         "dialogYesButton": MessageLookupByLibrary.simpleMessage("yes"),
         "dontHaveAccountException": MessageLookupByLibrary.simpleMessage(
             "Try correcting your email please."),

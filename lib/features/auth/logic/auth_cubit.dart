@@ -3,7 +3,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:sit_app/core/constants/app_text.dart';
 import 'package:sit_app/core/helper/language.dart';
-import 'package:sit_app/core/network/shared_preferenes.dart';
 import '../data/models/user_model.dart';
 import '../data/services/auth_service.dart';
 import 'auth_state.dart';
@@ -49,9 +48,14 @@ class AuthCubit extends Cubit<AuthState> {
       await authService.signUp(
           name, email, password, phoneNumber, groupID, role, languages, image);
 
-      emit(AuthSuccess(isArabic()
-          ? AppTexts.signUpSuccess_ar
-          : '${AppTexts.signUpSuccess} '));
+      if (role == 'user') {
+        emit(AuthSuccess(isArabic()
+            ? AppTexts.signUpSuccess_ar
+            : '${AppTexts.signUpSuccess} '));
+      }
+      emit(AuthStaffSuccess(isArabic()
+          ? AppTexts.staffAddSuccess_ar
+          : '${AppTexts.staffAddSuccess} '));
     } catch (e) {
       emit(AuthFailure(isArabic()
           ? '${AppTexts.signUpFailure_ar} ${e.toString()}'
@@ -108,5 +112,9 @@ class AuthCubit extends Cubit<AuthState> {
           ? '${AppTexts.signOutFailure_ar} ${e.toString()}'
           : '${AppTexts.signOutFailure} ${e.toString()}'));
     }
+  }
+
+  void resetState() {
+    emit(AuthInitial());
   }
 }

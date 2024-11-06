@@ -15,4 +15,5 @@ Future<void> setupLocator() async {
   getIt.registerLazySingleton(() => AuthService(getIt<DioClient>()));
   getIt.registerLazySingleton(() => StaffService(getIt<DioClient>()));
   getIt.registerLazySingleton(() => AdminSettingsService(getIt<DioClient>()));
+
 }

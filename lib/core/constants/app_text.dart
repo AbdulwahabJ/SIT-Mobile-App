@@ -40,6 +40,7 @@ class AppTexts {
   static const String logoutApi = '/logout';
   static const String staffLogoutApi = '/staff_logout';
   static const String getStaffApi = '/get_staff';
+  static const String deleteStaffUserApi = '/delete-staff';
   static const String addGroupApi = '/add_group';
   static const String getGroupApi = '/get_group';
   static const String updateUserGroupApi = '/update_user_group';

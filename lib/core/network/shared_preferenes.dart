@@ -33,9 +33,7 @@ class TokenStorage {
     final role = prefs.getString('role');
     final languages = prefs.getString('languages');
     final image = prefs.getString('image');
-
     final token = prefs.getString(_tokenKey);
-
     if (name != null && email != null && phoneNumber != null) {
       return UserModel(
         name: name,

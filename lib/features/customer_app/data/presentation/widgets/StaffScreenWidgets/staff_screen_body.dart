@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/helper/user_info.dart';
@@ -6,6 +9,8 @@ import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/today_program_list_view.dart';
 import 'package:sit_app/generated/l10n.dart';
+
+import '../../../../logic/AdminSettingsCubit/admin_settings_cubit.dart';
 
 class StaffScreenBody extends StatefulWidget {
   const StaffScreenBody({
@@ -18,10 +23,23 @@ class StaffScreenBody extends StatefulWidget {
 
 class _StaffScreenBodyState extends State<StaffScreenBody> {
   dynamic user;
+  String? _selectedGroup; // القيمة الافتراضية
+  List<String>? dropdownItems = [''];
   @override
   void initState() {
     super.initState();
     getUsertypeInfo();
+    _loadGroups();
+  }
+
+  _loadGroups() async {
+    await context.read<AdminSettingsCubit>().getGroup();
+    List<String>? items =
+        context.read<AdminSettingsCubit>().allGroups?.cast<String>();
+    setState(() {
+      dropdownItems = items;
+    });
+    print('Loaded groups: $dropdownItems');
   }
 
   Future<dynamic> getUsertypeInfo() async {
@@ -51,11 +69,23 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
               ),
             ),
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.homeScreensTextPadding),
-              child: Text(S.of(context).todayProgram,
-                  style: AppStyles.styleSemiBold18),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppPadding.homeScreensTextPadding),
+                  child: Text(S.of(context).todayProgram,
+                      style: AppStyles.styleSemiBold18),
+                ),
+                // const SizedBox(width: double.infinity),
+                Padding(
+                  padding: isArabic()
+                      ? const EdgeInsets.only(left: 20.0)
+                      : const EdgeInsets.only(right: 20.0),
+                  child: dropDownList(context),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Padding(
@@ -65,6 +95,47 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container dropDownList(BuildContext context) {
+    return Container(
+      height: 30,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: AppColors.whaiteBackgroundColor, width: 1.5),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: DropdownButton<String>(
+        hint: Text('select'),
+        value: _selectedGroup,
+        icon: const Icon(
+          Icons.arrow_drop_down,
+          color: AppColors.accentColor,
+        ),
+        style: AppStyles.styleSemiBold18
+            .copyWith(color: AppColors.unSelectedNavBarIconColor),
+        underline: const SizedBox(), // إخفاء الخط السفلي الافتراضي
+        onChanged: (String? newValue) {
+          setState(() {
+            _selectedGroup = newValue;
+          });
+          context.read<AdminSettingsCubit>().getProgramsForToday(
+              _selectedGroup!.isNotEmpty ? _selectedGroup : "");
+        },
+        items: dropdownItems!.map(_buildDropdownItem).toList(),
+      ),
+    );
+  }
+
+  DropdownMenuItem<String> _buildDropdownItem(String code) {
+    return DropdownMenuItem<String>(
+      value: code,
+      child: Text(
+        code,
+        style: AppStyles.styleLight14,
       ),
     );
   }

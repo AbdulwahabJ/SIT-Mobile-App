@@ -1039,6 +1039,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you sure you want to remove this employee?`
+  String get dialogDeleteQuestionStaff {
+    return Intl.message(
+      'Are you sure you want to remove this employee?',
+      name: 'dialogDeleteQuestionStaff',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -6,7 +6,6 @@ import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/StaffScreenWidgets/staff_screen_body.dart';
 import '../../widgets/HomeScreenWidgets/customer_drawer.dart';
-import '../../widgets/HomeScreenWidgets/home_screen_body.dart';
 
 class StaffScreen extends StatefulWidget {
   const StaffScreen({

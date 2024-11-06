@@ -14,7 +14,6 @@ import 'package:sit_app/features/auth/data/presentation/widgets/custom_phone_fie
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
 import 'package:sit_app/features/auth/logic/auth_cubit.dart';
 import 'package:sit_app/features/auth/logic/auth_state.dart';
-import 'package:sit_app/features/customer_app/data/services/staff_service.dart';
 import '../../../../../../core/constants/app_icons.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../logic/StaffCubit/staff_cubit.dart';
@@ -31,15 +30,12 @@ class StaffCustomerScreen extends StatefulWidget {
 class _StaffCustomerScreenState extends State<StaffCustomerScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StaffCubit(GetIt.I<StaffService>()),
-      child: const _StaffScreenBody(),
-    );
+    return const _StaffScreenBody();
   }
 }
 
 class _StaffScreenBody extends StatefulWidget {
-  const _StaffScreenBody({Key? key}) : super(key: key);
+  const _StaffScreenBody();
 
   @override
   State<_StaffScreenBody> createState() => _StaffScreenBodyState();
@@ -70,44 +66,37 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state is AuthSuccess) {
-            Navigator.pop(context);
-            // debugPrint("Staff added successfully");
-            context.read<StaffCubit>().getStaff();
-
-            _showSnackBar(state.message);
-            // setState(() {});
-          } else if (state is AuthFailure) {
-            _showSnackBar(state.error);
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: AppPadding.authScreensPadding),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 100),
-                  _buildHeader(context, state),
-                  const SizedBox(height: 10),
-                  const Divider(),
-                  const SizedBox(height: 10),
-                  const StaffListViewCustomer(),
-                ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.authScreensPadding),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 100),
+              BlocListener<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthStaffSuccess) {
+                    _showSnackBar(state.message);
+                    context.read<StaffCubit>().getStaff();
+                  }
+                },
+                child: _buildHeader(context),
               ),
-            ),
-          );
-        },
+              const SizedBox(height: 10),
+              const Divider(),
+              const SizedBox(height: 10),
+              const StaffListViewCustomer(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildHeader(context, AuthState state) {
+  Widget _buildHeader(
+    context,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -122,7 +111,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
                   onPressed: () {
                     _clearFields();
 
-                    _showAddStaffBottomSheet(context, state);
+                    _showAddStaffBottomSheet(context);
                   },
                   icon: AppIcons.staffAddIcon,
                 ),
@@ -132,7 +121,9 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  void _showAddStaffBottomSheet(context, AuthState state) {
+  void _showAddStaffBottomSheet(
+    context,
+  ) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -189,7 +180,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
                         },
                       ),
                       const SizedBox(height: 38),
-                      _buildSubmitButton(state),
+                      _buildSubmitButton(),
                       const SizedBox(height: 10),
                     ],
                   ),
@@ -233,13 +224,13 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     );
   }
 
-  Widget _buildSubmitButton(AuthState state) {
+  Widget _buildSubmitButton() {
     return Center(
       child: InkWell(
         onTap: _onAddStaffTap,
         child: CustomMainButton(
-          isSuccess: state is StaffSuccess,
-          isLoading: state is StaffLoading,
+          isSuccess: false,
+          isLoading: false,
           buttonText: S.of(context).add,
         ),
       ),
@@ -263,6 +254,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
             languagesController.text,
             _selectedImage,
           );
+      Navigator.of(context).pop();
     }
   }
 
@@ -276,12 +268,10 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
     nameController.clear();
     emailController.clear();
     phoneNumberController.value =
-        const PhoneNumber(isoCode: IsoCode.US, nsn: ''); // تصفية الهاتف
+        const PhoneNumber(isoCode: IsoCode.US, nsn: '');
     passwordController.clear();
     languagesController.clear();
-    // setState(() {
-    //   _selectedImage = null;
-    // });
+    _selectedImage = null;
   }
 
   @override

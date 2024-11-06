@@ -131,10 +131,11 @@
 "religiousLectures":"المحاضرات الدينية",
 
 "dialogDeleteHeader":"تأكيد الحذف",
-"dialogDeleteQuestionr":"هل متأكد من حذف الصورة؟",
+"dialogDeleteQuestion":"هل متأكد من حذف الصورة؟",
 "dialogYesButton":"نعم",
-"dialogCancelButton":"الغاء"
+"dialogCancelButton":"الغاء",
 
+"dialogDeleteQuestionStaff":"هل متأكد من حذف الموظف؟"
 
 
 }

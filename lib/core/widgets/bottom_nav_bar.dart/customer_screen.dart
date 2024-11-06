@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/features/auth/data/models/user_model.dart';
 import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/home_screen.dart';
 import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/staff_customer_screen.dart';
+import 'package:sit_app/features/customer_app/data/presentation/screens/StaffScreens/staff_screen.dart';
 import '../../../features/customer_app/data/presentation/screens/CustomerScreens/moments_screen.dart';
 import '../../helper/user_info.dart';
 
@@ -14,9 +16,8 @@ class CustomerScreen extends StatefulWidget {
 }
 
 class _CustomerScreenState extends State<CustomerScreen> {
-  int currentIndex = 1; // لتعقب الشاشة الحالية
-  dynamic user;
-  // قائمة بالشاشات
+  int currentIndex = 1;
+  UserModel? user;
   final List<Widget> screens = const [
     StaffCustomerScreen(),
     HomeScreen(),
@@ -29,8 +30,8 @@ class _CustomerScreenState extends State<CustomerScreen> {
     getUser();
   }
 
-  Future<dynamic> getUser() async {
-    dynamic userType = await getLoggedInUser();
+  Future<void> getUser() async {
+    UserModel? userType = await getLoggedInUser();
     setState(() {
       user = userType;
     });
@@ -45,6 +46,12 @@ class _CustomerScreenState extends State<CustomerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      return const CircularProgressIndicator(); // أو أي عنصر مؤقت أثناء تحميل المستخدم
+    }
+    if (user!.role == 'staff') {
+      return const StaffScreen();
+    }
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
