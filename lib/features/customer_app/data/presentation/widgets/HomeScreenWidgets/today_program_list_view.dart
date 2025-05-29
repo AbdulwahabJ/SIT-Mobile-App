@@ -28,7 +28,7 @@ class _TodayProgramListViewState extends State<TodayProgramListView> {
 
   Future<void> getProgramsForToday() async {
     String? userGroupName = await isUserHaveGroup();
-    print('ussseer: ${userGroupName}');
+    // print('ussseer: ${userGroupName}');
     await context
         .read<AdminSettingsCubit>()
         .getProgramsForToday(userGroupName.isEmpty ? userGroupName : "");
@@ -40,7 +40,6 @@ class _TodayProgramListViewState extends State<TodayProgramListView> {
       textDirection: isArabic() ? TextDirection.rtl : TextDirection.ltr,
       child: Column(
         mainAxisSize: MainAxisSize.min, // لضبط العمود ليكون مرنًا
-
         children: [
           BlocListener<AdminSettingsCubit, AdminSettingsState>(
             listener: (context, state) {
@@ -65,12 +64,8 @@ class _TodayProgramListViewState extends State<TodayProgramListView> {
               } else if (programsList.isEmpty) {
                 return const Center(child: Text('No programs assigned yet'));
               }
-              return ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(), // new
-                scrollDirection: Axis.vertical,
-                itemCount: programsList.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
+              return Column(
+                children: List.generate(programsList.length, (index) {
                   final item = programsList[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6.0),
@@ -101,7 +96,7 @@ class _TodayProgramListViewState extends State<TodayProgramListView> {
                       ),
                     ),
                   );
-                },
+                }),
               );
             },
           ),

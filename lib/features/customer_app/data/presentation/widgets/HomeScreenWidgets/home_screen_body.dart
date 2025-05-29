@@ -40,7 +40,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           : const EdgeInsets.only(left: AppPadding.homeScreensPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 40),
           Padding(
@@ -74,7 +74,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
             child: Text(S.of(context).todayProgram,
                 style: AppStyles.styleSemiBold18),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(
                 right: isArabic() ? 0 : 19.0, left: isArabic() ? 19 : 0),
