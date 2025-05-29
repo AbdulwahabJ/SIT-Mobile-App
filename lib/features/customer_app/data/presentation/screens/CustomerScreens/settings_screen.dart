@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
-import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/core/widgets/bottom_sheet_icon.dart';
@@ -12,7 +11,7 @@ import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_fiel
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_cubit.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_state.dart';
 import '../../../../../../core/constants/app_colors.dart';
-import '../../../../../../core/utils/app_screen_utils.dart';
+import '../../../../../../core/helper/user_info.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../auth/data/presentation/widgets/text_field_decoration.dart';
 import '../../widgets/HomeScreenWidgets/custome_date_field_picker.dart';
@@ -29,7 +28,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   //
   final TextEditingController textFieldController = TextEditingController();
   List<String>? dropdownItems = [''];
-  List<String>? allPrograms = ['Umrah', 'Dars', 'Mazarat'];
+  List<String>? allPrograms = [
+    'Umrah',
+    'Dars',
+    'Mazarat',
+    'Departure to Makkah',
+    'Departure to Madina'
+  ];
   List<dynamic> allProgramsForGroup = [];
 
   String? _selectedGroup;
@@ -60,16 +65,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   _initializeData() async {
     await _loadGroups();
     await isUserhaveGroup();
-    _ifUserAdmin();
+    await _ifUserAdmin();
   }
 
   _loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
-    setState(() {
-      dropdownItems =
-          context.read<AdminSettingsCubit>().allGroups?.cast<String>();
-    });
-    print('Loaded groups: $dropdownItems');
   }
 
   isUserhaveGroup() async {
@@ -113,14 +113,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: BlocConsumer<AdminSettingsCubit, AdminSettingsState>(
         listener: (context, state) {
-          if (state is AdminSettingsSuccess) {
+          if (state is GroupsUploadedSuccess) {
+            setState(() {
+              dropdownItems = context
+                      .read<AdminSettingsCubit>()
+                      .allGroups
+                      ?.cast<String>() ??
+                  [];
+              context.read<AdminSettingsCubit>().resetState();
+            });
+          } else if (state is AdminSettingsSuccess) {
             //
+
             Navigator.pop(context);
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
             _loadGroups();
+
             context.read<AdminSettingsCubit>().resetState();
 
             //
@@ -135,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             //
           } else if (state is UpdateUserGroupSuccess) {
             //
-            // Navigator.pop(context);
+            Navigator.pop(context);
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
@@ -238,8 +249,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Text(S.of(context).groups, style: AppStyles.styleSemiBold18),
               ],
             ),
-            // SizedBox(width: ScreenUtil.getWidth(context, 0.12)),
-            // const Spacer(flex: 7),
             adminGroupSettings(context, state),
           ],
         ),

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
@@ -11,6 +9,7 @@ import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScre
 import 'package:sit_app/generated/l10n.dart';
 
 import '../../../../logic/AdminSettingsCubit/admin_settings_cubit.dart';
+import '../../../../logic/AdminSettingsCubit/admin_settings_state.dart';
 
 class StaffScreenBody extends StatefulWidget {
   const StaffScreenBody({
@@ -29,17 +28,11 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
   void initState() {
     super.initState();
     getUsertypeInfo();
-    _loadGroups();
+    loadGroups();
   }
 
-  _loadGroups() async {
+  loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
-    List<String>? items =
-        context.read<AdminSettingsCubit>().allGroups?.cast<String>();
-    setState(() {
-      dropdownItems = items;
-    });
-    print('Loaded groups: $dropdownItems');
   }
 
   Future<dynamic> getUsertypeInfo() async {
@@ -51,49 +44,60 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: isArabic()
-          ? const EdgeInsets.only(right: AppPadding.homeScreensPadding)
-          : const EdgeInsets.only(left: AppPadding.homeScreensPadding),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            Center(
-              child: Text(
-                textAlign: TextAlign.center,
-                S.of(context).staffMessage,
-                style: AppStyles.styleLight14
-                    .copyWith(color: AppColors.unSelectedNavBarIconColor),
+    return BlocListener<AdminSettingsCubit, AdminSettingsState>(
+      listener: (context, state) {
+        if (state is AdminSettingsSuccess) {
+          setState(() {
+            dropdownItems =
+                context.read<AdminSettingsCubit>().allGroups?.cast<String>() ??
+                    [];
+          });
+        }
+      },
+      child: Padding(
+        padding: isArabic()
+            ? const EdgeInsets.only(right: AppPadding.homeScreensPadding)
+            : const EdgeInsets.only(left: AppPadding.homeScreensPadding),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              Center(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  S.of(context).staffMessage,
+                  style: AppStyles.styleLight14
+                      .copyWith(color: AppColors.unSelectedNavBarIconColor),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.homeScreensTextPadding),
-                  child: Text(S.of(context).todayProgram,
-                      style: AppStyles.styleSemiBold18),
-                ),
-                // const SizedBox(width: double.infinity),
-                Padding(
-                  padding: isArabic()
-                      ? const EdgeInsets.only(left: 20.0)
-                      : const EdgeInsets.only(right: 20.0),
-                  child: dropDownList(context),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: EdgeInsets.only(
-                  right: isArabic() ? 0 : 19.0, left: isArabic() ? 19 : 0),
-              child: const TodayProgramListView(),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.homeScreensTextPadding),
+                    child: Text(S.of(context).todayProgram,
+                        style: AppStyles.styleSemiBold18),
+                  ),
+                  // const SizedBox(width: double.infinity),
+                  Padding(
+                    padding: isArabic()
+                        ? const EdgeInsets.only(left: 20.0)
+                        : const EdgeInsets.only(right: 20.0),
+                    child: dropDownList(context),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: EdgeInsets.only(
+                    right: isArabic() ? 0 : 19.0, left: isArabic() ? 19 : 0),
+                child: const TodayProgramListView(),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -26,12 +26,15 @@ class LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool enabeld = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthSuccess) {
+          if (state is AuthLoading) {
+            enabeld = !enabeld;
+          } else if (state is AuthSuccess) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -43,6 +46,7 @@ class LogInScreenState extends State<LogInScreen> {
               AppRoutes.customerScreen,
             );
           } else if (state is AuthFailure) {
+            enabeld = !enabeld;
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -88,6 +92,7 @@ class LogInScreenState extends State<LogInScreen> {
                       icon: AppIcons.mailIcon,
                       validator: (value) => Validation.validateInput(
                           InputType.email, value, context),
+                      enabled: enabeld,
                     ),
                     const SizedBox(height: 14),
                     CustomTextField(
@@ -97,6 +102,7 @@ class LogInScreenState extends State<LogInScreen> {
                       type: 'password',
                       validator: (value) => Validation.validateInput(
                           InputType.password, value, context),
+                      enabled: enabeld,
                     ),
                     Row(
                       mainAxisAlignment: isArabic()

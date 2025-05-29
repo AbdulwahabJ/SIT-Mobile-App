@@ -1,4 +1,3 @@
-import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_input/phone_input_package.dart';

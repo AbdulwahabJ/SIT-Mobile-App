@@ -239,6 +239,8 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       //
       final response = await adminSettingsService.getGroup();
       allGroups = response;
+      emit(GroupsUploadedSuccess());
+
       //
     } catch (e) {
       emit(AdminSettingsFailure(e.toString()));

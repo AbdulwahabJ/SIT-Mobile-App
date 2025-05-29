@@ -85,7 +85,13 @@ class GetMomentsSuccesse extends AdminSettingsState {
   GetMomentsSuccesse(
       this.holyMosquesList, this.mazaratList, this.religiousLecturesList);
 }
+
 class DeleteMomentImageSuccesse extends AdminSettingsState {
   String message;
   DeleteMomentImageSuccesse(this.message);
+}
+
+//user settings
+class GroupsUploadedSuccess extends AdminSettingsState {
+  GroupsUploadedSuccess();
 }

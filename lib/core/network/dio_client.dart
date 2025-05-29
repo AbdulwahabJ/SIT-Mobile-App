@@ -10,10 +10,9 @@ class DioClient {
   DioClient._internal()
       : _dio = Dio(
           BaseOptions(
-            baseUrl:
-                'http://192.168.1.19:8001/api', // ضع رابط الـ API الخاص بك هنا
-            connectTimeout: const Duration(seconds: 60),
-            receiveTimeout: const Duration(seconds: 60),
+            baseUrl: 'http://192.168.30.27:8001/api',
+            connectTimeout: const Duration(seconds: 300),
+            receiveTimeout: const Duration(seconds: 300),
           ),
         ) {
     _dio.interceptors.add(LogInterceptor(

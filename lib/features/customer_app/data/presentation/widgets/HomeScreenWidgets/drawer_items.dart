@@ -38,6 +38,9 @@ class _DrawerItemsState extends State<DrawerItems> {
                   icon: AppIcons.settingsIcon, text: S.of(context).settings)
               : Container(),
           //const SizedBox(height: 28),
+          DrawerItem(icon: AppIcons.settingsIcon, text: S.of(context).settings),
+          const SizedBox(height: 28),
+
           DrawerItem(icon: AppIcons.supportIcon, text: S.of(context).support),
           const Spacer(flex: 7),
 

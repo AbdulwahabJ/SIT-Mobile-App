@@ -22,10 +22,8 @@ void main() async {
   //firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // هنا يتم استدعاء NotificationService لتلقي الإشعارات
-  // NotificationService notificationService = NotificationService();
-  // notificationService.initialize();
   NotificationService().initialize();
+
 
   //
   await setupLocator(); // تسجيل DioClient و SharedPreferences

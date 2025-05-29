@@ -33,13 +33,13 @@ class CustomPhoneField extends StatelessWidget {
           errorBorder: TextFieldDecoration.errorBorder(),
           focusedErrorBorder: TextFieldDecoration.focusedErrorBorder(),
           prefixIcon: AppIcons.phoneIcon),
-      validator: (value) {
-        if (value != null) {
-          return Validation.validateInput(
-              InputType.phoneNumber, value.nsn, context);
-        }
-        return null; // يمكنك تعديل هذه القيمة حسب الحاجة
-      },
+      // validator: (value) {
+      //   if (value != null) {
+      //     return Validation.validateInput(
+      //         InputType.phoneNumber, value.nsn, context);
+      //   }
+      //   return null; // يمكنك تعديل هذه القيمة حسب الحاجة
+      // },
 
       countrySelectorNavigator: const CountrySelectorNavigator.dialog(),
     );

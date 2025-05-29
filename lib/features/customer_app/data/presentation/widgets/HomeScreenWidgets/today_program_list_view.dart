@@ -29,7 +29,7 @@ class _TodayProgramListViewState extends State<TodayProgramListView> {
   Future<void> getProgramsForToday() async {
     String? userGroupName = await isUserHaveGroup();
     print('ussseer: ${userGroupName}');
-    context
+    await context
         .read<AdminSettingsCubit>()
         .getProgramsForToday(userGroupName.isEmpty ? userGroupName : "");
   }
