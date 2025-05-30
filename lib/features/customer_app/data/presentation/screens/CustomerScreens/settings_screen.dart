@@ -146,14 +146,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             //
           } else if (state is UpdateUserGroupSuccess) {
             //
-            Navigator.pop(context);
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
-            _clearFields();
-            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
-
+            // Navigator.pop(context);
             //
           } else if (state is UpdateGroupNameSuccess) {
             //
@@ -748,30 +745,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
           value: ifUserHaveGroupName != null && ifUserHaveGroupName!.isNotEmpty
               ? ifUserHaveGroupName
               : _selectedGroupUser,
-          // value: ifUserHaveGroupName != null && ifUserHaveGroupName!.isNotEmpty
-          //    \ ? ifUserHaveGroupName
-          //     : _selectedGroupUser,
           items: dropdownItems!.map(_buildDropdownItem).toList(),
           onChanged: (value) async {
             setState(() => _selectedGroupUser = value);
-            await context
-                .read<AdminSettingsCubit>()
-                .updateUserGroup(_selectedGroupUser);
-
-            // await context
-            //     .read<AdminSettingsCubit>()
-            //     .getProgramsForToday(_selectedGroupUser);
-
-            // _clearFields();
+            await context.read<AdminSettingsCubit>().updateUserGroup(value);
           },
         ),
       ],
     );
   }
 
-// ifUserHaveGroup != null && ifUserHaveGroup!.isNotEmpty
-//              \ ? ifUserHaveGroup
-//               : _selectedGroup,
   void _clearFields() {
     textFieldController.clear();
 

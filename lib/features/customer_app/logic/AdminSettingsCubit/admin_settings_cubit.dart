@@ -171,9 +171,6 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       Response<dynamic> response =
           await adminSettingsService.getProgramsForToday(groupName);
 
-      // ignore: avoid_print
-      print('rr: ${response.data['data']}');
-
       emit(GetProgramsForTodaySuccesse(response.data['data']));
       // emit(GetProgramsForTodayUpdateSuccesse());
 

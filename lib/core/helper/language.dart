@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
+import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/home_screen.dart';
 import 'package:sit_app/main.dart';
 import '../../../../../generated/l10n.dart';
 
@@ -27,21 +28,21 @@ class _LanguageIconState extends State<LanguageIcon> {
 
   void updateLanguage(String value) {
     MyApp.setLocale(context, Locale(value));
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => const MyApp()),
-    //   );
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CustomerScreen()),
+      );
+    });
 
-    // _languageChangeTimer = Timer(const Duration(seconds: 1), () {
-    //   WidgetsBinding.instance.addPostFrameCallback((_) {
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => const CustomerScreen()),
-    //     );
-    //   });
-    // });
+    _languageChangeTimer = Timer(const Duration(seconds: 1), () {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const CustomerScreen()),
+        );
+      });
+    });
   }
 
   @override

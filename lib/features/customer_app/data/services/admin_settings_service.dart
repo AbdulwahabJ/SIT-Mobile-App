@@ -287,7 +287,6 @@ class AdminSettingsService {
 
       if (response.statusCode == 200) {
         // ignore: avoid_print
-        print('lll:${response.data['data']}');
         return response;
       } else {
         throw Exception(response.data['message']);

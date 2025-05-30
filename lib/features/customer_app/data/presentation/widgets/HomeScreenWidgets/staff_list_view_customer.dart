@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
-import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/customer_app/logic/StaffCubit/staff_cubit.dart';
 
+import '../../../../../../core/utils/app_images.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../services/whats_app_service.dart';
 
@@ -52,7 +52,10 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
-              final hasImage = item['image'] != null && item['image'] != '';
+              final image = item['image'];
+              final hasImage = image != null &&
+                  image.toString().toLowerCase() != 'null' &&
+                  image.toString().trim().isNotEmpty;
 
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6.0),
@@ -74,21 +77,38 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
                               child: Container(
                                 margin: const EdgeInsets.all(10),
                                 child: Image.network(
-                                  item['image'],
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const Padding(
+                                      padding: EdgeInsets.all(20),
+                                      child: Image(
+                                          image:
+                                              AssetImage(AppImages.companyLogo)
+                                                  as ImageProvider),
+                                    );
+                                  },
+                                  image,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                           );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) => const Dialog(
+                              child: Text("no image"),
+                            ),
+                          );
                         }
                       },
                       child: CircleAvatar(
+                        radius: 25,
                         backgroundImage: hasImage
-                            ? NetworkImage(item['image'])
-                            : const AssetImage(AppImages.umrahProgramImage)
+                            ? NetworkImage(image)
+                            : const AssetImage(AppImages.companyLogo)
                                 as ImageProvider,
                         onBackgroundImageError: (exception, stackTrace) {
-                          // print('Error loading image: $exception');
+                          // يمكنك تسجيل الخطأ هنا أو تجاهله
                         },
                       ),
                     ),
