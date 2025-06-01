@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/MomentsScreenWidgets/list_view_moment_images_item.dart';
+import '../../../../../../core/helper/user_info.dart';
 import '../../../../../../core/utils/app_screen_utils.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../logic/AdminSettingsCubit/admin_settings_cubit.dart';
@@ -18,6 +19,17 @@ class _MomentImagesListViewState extends State<MomentImagesListView> {
   final CarouselSliderController _carouselController =
       CarouselSliderController();
   int currentPage = 0;
+  bool isAdmin = false;
+  @override
+  void initState() {
+    super.initState();
+    _ifUserAdmin();
+  }
+
+  _ifUserAdmin() async {
+    isAdmin = await isUserAdmin();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +41,7 @@ class _MomentImagesListViewState extends State<MomentImagesListView> {
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8.0),
             child: GestureDetector(
               onLongPress: () {
-                _showDeleteConfirmationDialog(item);
+                isAdmin ? _showDeleteConfirmationDialog(item) : null;
               },
               child: ListViewMomentImagesItem(item: item),
             ),
