@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
+import 'package:sit_app/features/auth/data/presentation/screens/login_screen.dart';
 import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/home_screen.dart';
 import 'package:sit_app/main.dart';
 import '../../../../../generated/l10n.dart';
+import '../network/shared_preferenes.dart';
 
 class LanguageIcon extends StatefulWidget {
   const LanguageIcon({super.key});
@@ -26,12 +28,19 @@ class _LanguageIconState extends State<LanguageIcon> {
     // updateLanguage(_selectedLanguage);
   }
 
-  void updateLanguage(String value) {
+  void updateLanguage(BuildContext context, String value) async {
     MyApp.setLocale(context, Locale(value));
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      var user = await TokenStorage.getUser();
+
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const CustomerScreen()),
+        MaterialPageRoute(
+          builder: (context) => user != null && user.token != null
+              ? const CustomerScreen()
+              : const LogInScreen(),
+        ),
       );
     });
 
@@ -98,7 +107,7 @@ class _LanguageIconState extends State<LanguageIcon> {
 
               // _languageChangeTimer = Timer(const Duration(seconds: 1), () {});
             });
-            updateLanguage(value);
+            updateLanguage(context, value);
           }
         });
       },
