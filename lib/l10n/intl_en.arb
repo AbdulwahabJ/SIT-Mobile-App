@@ -22,6 +22,8 @@
     "group": "Group",
     "selectGroup": "Select Group",
     "selectProgram": "Select Program",
+    "selectSection": "Select Section",
+
 
 
     "sign": "SIGN",
@@ -96,9 +98,13 @@
 
   "newStaffMember":"New Staff Member", 
    "languages":"languages",
-   "photo":"upload member photo",
+   "memberPhoto":"upload member photo",
+   "momentsPhoto":"upload photos",
+
    "imageSelected":"image selected",
    "add":"Add",
+   "Upload":"Upload",
+
    "updateGroupButton":"Update",
    "deletGroupButton":"Delete",
 "editProgramButton":"Edit",
@@ -122,10 +128,21 @@
   "chooseDateHint":"choose date",
 "chooseTimeHint":"choose time",
 
+"addMomentsHeader":"New Moments",
 
-"formValidation":"complete all field please"
 
+"formValidation":"complete all field please",
 
+"holyMosques":"Holy Mosques",
+"mazarat":"Mazarat",
+"religiousLectures":"Religious Lectures",
+
+"dialogDeleteHeader":"Confirm Deletion",
+"dialogDeleteQuestion":"sure you want to delete?",
+"dialogYesButton":"yes",
+"dialogCancelButton":"cancel",
+
+"dialogDeleteQuestionStaff":"Are you sure you want to remove this employee?"
 
 
 

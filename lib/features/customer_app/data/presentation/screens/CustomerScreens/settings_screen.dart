@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
-import 'package:sit_app/core/helper/language.dart';
-import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
+import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/core/widgets/bottom_sheet_icon.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_cubit.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_state.dart';
 import '../../../../../../core/constants/app_colors.dart';
+import '../../../../../../core/helper/user_info.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../auth/data/presentation/widgets/text_field_decoration.dart';
 import '../../widgets/HomeScreenWidgets/custome_date_field_picker.dart';
@@ -28,10 +28,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
   //
   final TextEditingController textFieldController = TextEditingController();
   List<String>? dropdownItems = [''];
-  List<String>? allPrograms = ['Umrah', 'Dars', 'Mazarat'];
+  List<String>? allPrograms = [
+    'Umrah',
+    'Dars',
+    'Mazarat',
+    'Departure to Makkah',
+    'Departure to Madina'
+  ];
   List<dynamic> allProgramsForGroup = [];
 
   String? _selectedGroup;
+  String? _selectedGroupUser;
+
   String? selectedProgram;
   String? selectedProgramIdForUpdate;
 
@@ -43,25 +51,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? selectedTimeFromPicker;
   String? selectedDateFromPicker;
   bool isAdmin = false;
+  String? ifUserHaveGroupName;
+  double bottomSheettSize = 0.65;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    _ifUserAdmin();
-    _loadUser();
+    _initializeData();
+  }
+
+  _initializeData() async {
+    await _loadGroups();
+    await isUserhaveGroup();
+    await _ifUserAdmin();
+  }
+
+  _loadGroups() async {
+    await context.read<AdminSettingsCubit>().getGroup();
+  }
+
+  isUserhaveGroup() async {
+    String? userGroupName = await isUserHaveGroup();
+    setState(() {
+      ifUserHaveGroupName = userGroupName;
+    });
+    print('User group: $ifUserHaveGroupName');
   }
 
   _ifUserAdmin() async {
     isAdmin = await isUserAdmin();
-    setState(() {});
-  }
-
-  _loadUser() async {
-    await context.read<AdminSettingsCubit>().getGroup();
-    dropdownItems =
-        context.read<AdminSettingsCubit>().allGroups?.cast<String>();
-    // print('list :$dropdownItems');
     setState(() {});
   }
 
@@ -70,27 +90,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding: isArabic()
-              ? const EdgeInsets.only(right: 8.0, top: 16)
-              : const EdgeInsets.only(left: 8.0, top: 16),
+          padding: EdgeInsets.only(
+            left: Directionality.of(context) == TextDirection.LTR ? 8.0 : 0.0,
+            right: Directionality.of(context) == TextDirection.RTL ? 8.0 : 0.0,
+            top: 16,
+          ),
+          // ? const EdgeInsets.only(right: 8.0, top: 16)
+          // : const EdgeInsets.only(left: 8.0, top: 16),
           child: IconButton(
             icon: AppIcons.backIcon,
             onPressed: () {
-              Navigator.of(context, rootNavigator: true).pop();
+              // Navigator.of(context, rootNavigator: true).pop();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CustomerScreen(),
+                ),
+              );
             },
           ),
         ),
       ),
       body: BlocConsumer<AdminSettingsCubit, AdminSettingsState>(
         listener: (context, state) {
-          if (state is AdminSettingsSuccess) {
+          if (state is GroupsUploadedSuccess) {
+            setState(() {
+              dropdownItems = context
+                      .read<AdminSettingsCubit>()
+                      .allGroups
+                      ?.cast<String>() ??
+                  [];
+              context.read<AdminSettingsCubit>().resetState();
+            });
+          } else if (state is AdminSettingsSuccess) {
             //
+
             Navigator.pop(context);
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
+
             context.read<AdminSettingsCubit>().resetState();
 
             //
@@ -105,14 +146,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             //
           } else if (state is UpdateUserGroupSuccess) {
             //
-            // Navigator.pop(context);
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
-            _clearFields();
-            _loadUser();
             context.read<AdminSettingsCubit>().resetState();
-
+            // Navigator.pop(context);
             //
           } else if (state is UpdateGroupNameSuccess) {
             //
@@ -121,7 +159,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
 //
             //
@@ -132,13 +170,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
 
             //
           } else if (state is DataProgramForUpdateSuccess) {
             //
             setState(() {
+              bottomSheettSize = 0.8;
               updatedProgram = state.dataForUpdate[0].toString();
               updatedDate = state.dataForUpdate[1].toString();
               updatedTime = state.dataForUpdate[2].toString();
@@ -157,7 +196,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-            _loadUser();
+            _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
           }
         },
@@ -198,21 +237,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AppIcons.groupAdminIcon,
-            const SizedBox(width: 20),
-            Text(S.of(context).groups, style: AppStyles.styleSemiBold20W600),
-            const Spacer(flex: 7),
+            Row(
+              children: [
+                AppIcons.groupAdminIcon,
+                const SizedBox(width: 20),
+                Text(S.of(context).groups, style: AppStyles.styleSemiBold18),
+              ],
+            ),
             adminGroupSettings(context, state),
           ],
         ),
         const SizedBox(height: 24),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AppIcons.programIcon,
-            const SizedBox(width: 20),
-            Text(S.of(context).programs, style: AppStyles.styleSemiBold20W600),
-            const Spacer(flex: 7),
+            Row(
+              children: [
+                AppIcons.programIcon,
+                const SizedBox(width: 20),
+                Text(S.of(context).programs, style: AppStyles.styleSemiBold18),
+              ],
+            ),
+            // const Spacer(flex: 7),
             adminProgramSettings(context, state),
           ],
         ),
@@ -225,7 +273,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: [
         BottomSheetIcon(
           icon: AppIcons.addAdminIcon,
-          sheetSize: 0.53,
+          sheetSize: 0.58,
           sheetTitle: S.of(context).addProgramHeader,
           textFields: [
             Form(
@@ -297,8 +345,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 selectedDateFromPicker,
                                 selectedTimeFromPicker,
                               );
-                          _loadUser();
+                          _loadGroups();
                           _clearFields();
+                          context.read<AdminSettingsCubit>().resetState();
                         } else {
                           Navigator.of(context).pop();
 
@@ -320,10 +369,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 20),
         BottomSheetIcon(
           icon: AppIcons.editAdminIcon,
-          sheetSize: 0.65,
+          sheetSize: 0.72,
           sheetTitle: S.of(context).editProgramHeader,
           textFields: [
             DropdownButtonFormField<String>(
@@ -438,6 +487,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   selectedDateFromPicker,
                                   selectedTimeFromPicker,
                                 );
+                            context.read<AdminSettingsCubit>().resetState();
 
                             // Navigator.of(context).pop();
                             _clearFields();
@@ -459,7 +509,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 10),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 20),
         BottomSheetIcon(
           icon: AppIcons.deleteAdminIcon,
           sheetSize: 0.45,
@@ -523,12 +573,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           context.read<AdminSettingsCubit>().deleteProgram(
                                 selectedProgramIdForUpdate,
                               );
-                          _loadUser();
+                          _loadGroups();
                           _clearFields();
+                          context.read<AdminSettingsCubit>().resetState();
                         } else {
                           Navigator.of(context).pop();
-                          _clearFields();
-
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(S.of(context).formValidation)));
                           _clearFields();
@@ -588,10 +637,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 10),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 10),
         BottomSheetIcon(
           icon: AppIcons.editAdminIcon,
-          sheetSize: 0.5,
+          sheetSize: 0.56,
           sheetTitle: S.of(context).editGroupHeader,
           textFields: [
             DropdownButtonFormField<String>(
@@ -639,10 +688,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 10),
           ],
         ),
-        const SizedBox(width: 20),
+        // const SizedBox(width: 10),
         BottomSheetIcon(
           icon: AppIcons.deleteAdminIcon,
-          sheetSize: 0.35,
+          sheetSize: 0.38,
           sheetTitle: S.of(context).deleteGroupHeader,
           textFields: [
             DropdownButtonFormField<String>(
@@ -666,7 +715,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         _selectedGroup!,
                       );
                   context.read<AdminSettingsCubit>().resetState();
-                  // _clearFields();
+                  _clearFields();
                 },
                 child: CustomMainButton(
                   isSuccess: state is AdminSettingsSuccess,
@@ -693,13 +742,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           icon: AppIcons.dropDownMenuIcon,
           decoration: _dropdownDecoration(),
           hint: Text(S.of(context).selectGroup),
-          value: _selectedGroup,
+          value: ifUserHaveGroupName != null && ifUserHaveGroupName!.isNotEmpty
+              ? ifUserHaveGroupName
+              : _selectedGroupUser,
           items: dropdownItems!.map(_buildDropdownItem).toList(),
           onChanged: (value) async {
-            setState(() => _selectedGroup = value);
-            await context
-                .read<AdminSettingsCubit>()
-                .updateUserGroup(_selectedGroup);
+            setState(() => _selectedGroupUser = value);
+            await context.read<AdminSettingsCubit>().updateUserGroup(value);
           },
         ),
       ],
@@ -711,6 +760,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     setState(() {
       _selectedGroup = null;
+      _selectedGroupUser = null;
       selectedProgram = null;
       selectedDateFromPicker = null;
       selectedTimeFromPicker = null;

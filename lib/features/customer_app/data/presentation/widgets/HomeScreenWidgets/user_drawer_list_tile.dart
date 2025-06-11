@@ -29,9 +29,16 @@ class _UserDrawerListTileState extends State<UserDrawerListTile> {
 
   @override
   Widget build(BuildContext context) {
+    if (_user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return ListTile(
-      leading: const CircleAvatar(
-          backgroundImage: AssetImage(AppImages.umrahProgramImage)),
+      leading: CircleAvatar(
+          backgroundImage: _user!.image != null
+              ? NetworkImage(
+                  _user!.image,
+                )
+              : const AssetImage(AppImages.umrahProgramImage)),
       title: Text(
         _user != null ? _user!.name : ',',
         style: AppStyles.styleReguler16W600,

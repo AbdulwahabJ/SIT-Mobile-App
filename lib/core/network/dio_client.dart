@@ -10,10 +10,9 @@ class DioClient {
   DioClient._internal()
       : _dio = Dio(
           BaseOptions(
-            baseUrl:
-                'http://127.0.0.1:8000/api', // ضع رابط الـ API الخاص بك هنا
-            connectTimeout: const Duration(seconds: 30),
-            receiveTimeout: const Duration(seconds: 30),
+            baseUrl: 'http://192.168.30.57:8001/api',
+            connectTimeout: const Duration(seconds: 300),
+            receiveTimeout: const Duration(seconds: 300),
           ),
         ) {
     _dio.interceptors.add(LogInterceptor(
@@ -26,6 +25,25 @@ class DioClient {
     try {
       final response = await _dio.post(endpoint, data: data, options: options);
       return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Response> postimages(String endpoint, dynamic data,
+      {required Options options}) async {
+    try {
+      // تحقق مما إذا كانت البيانات من نوع FormData
+      if (data is FormData) {
+        final response =
+            await _dio.post(endpoint, data: data, options: options);
+        return response;
+      } else {
+        // إذا كانت البيانات ليست FormData، استخدمها كما هي
+        final response =
+            await _dio.post(endpoint, data: data, options: options);
+        return response;
+      }
     } catch (e) {
       rethrow;
     }

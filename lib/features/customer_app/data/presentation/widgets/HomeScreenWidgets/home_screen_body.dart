@@ -38,50 +38,49 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
       padding: isArabic()
           ? const EdgeInsets.only(right: AppPadding.homeScreensPadding)
           : const EdgeInsets.only(left: AppPadding.homeScreensPadding),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.homeScreensTextPadding),
-              child: _user != null
-                  ? Text(
-                      '${S.of(context).hello} ${_user!.name}',
-                      style: AppStyles.styleSemiBold26,
-                    )
-                  : Text(
-                      S.of(context).hello,
-                      style: AppStyles.styleSemiBold26,
-                    ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.homeScreensTextPadding),
+            child: _user != null
+                ? Text(
+                    '${S.of(context).hello} ${_user!.name}',
+                    style: AppStyles.styleSemiBold26,
+                  )
+                : Text(
+                    S.of(context).hello,
+                    style: AppStyles.styleSemiBold26,
+                  ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.homeScreensTextPadding),
+            child: Text(
+              S.of(context).have_a_nice_day,
+              style: AppStyles.styleLight14
+                  .copyWith(color: AppColors.unSelectedNavBarIconColor),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.homeScreensTextPadding),
-              child: Text(
-                S.of(context).have_a_nice_day,
-                style: AppStyles.styleLight14
-                    .copyWith(color: AppColors.unSelectedNavBarIconColor),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const GuideListView(),
-            const SizedBox(height: 14),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.homeScreensTextPadding),
-              child: Text(S.of(context).todayProgram,
-                  style: AppStyles.styleSemiBold18),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: EdgeInsets.only(
-                  right: isArabic() ? 0 : 19.0, left: isArabic() ? 19 : 0),
-              child: const TodayProgramListView(),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          const GuideListView(),
+          const SizedBox(height: 14),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.homeScreensTextPadding),
+            child: Text(S.of(context).todayProgram,
+                style: AppStyles.styleSemiBold18),
+          ),
+          const SizedBox(height: 10),
+          Padding(
+            padding: EdgeInsets.only(
+                right: isArabic() ? 0 : 19.0, left: isArabic() ? 19 : 0),
+            child: const TodayProgramListView(),
+          ),
+        ],
       ),
     );
   }

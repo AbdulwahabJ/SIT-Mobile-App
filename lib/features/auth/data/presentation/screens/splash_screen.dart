@@ -19,8 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // TokenStorage.deleteToken();
-    // TokenStorage.deleteUser();
+    TokenStorage.deleteToken();
+    TokenStorage.deleteUser();
     _timer = Timer(const Duration(seconds: 3), () {
       _checkLoginStatus();
       _navigateToLoginScreen();

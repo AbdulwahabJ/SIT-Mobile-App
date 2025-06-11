@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       backgroundColor: AppColors.backgroundColor,
-      body: const HomeScreenBody(),
+      body: const SingleChildScrollView(child: HomeScreenBody()),
     );
   }
 }

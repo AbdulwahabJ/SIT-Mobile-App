@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sit_app/core/network/dio_client.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
 import '../../../../core/constants/app_text.dart';
@@ -154,6 +155,7 @@ class AdminSettingsService {
       );
 
       if (response.statusCode == 200) {
+        print('notification:${response.data['notification_sent']}');
         return response;
       } else {
         throw Exception(response.data['message']);
@@ -261,6 +263,101 @@ class AdminSettingsService {
         // await TokenStorage.updateGroupId(
         //     '${response.data['user']['group_id']}');
 
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<Response<dynamic>> getProgramsForToday(String? groupName) async {
+    return handleException(() async {
+      //
+      final token = await TokenStorage.getToken();
+      final response = await dioClient.getProgram(
+        AppTexts.getProgramsForTodayApi,
+        {
+          'group_name': groupName,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // ignore: avoid_print
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+//moment functions
+  Future<Response> uploadMomentImages(
+      String sectionName, List<XFile> images) async {
+    return handleException(() async {
+      var formData = FormData();
+
+      formData.fields.add(MapEntry('section_name', sectionName));
+
+      for (var image in images) {
+        formData.files.add(MapEntry(
+          'images[]',
+          await MultipartFile.fromFile(image.path),
+        ));
+      }
+
+      final response = await dioClient.postimages(
+        AppTexts.addMomentsImagesApi,
+        formData,
+        options: Options(headers: {
+          'Content-Type': 'multipart/form-data',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // print('sseecc${response.data['section_name']}');
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<Response<dynamic>> getAllMoments() async {
+    return handleException(() async {
+      //
+      // final token = await TokenStorage.getToken();
+      final response = await dioClient.get(
+        AppTexts.getAllMomentsApi,
+      );
+
+      if (response.statusCode == 200) {
+        print('moments:${response.data}');
+        return response;
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<Response<dynamic>> deleteImage(String? imagePath) async {
+    return handleException(() async {
+      // final token = await TokenStorage.getToken();
+      final response = await dioClient.delete(
+        AppTexts.deleteMomentImageApi,
+        {
+          'image_path': imagePath,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
         return response;
       } else {
         throw Exception(response.data['message']);

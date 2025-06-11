@@ -40,6 +40,7 @@ class AppTexts {
   static const String logoutApi = '/logout';
   static const String staffLogoutApi = '/staff_logout';
   static const String getStaffApi = '/get_staff';
+  static const String deleteStaffUserApi = '/delete-staff';
   static const String addGroupApi = '/add_group';
   static const String getGroupApi = '/get_group';
   static const String updateUserGroupApi = '/update_user_group';
@@ -49,8 +50,12 @@ class AppTexts {
   static const String addProgramApi = '/add_program';
   static const String getProgramApi = '/get_program';
   static const String getAllProgramsForGroupApi = '/get-all-programs';
+  static const String getProgramsForTodayApi = '/get-programs-for-today';
   static const String updateProgramForGroupApi = '/update-program';
   static const String deleteProgramApi = '/delete-program';
+  static const String addMomentsImagesApi = '/upload-moment-images';
+  static const String getAllMomentsApi = '/get-all-moments';
+  static const String deleteMomentImageApi = '/delete-moment-image';
 
   // static const String addStaffApi = '/addStaff';
 
@@ -157,6 +162,8 @@ class AppTexts {
   static const String umrahGuiedLabel = 'Umrah Guide';
   static const String madinaGuiedLabel = 'Madina Guide';
   static const String mazaratGuiedLabel = 'Mazarat Guide';
+  static const String umrahGuiedfile = 'assets/pdf/umrah_guied.pdf';
+  //
   static const String umrahGuiedLinke =
       'https://media1.haj.gov.sa/storage/uploads/EN-105.pdf';
   static const String madinaGuiedLinke =

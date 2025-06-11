@@ -10,7 +10,7 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validator; // الفالديشن
   final Function(String)? onChanged; // رد فعل عند تغيير النص
   final TextEditingController? controller; // إضافة TextEditingController
-
+  final bool enabled;
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -18,7 +18,8 @@ class CustomTextField extends StatefulWidget {
     this.type,
     this.validator, // تمرير الفالديشن
     this.onChanged, // تمرير رد فعل عند التغيير
-    this.controller, // تمرير TextEditingController
+    this.controller,
+    this.enabled = true,
   });
 
   @override
@@ -56,6 +57,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
       validator: widget.validator, // إضافة الفالديشن
       onChanged: widget.onChanged,
+      enabled: widget.enabled,
     );
   }
 }

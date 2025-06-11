@@ -51,13 +51,35 @@ class StaffService {
 
       if (response.statusCode == 200) {
         List staffData = response.data['staff_data'];
-        print('staffData:${response.data['staff_data']}');
         return List<Map<String, dynamic>>.from(staffData.map((item) => {
-              'image': item['image'] ?? '',
+              'id': item['id'],
               'name': item['name'],
+              'image': item['image'] ?? '',
               'languages': item['languages'],
               'phone_number': item['phone_number'],
             })); // ignore: avoid_print
+      } else {
+        throw Exception(response.data['message']);
+      }
+    });
+  }
+
+  Future<Response<dynamic>> deleteStaffUser(String? staffId) async {
+    return handleException(() async {
+      // final token = await TokenStorage.getToken();
+      final response = await dioClient.delete(
+        AppTexts.deleteStaffUserApi,
+        {
+          'id': staffId,
+        },
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer $token',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return response;
       } else {
         throw Exception(response.data['message']);
       }

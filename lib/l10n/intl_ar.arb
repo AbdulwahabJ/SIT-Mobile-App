@@ -17,6 +17,7 @@
     "group": "المجموعة",
     "selectGroup": "اختر المجموعة",
     "selectProgram": "اختر برنامج",
+    "selectSection": "اختر القسم",
 
     "signOut": "تسجيل الخروج",
     
@@ -88,9 +89,12 @@
   "newStaffMember":"اضافة عضو جديد",
 
   "languages":"اللغات",
-  "photo":"ارفع صورة العضو",
+  "memberPhoto":"ارفع صورة العضو",
+  "momentsPhoto":"ارفع الصور",
+
 "imageSelected":"تم رفع الصورة",
 "add":"اضافة",
+"Upload":"رفع الصور",
 "updateGroupButton":"تعديل",
 "deletGroupButton":"حذف",
 "editProgramButton":"تعديل",
@@ -116,14 +120,22 @@
 "chooseDateHint":"اختر التاريخ",
 "chooseTimeHint":"اختر الوقت",
 
+"addMomentsHeader":"اضافة صور جديدة",
 
 
-"formValidation":"الرجاء اكمال جميع الحقول"
+"formValidation":"الرجاء اكمال جميع الحقول",
 
 
+"holyMosques":"الحرمين الشريفين",
+"mazarat":"المزارات",
+"religiousLectures":"المحاضرات الدينية",
 
+"dialogDeleteHeader":"تأكيد الحذف",
+"dialogDeleteQuestion":"هل متأكد من حذف الصورة؟",
+"dialogYesButton":"نعم",
+"dialogCancelButton":"الغاء",
 
-
+"dialogDeleteQuestionStaff":"هل متأكد من حذف الموظف؟"
 
 
 }

@@ -192,6 +192,16 @@ class S {
     );
   }
 
+  /// `Select Section`
+  String get selectSection {
+    return Intl.message(
+      'Select Section',
+      name: 'selectSection',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `SIGN`
   String get sign {
     return Intl.message(
@@ -713,10 +723,20 @@ class S {
   }
 
   /// `upload member photo`
-  String get photo {
+  String get memberPhoto {
     return Intl.message(
       'upload member photo',
-      name: 'photo',
+      name: 'memberPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `upload photos`
+  String get momentsPhoto {
+    return Intl.message(
+      'upload photos',
+      name: 'momentsPhoto',
       desc: '',
       args: [],
     );
@@ -737,6 +757,16 @@ class S {
     return Intl.message(
       'Add',
       name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload`
+  String get Upload {
+    return Intl.message(
+      'Upload',
+      name: 'Upload',
       desc: '',
       args: [],
     );
@@ -922,6 +952,16 @@ class S {
     );
   }
 
+  /// `New Moments`
+  String get addMomentsHeader {
+    return Intl.message(
+      'New Moments',
+      name: 'addMomentsHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `complete all field please`
   String get formValidation {
     return Intl.message(
@@ -931,7 +971,90 @@ class S {
       args: [],
     );
   }
+<<<<<<< HEAD
 >>>>>>> 47338f986d4f1bc1ef8249f63083fb3e07f4ad93
+=======
+
+  /// `Holy Mosques`
+  String get holyMosques {
+    return Intl.message(
+      'Holy Mosques',
+      name: 'holyMosques',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mazarat`
+  String get mazarat {
+    return Intl.message(
+      'Mazarat',
+      name: 'mazarat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religious Lectures`
+  String get religiousLectures {
+    return Intl.message(
+      'Religious Lectures',
+      name: 'religiousLectures',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Deletion`
+  String get dialogDeleteHeader {
+    return Intl.message(
+      'Confirm Deletion',
+      name: 'dialogDeleteHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sure you want to delete?`
+  String get dialogDeleteQuestion {
+    return Intl.message(
+      'sure you want to delete?',
+      name: 'dialogDeleteQuestion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `yes`
+  String get dialogYesButton {
+    return Intl.message(
+      'yes',
+      name: 'dialogYesButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cancel`
+  String get dialogCancelButton {
+    return Intl.message(
+      'cancel',
+      name: 'dialogCancelButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to remove this employee?`
+  String get dialogDeleteQuestionStaff {
+    return Intl.message(
+      'Are you sure you want to remove this employee?',
+      name: 'dialogDeleteQuestionStaff',
+      desc: '',
+      args: [],
+    );
+  }
+>>>>>>> dev
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

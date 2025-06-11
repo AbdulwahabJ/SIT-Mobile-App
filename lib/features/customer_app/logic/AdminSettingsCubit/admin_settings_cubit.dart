@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sit_app/features/customer_app/data/services/admin_settings_service.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_state.dart';
 
@@ -65,6 +67,7 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       final response = await adminSettingsService.updateUserGroup(groupName);
 
       emit(UpdateUserGroupSuccess(response.data['message']));
+      // emit(GetProgramsForTodayUpdateSuccesse());
       //
     } catch (e) {
       emit(AdminSettingsFailure(e.toString()));
@@ -161,6 +164,69 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
     }
   }
 
+  Future<void> getProgramsForToday(String? groupName) async {
+    emit(AdminSettingsLoading());
+
+    try {
+      Response<dynamic> response =
+          await adminSettingsService.getProgramsForToday(groupName);
+
+      emit(GetProgramsForTodaySuccesse(response.data['data']));
+      // emit(GetProgramsForTodayUpdateSuccesse());
+
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+//..............................................................................
+//
+//Moments functions
+  Future<void> uploadMomentsImages(
+      String sectionName, List<XFile> images) async {
+    emit(AdminSettingsLoading());
+    try {
+      //
+      final response =
+          await adminSettingsService.uploadMomentImages(sectionName, images);
+      emit(UploadAllMomentsSuccesse(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+  Future<void> getMoments() async {
+    emit(AdminSettingsLoading());
+    //
+    try {
+      //
+      final response = await adminSettingsService.getAllMoments();
+      // print('rr:${response}');
+      emit(GetMomentsSuccesse(response.data['section1'],
+          response.data['section2'], response.data['section3']));
+
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
+  Future<void> deleteMomentsImage(String? imagepath) async {
+    //
+    emit(AdminSettingsLoading());
+    try {
+      //
+      final response = await adminSettingsService.deleteImage(imagepath);
+
+      emit(DeleteMomentImageSuccesse(response.data['message']));
+      //
+    } catch (e) {
+      emit(AdminSettingsFailure(e.toString()));
+    }
+  }
+
 //..............................................................................
 //
 //General functions
@@ -170,6 +236,8 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
       //
       final response = await adminSettingsService.getGroup();
       allGroups = response;
+      emit(GroupsUploadedSuccess());
+
       //
     } catch (e) {
       emit(AdminSettingsFailure(e.toString()));

@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sit_app/core/network/get_it.dart';
+import 'package:sit_app/core/network/notification_service%20.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/logic/bottom_nav_bar_cubit.dart';
 import 'package:sit_app/features/auth/data/services/auth_service.dart';
@@ -12,15 +14,21 @@ import 'package:sit_app/features/customer_app/data/services/admin_settings_servi
 import 'package:sit_app/features/customer_app/data/services/staff_service.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_cubit.dart';
 import 'package:sit_app/features/customer_app/logic/StaffCubit/staff_cubit.dart';
+import 'package:sit_app/firebase_options.dart';
 import 'package:sit_app/generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //firebase
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  NotificationService().initialize();
+
+
+  //
   await setupLocator(); // تسجيل DioClient و SharedPreferences
   runApp(
-    DevicePreview(
-      builder: (context) => MyApp(),
-    ),
+    const MyApp(),
   );
 }
 

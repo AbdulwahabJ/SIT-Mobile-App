@@ -12,6 +12,12 @@ class StaffSuccess extends StaffState {
   StaffSuccess(this.message);
 }
 
+class DeleteStaffSuccessSSS extends StaffState {
+  String message;
+
+  DeleteStaffSuccessSSS(this.message);
+}
+
 class StaffLodedd extends StaffState {
   List<Map<String, dynamic>> staffData;
 

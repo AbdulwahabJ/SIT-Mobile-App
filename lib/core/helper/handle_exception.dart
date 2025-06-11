@@ -64,6 +64,10 @@ Future<T> handleException<T>(Future<T> Function() action) async {
       throw (isArabic()
           ? AppTexts.unAuthrizedUserException_ar
           : AppTexts.unAuthrizedUserException);
+    } else if (e is DioException &&
+        e.response?.data['message'] == 'Failed to get Program' &&
+        e.response?.statusCode == 500) {
+      throw (e.response?.data['message']);
     }
     throw Exception(
         '${isArabic() ? AppTexts.generalException_ar : AppTexts.generalException} : $e');

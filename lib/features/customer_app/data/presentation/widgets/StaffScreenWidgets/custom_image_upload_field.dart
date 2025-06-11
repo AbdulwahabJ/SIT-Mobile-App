@@ -36,7 +36,7 @@ class _CustomImageUploadWidgetState extends State<CustomImageUploadWidget> {
         widget.onImageSelected(_imageFile);
       }
     } else {
-      _showPermissionDeniedMessage();
+      // _showPermissionDeniedMessage();
     }
   }
 
@@ -79,7 +79,7 @@ class _CustomImageUploadWidgetState extends State<CustomImageUploadWidget> {
             Text(
               overflow: TextOverflow.ellipsis,
               _imageFile == null
-                  ? S.of(context).photo
+                  ? S.of(context).memberPhoto
                   : 'image selected successfuly',
               style: AppStyles.styleLight14,
             ),

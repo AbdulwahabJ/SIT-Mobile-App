@@ -39,11 +39,31 @@ class StaffCubit extends Cubit<StaffState> {
     emit(StaffLoading());
     try {
       final staffData = await staffService.getStaff();
+      // ignore: avoid_print
       print('cubit staff:$staffData');
       emit(StaffLodedd(staffData));
     } catch (e) {
       emit(StaffNotLodedd(e.toString()));
-      print('get stafff:$e');
+      // print('get stafff:$e');
     }
+  }
+
+  Future<void> deleteStaff(String? staffId) async {
+    //
+    // emit(StaffLoading());
+    try {
+      //
+      final response = await staffService.deleteStaffUser(staffId);
+
+      emit(DeleteStaffSuccessSSS(response.data['message']));
+
+      //
+    } catch (e) {
+      emit(StaffFailure(e.toString()));
+    }
+  }
+
+  void resetState() {
+    emit(StaffInitial());
   }
 }

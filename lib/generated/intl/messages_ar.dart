@@ -28,10 +28,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Password": MessageLookupByLibrary.simpleMessage("كلمة المرور "),
         "PasswordsNotMatch":
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير متطابقة"),
+        "Upload": MessageLookupByLibrary.simpleMessage("رفع الصور"),
         "Urdu": MessageLookupByLibrary.simpleMessage("اوردو"),
         "add": MessageLookupByLibrary.simpleMessage("اضافة"),
         "addGroupHeader":
             MessageLookupByLibrary.simpleMessage("اضف مجموعة جديدة"),
+        "addMomentsHeader":
+            MessageLookupByLibrary.simpleMessage("اضافة صور جديدة"),
         "addProgramHeader":
             MessageLookupByLibrary.simpleMessage("اضف برنامج جديد"),
         "chooseDateHint": MessageLookupByLibrary.simpleMessage("اختر التاريخ"),
@@ -44,6 +47,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteGroupHeader": MessageLookupByLibrary.simpleMessage("حذف مجموعة"),
         "deleteProgramHeader":
             MessageLookupByLibrary.simpleMessage("حذف برنامج"),
+        "dialogCancelButton": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "dialogDeleteHeader":
+            MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
+        "dialogDeleteQuestion":
+            MessageLookupByLibrary.simpleMessage("هل متأكد من حذف الصورة؟"),
+        "dialogDeleteQuestionStaff":
+            MessageLookupByLibrary.simpleMessage("هل متأكد من حذف الموظف؟"),
+        "dialogYesButton": MessageLookupByLibrary.simpleMessage("نعم"),
         "dontHaveAccountException": MessageLookupByLibrary.simpleMessage(
             "حاول تصحيح بريدك الإلكتروني من فضلك."),
         "dontHaveaccount":
@@ -70,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "groups": MessageLookupByLibrary.simpleMessage("المجموعات"),
         "have_a_nice_day": MessageLookupByLibrary.simpleMessage("يومك سعيد"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
+        "holyMosques": MessageLookupByLibrary.simpleMessage("الحرمين الشريفين"),
         "imageSelected": MessageLookupByLibrary.simpleMessage("تم رفع الصورة"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "languagesRequired":
@@ -80,8 +92,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول ناجح: "),
         "madinaGuiedLabel":
             MessageLookupByLibrary.simpleMessage("دليل المدينة المنورة"),
+        "mazarat": MessageLookupByLibrary.simpleMessage("المزارات"),
         "mazaratGuiedLabel":
             MessageLookupByLibrary.simpleMessage("دليل المزارات"),
+        "memberPhoto": MessageLookupByLibrary.simpleMessage("ارفع صورة العضو"),
+        "momentsPhoto": MessageLookupByLibrary.simpleMessage("ارفع الصور"),
         "momentsScreenHeader": MessageLookupByLibrary.simpleMessage(
             "اللحظات العظيمة تستحق الحفاظ عليها"),
         "nameInvalid":
@@ -102,10 +117,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صالح"),
         "phoneNumberRequired":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
-        "photo": MessageLookupByLibrary.simpleMessage("ارفع صورة العضو"),
         "photoRequired":
             MessageLookupByLibrary.simpleMessage("يرجى رفع الصورة"),
         "programs": MessageLookupByLibrary.simpleMessage("البرامج"),
+        "religiousLectures":
+            MessageLookupByLibrary.simpleMessage("المحاضرات الدينية"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("اعادة تعيين كلمة المرور"),
         "resetPasswordFailure": MessageLookupByLibrary.simpleMessage(
@@ -115,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "selectGroup": MessageLookupByLibrary.simpleMessage("اختر المجموعة"),
         "selectProgram": MessageLookupByLibrary.simpleMessage("اختر برنامج"),
+        "selectSection": MessageLookupByLibrary.simpleMessage("اختر القسم"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "sign": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "signInButton": MessageLookupByLibrary.simpleMessage("دخول"),

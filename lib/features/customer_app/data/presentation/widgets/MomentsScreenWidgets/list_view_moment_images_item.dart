@@ -1,22 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
 
-class ListViewMomentImagesItem extends StatelessWidget {
+class ListViewMomentImagesItem extends StatefulWidget {
   const ListViewMomentImagesItem({
     required this.item,
     super.key,
   });
-  final Map<String, String> item;
+  final String item;
 
   @override
+  State<ListViewMomentImagesItem> createState() =>
+      _ListViewMomentImagesItemState();
+}
+
+class _ListViewMomentImagesItemState extends State<ListViewMomentImagesItem> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: ScreenUtil.getWidth(context, 0.6),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(
-          image: AssetImage(item['image']!),
-          fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => Dialog(
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              child: CachedNetworkImage(
+                imageUrl: widget.item,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const Center(
+                  child: Text('Can\'t display the image'),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      child: SizedBox(
+        width: ScreenUtil.getWidth(context, 0.6),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: CachedNetworkImage(
+            imageUrl: widget.item,
+            placeholder: (context, url) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

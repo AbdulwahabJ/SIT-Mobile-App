@@ -64,3 +64,34 @@ class DeleteProgramSuccesse extends AdminSettingsState {
   String message;
   DeleteProgramSuccesse(this.message);
 }
+
+class GetProgramsForTodaySuccesse extends AdminSettingsState {
+  List<dynamic> programsList;
+  GetProgramsForTodaySuccesse(this.programsList);
+}
+
+class GetProgramsForTodayUpdateSuccesse extends AdminSettingsState {}
+
+class UploadAllMomentsSuccesse extends AdminSettingsState {
+  String message;
+  UploadAllMomentsSuccesse(this.message);
+}
+
+class GetMomentsSuccesse extends AdminSettingsState {
+  List<dynamic> holyMosquesList;
+  List<dynamic> mazaratList;
+  List<dynamic> religiousLecturesList;
+
+  GetMomentsSuccesse(
+      this.holyMosquesList, this.mazaratList, this.religiousLecturesList);
+}
+
+class DeleteMomentImageSuccesse extends AdminSettingsState {
+  String message;
+  DeleteMomentImageSuccesse(this.message);
+}
+
+//user settings
+class GroupsUploadedSuccess extends AdminSettingsState {
+  GroupsUploadedSuccess();
+}
