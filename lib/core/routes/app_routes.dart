@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
+import 'package:sit_app/features/auth/data/presentation/screens/onboarding_screen.dart';
 import 'package:sit_app/features/customer_app/data/presentation/screens/CustomerScreens/home_screen.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/reset_password_screen.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/splash_screen.dart';
@@ -13,7 +14,9 @@ import '../../features/customer_app/data/presentation/screens/CustomerScreens/se
 import '../../features/customer_app/data/presentation/screens/CustomerScreens/staff_customer_screen.dart';
 
 class AppRoutes {
+  //onBoardingScreen
   static const String splashScreen = '/splash';
+  static const String onBoardingScreen = '/onBoardingScreen';
   static const String loginScreen = '/';
   static const String signupScreen = '/signup';
   static const String verfiyScreen = '/verfiy';
@@ -30,6 +33,8 @@ class AppRoutes {
     switch (settings.name) {
       case splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case onBoardingScreen:
+        return MaterialPageRoute(builder: (_) => OnBoardingScreen());
       case loginScreen:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
       case signupScreen:

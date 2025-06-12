@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
-import 'package:sit_app/features/auth/data/presentation/screens/login_screen.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_screen_utils.dart';
 
@@ -16,14 +15,34 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
+  bool onBoardingCheck = false;
   @override
   void initState() {
     super.initState();
+
+    _startSplashLogic();
+  }
+
+  Future<void> _startSplashLogic() async {
+    await Future.delayed(const Duration(seconds: 3));
+    //for test
     TokenStorage.deleteToken();
     TokenStorage.deleteUser();
-    _timer = Timer(const Duration(seconds: 3), () {
-      _checkLoginStatus();
-      _navigateToLoginScreen();
+    TokenStorage.reSetOnboardingDone();
+    //
+    await _checkOnBoardingStatus();
+    await _checkLoginStatus();
+    // _navigateToLoginScreen();
+  }
+
+  Future<void> _checkOnBoardingStatus() async {
+    bool? onBoardingStatus = await TokenStorage.checkFirstTimeOnboarding();
+
+    // if (!onBoardingStatus) {
+    //   await TokenStorage.setOnboardingDone();
+    // }
+    setState(() {
+      onBoardingCheck = onBoardingStatus;
     });
   }
 
@@ -34,34 +53,36 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (token != null) {
       Navigator.pushReplacementNamed(context, AppRoutes.customerScreen);
+    } else if (!onBoardingCheck) {
+      Navigator.pushReplacementNamed(context, AppRoutes.onBoardingScreen);
     } else {
       Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
     }
   }
 
-  void _navigateToLoginScreen() {
-    Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const LogInScreen(), // استبدل LogInScreen بشاشتك الفعلية
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          const begin = Offset(1.0, 0.0); // السحب من اليمين
-          const end = Offset.zero; // نقطة النهاية (بدون إزاحة)
-          const curve = Curves.easeInOut;
+  // void _navigateToLoginScreen() {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     PageRouteBuilder(
+  //       pageBuilder: (context, animation, secondaryAnimation) =>
+  //           const LogInScreen(), // استبدل LogInScreen بشاشتك الفعلية
+  //       transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  //         const begin = Offset(1.0, 0.0); // السحب من اليمين
+  //         const end = Offset.zero; // نقطة النهاية (بدون إزاحة)
+  //         const curve = Curves.easeInOut;
 
-          var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve),
-          );
+  //         var tween = Tween(begin: begin, end: end).chain(
+  //           CurveTween(curve: curve),
+  //         );
 
-          return SlideTransition(
-            position: animation.drive(tween),
-            child: child,
-          );
-        },
-      ),
-    );
-  }
+  //         return SlideTransition(
+  //           position: animation.drive(tween),
+  //           child: child,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

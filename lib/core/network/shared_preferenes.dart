@@ -51,14 +51,13 @@ class TokenStorage {
   }
 
   static Future<void> updateGroupId(String newGroupId) async {
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('group_id', newGroupId);
-  } catch (e) {
-    print('خطأ في تحديث group_id في الشيرد برفرنس: $e');
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('group_id', newGroupId);
+    } catch (e) {
+      print('خطأ في تحديث group_id في الشيرد برفرنس: $e');
+    }
   }
-}
-
 
   static Future<void> deleteUser() async {
     final prefs = await SharedPreferences.getInstance();
@@ -86,59 +85,26 @@ class TokenStorage {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
   }
+
+  //onboarding
+  static Future<bool> checkFirstTimeOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (!prefs.containsKey('onBoarding')) {
+      await prefs.setBool('onBoarding', false);
+      return false;
+    }
+
+    return prefs.getBool('onBoarding') ?? false;
+  }
+
+  static Future<void> setOnboardingDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onBoarding', true);
+  }
+
+  static Future<void> reSetOnboardingDone() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onBoarding', false);
+  }
 }
-
-
-  // // تخزين بيانات الموظف
-  // static Future<void> saveStaff(StaffModel staff) async {
-  //   try {
-  //     final prefs = await SharedPreferences.getInstance();
-  //     await prefs.setString('staff_name', staff.name);
-  //     await prefs.setString('staff_email', staff.email);
-  //     await prefs.setString('staff_phone_number', staff.phoneNumber);
-  //     await prefs.setString('staff_role', staff.role);
-  //     await prefs.setString('languages', staff.languages);
-  //     await prefs.setString('staff_imagePath', staff.image);
-  //     await prefs.setString(_tokenKey, staff.token);
-  //   } catch (e) {
-  //     print('خطأ في حفظ الستااف في الشيرد برفرنس');
-  //   }
-  //   // توكن الموظف
-  // }
-
-  // // استرجاع بيانات الموظف
-  // static Future<StaffModel?> getStaff() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final name = prefs.getString('staff_name');
-  //   final email = prefs.getString('staff_email');
-  //   final phoneNumber = prefs.getString('staff_phone_number');
-  //   final role = prefs.getString('staff_role');
-  //   final languages = prefs.getString('languages');
-  //   final image = prefs.getString('imagePath');
-  //   final token = prefs.getString(_tokenKey);
-
-  //   if (name != null && email != null && phoneNumber != null && role != null) {
-  //     return StaffModel(
-  //         name: name,
-  //         email: email,
-  //         phoneNumber: phoneNumber,
-  //         role: role,
-  //         token: token,
-  //         languages: languages,
-  //         image: image);
-  //   }
-
-  //   return null;
-  // }
-
-  // static Future<void> deleteStaff() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.remove('staff_name');
-  //   await prefs.remove('staff_email');
-  //   await prefs.remove('staff_phone_number');
-  //   await prefs.remove('staff_role');
-  //   await prefs.remove('languages');
-  //   await prefs.remove('imagePath');
-
-  //   await prefs.remove(_tokenKey);
-  // }

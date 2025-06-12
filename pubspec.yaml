@@ -49,6 +49,7 @@ dependencies:
   image_picker: ^1.1.2
   intl: ^0.19.0
   intl_utils: ^2.8.7
+  introduction_screen: ^3.1.17
   pdfx: ^2.8.0
   permission_handler: ^11.3.1
   phone_input: ^1.0.0
@@ -57,12 +58,12 @@ dependencies:
   url_launcher: ^6.3.1
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.14.3
 
-flutter_icons:                  
+flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/app_logo/company_logo.png"
