@@ -5,8 +5,6 @@ import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/text_field_decoration.dart';
 import 'package:sit_app/generated/l10n.dart';
 
-import '../../../../../core/helper/validation.dart';
-
 class CustomPhoneField extends StatelessWidget {
   const CustomPhoneField({
     super.key,

@@ -36,9 +36,8 @@ class _LanguageIconState extends State<LanguageIcon> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => user != null && user.token != null
-              ? const CustomerScreen()
-              : const LogInScreen(),
+          builder: (context) =>
+              user != null ? const CustomerScreen() : const LogInScreen(),
         ),
       );
     });

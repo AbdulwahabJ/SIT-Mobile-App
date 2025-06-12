@@ -8,6 +8,7 @@ import 'package:sit_app/generated/l10n.dart';
 import '../../../../../../core/constants/app_colors.dart';
 import '../../../../../../core/utils/app_styles.dart';
 
+// ignore: must_be_immutable
 class CustomImagesUploadWidget extends StatefulWidget {
   final Icon icon;
   Function(List<XFile>) onImageSelected;

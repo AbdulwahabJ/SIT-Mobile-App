@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:sit_app/features/auth/data/presentation/screens/login_screen.dart';
 import 'package:sit_app/features/auth/data/presentation/screens/signup_screen.dart';
 
 import '../../../../../core/network/shared_preferenes.dart';
