@@ -19,11 +19,11 @@ class Validation {
       case InputType.email:
         return _validateEmail(value!.trim(), context);
       case InputType.password:
-        return _validatePassword(value, context);
+        return _validatePassword(value!.trim(), context);
       case InputType.confirmPassword:
-        return _validateConfirmPassword(value, context);
+        return _validateConfirmPassword(value!.trim(), context);
       case InputType.phoneNumber:
-        return _validatePhoneNumber(value, context);
+        return _validatePhoneNumber(value!.trim(), context);
       default:
         return null;
     }
