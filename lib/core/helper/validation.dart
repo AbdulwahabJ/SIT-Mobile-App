@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:sit_app/generated/l10n.dart';
 
-enum InputType { name, email, password, confirmPassword, phoneNumber,languages }
+enum InputType {
+  name,
+  email,
+  password,
+  confirmPassword,
+  phoneNumber,
+  languages
+}
 
 class Validation {
   static String? validateInput(
-      InputType ?inputType, String? value, BuildContext context) {
+      InputType? inputType, String? value, BuildContext context) {
     switch (inputType) {
       case InputType.name:
-        return _validateFullName(value, context);
+        return _validateFullName(value!.trim(), context);
       case InputType.email:
-        return _validateEmail(value, context);
+        return _validateEmail(value!.trim(), context);
       case InputType.password:
-        return _validatePassword(value, context);
+        return _validatePassword(value!.trim(), context);
       case InputType.confirmPassword:
-        return _validateConfirmPassword(value, context);
+        return _validateConfirmPassword(value!.trim(), context);
       case InputType.phoneNumber:
-        return _validatePhoneNumber(value, context);
+        return _validatePhoneNumber(value!.trim(), context);
       default:
         return null;
     }

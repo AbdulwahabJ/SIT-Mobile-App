@@ -16,7 +16,7 @@ class AppImages {
   static const String heartStteperImage = "assets/images/heart_stepper.png";
 
 //guied section...
-  static const String umrahGuiedImage = "assets/images/umrah_guide.jpg";
-  static const String madinGuiedImage = "assets/images/madina_guide.jpg";
+  static const String umrahGuiedImage = "assets/images/umrah-guide.jpg";
+  static const String madinGuiedImage = "assets/images/madina-guide.jpg";
   static const String mazaratGuiedImage = "assets/images/mazarat_guide.jpg";
 }
