@@ -17,13 +17,15 @@ import 'package:sit_app/features/customer_app/logic/StaffCubit/staff_cubit.dart'
 import 'package:sit_app/firebase_options.dart';
 import 'package:sit_app/generated/l10n.dart';
 
+import 'core/helper/app_cache.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //firebase
+  AppCache().preloadFiles();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   NotificationService().initialize();
-
 
   //
   await setupLocator(); // تسجيل DioClient و SharedPreferences

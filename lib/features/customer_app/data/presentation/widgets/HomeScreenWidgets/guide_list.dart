@@ -5,6 +5,8 @@ import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/guide_list_view_indecetor.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/list_view_guide_item.dart';
 
+import '../../../../../../core/helper/app_cache.dart';
+
 class GuideListView extends StatefulWidget {
   const GuideListView({super.key});
 
@@ -13,12 +15,24 @@ class GuideListView extends StatefulWidget {
 }
 
 class _GuideListViewState extends State<GuideListView> with RouteAware {
+  List<Map<String, String>> items = [];
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      items = AppCache.guiedItems;
+    });
+
+    // AppCache().preloadFiles().then((_) {
+    //   setState(() {}); // نحدث الشاشة عند اكتمال الكاش
+    // });
+  }
+
+  //
   final CarouselSliderController _carouselController =
       CarouselSliderController();
   int currentPage = 0;
-  // bool padEnds = false;
-
-  final List<Map<String, String>> items = AppTexts.guiedItems;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +44,23 @@ class _GuideListViewState extends State<GuideListView> with RouteAware {
             items: items.map((item) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: ListViewGuideItem(item: item),
+                child: GestureDetector(
+                  onTap: () {
+                    if (item['link'] == null || item['link']!.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'الرجاء الانتظار حتى يتم تحميل الملف بالكامل'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    } else {
+                      // ListViewGuideItem(item: item);
+                      // print("فتح الملف: ${item['link']}");
+                    }
+                  },
+                  child: ListViewGuideItem(item: item),
+                ),
               );
             }).toList(),
             carouselController: _carouselController,

@@ -171,21 +171,4 @@ class AppTexts {
   static const String mazaratGuiedLinke =
       'https://media1.haj.gov.sa/storage/uploads/EN-109.pdf';
   //
-  static const List<Map<String, String>> guiedItems = [
-    {
-      'image': AppImages.umrahGuiedImage,
-      'label': umrahGuiedLabel,
-      'link': umrahGuiedLinke,
-    },
-    {
-      'image': AppImages.madinGuiedImage,
-      'label': madinaGuiedLabel,
-      'link': madinaGuiedLinke,
-    },
-    {
-      'image': AppImages.mazaratGuiedImage,
-      'label': mazaratGuiedLabel,
-      'link': mazaratGuiedLinke,
-    },
-  ];
 }
