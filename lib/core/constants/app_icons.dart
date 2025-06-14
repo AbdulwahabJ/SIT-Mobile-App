@@ -47,7 +47,9 @@ class AppIcons {
   //
   static const Icon successIcon =
       Icon(Icons.check_circle, size: 24, color: AppColors.successColor);
-  //
+  static const Icon emptyIcon =
+      Icon(Icons.circle, size: 24, color: Colors.transparent);
+  //Icon(Icons.circle, color: Colors.transparent)
   //bottom nav bar icons
   static const Icon homeIcon =
       Icon(FontAwesomeIcons.house, size: secondIconSize);

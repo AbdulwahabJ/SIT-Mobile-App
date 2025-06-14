@@ -3,34 +3,37 @@ import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
-
 import '../../../../../../generated/l10n.dart';
 
 class ListViewGuideItem extends StatelessWidget {
-  const ListViewGuideItem({
-    required this.item,
-    super.key,
-  });
+  ListViewGuideItem({super.key, required this.item});
   final Map<String, String> item;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        String? pdfPath = item['link'];
-        String? label = item['label'];
+        final pdfPath = item['link'];
+        final label = item['label'];
 
-        Navigator.pushNamed(
-          context,
-          AppRoutes.pdfViewerScreen,
-          arguments: [pdfPath, label],
-        );
+        if (pdfPath == null || pdfPath.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('الرجاء الانتظار حتى يتم تحميل الملف بالكامل'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+        } else {
+          Navigator.pushNamed(
+            context,
+            AppRoutes.pdfViewerScreen,
+            arguments: [pdfPath, label],
+          );
+        }
       },
       child: Stack(
         children: [
           Container(
-            // width: constraints.maxWidth,
-            // height: height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
@@ -40,8 +43,6 @@ class ListViewGuideItem extends StatelessWidget {
             ),
           ),
           Container(
-            // width: constraints.maxWidth,
-            // height: height,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
@@ -52,10 +53,7 @@ class ListViewGuideItem extends StatelessWidget {
                   Colors.black.withOpacity(0.0),
                 ],
               ),
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           Positioned(
@@ -74,6 +72,16 @@ class ListViewGuideItem extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 AppIcons.guideListIcon,
+                const SizedBox(width: 8),
+                // const SizedBox(
+                //   width: 20,
+                //   height: 20,
+                //   child: CircularProgressIndicator(
+                //     strokeWidth: 2,
+                //     color: AppColors.accentColor,
+                //   ),
+                // ),
+                // AppIcons.successIcon,
               ],
             ),
           ),

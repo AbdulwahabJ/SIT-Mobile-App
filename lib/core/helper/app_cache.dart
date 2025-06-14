@@ -1,5 +1,6 @@
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/network/shared_preferenes.dart';
 import '../utils/app_images.dart';
 
 class AppCache {
@@ -24,7 +25,7 @@ class AppCache {
   Future<void> preloadFiles() async {
     try {
       print("🔄 بدء تحميل ملفات الأدلة...");
-
+      // await TokenStorage.checkGuideDownloadDone();
       final umrahFile =
           await DefaultCacheManager().getSingleFile(AppTexts.umrahGuiedLinke);
       guiedItems[0]['link'] = umrahFile.path;

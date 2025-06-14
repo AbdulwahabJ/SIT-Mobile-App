@@ -4,6 +4,7 @@ import '../../features/auth/data/models/user_model.dart';
 
 class TokenStorage {
   static const String _tokenKey = 'user_token';
+  // static const _umrahkey = 'umrahDownloaded';
 
   static Future<void> saveUser(UserModel user) async {
     try {
@@ -107,4 +108,15 @@ class TokenStorage {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onBoarding', false);
   }
+
+  //guideCache
+  // static Future<void> setUmrahDownloaded(bool value) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   prefs.setBool(_umrahkey, value);
+  // }
+
+  // static Future<bool> isUmrahDowloaded() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   return prefs.getBool(_umrahkey) ?? false;
+  // }
 }

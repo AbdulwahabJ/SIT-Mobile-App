@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sit_app/core/network/get_it.dart';
 import 'package:sit_app/core/network/notification_service%20.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
@@ -22,7 +23,10 @@ import 'core/helper/app_cache.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //firebase
+  
+
   AppCache().preloadFiles();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   NotificationService().initialize();

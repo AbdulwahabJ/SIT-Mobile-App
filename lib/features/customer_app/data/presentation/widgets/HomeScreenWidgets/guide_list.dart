@@ -44,23 +44,7 @@ class _GuideListViewState extends State<GuideListView> with RouteAware {
             items: items.map((item) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    if (item['link'] == null || item['link']!.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                              'الرجاء الانتظار حتى يتم تحميل الملف بالكامل'),
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
-                    } else {
-                      // ListViewGuideItem(item: item);
-                      // print("فتح الملف: ${item['link']}");
-                    }
-                  },
-                  child: ListViewGuideItem(item: item),
-                ),
+                child: ListViewGuideItem(item: item),
               );
             }).toList(),
             carouselController: _carouselController,
