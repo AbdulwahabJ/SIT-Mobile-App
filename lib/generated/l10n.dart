@@ -1049,6 +1049,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please wait until the file is fully loaded`
+  String get guideDownloaded {
+    return Intl.message(
+      'Please wait until the file is fully loaded',
+      name: 'guideDownloaded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

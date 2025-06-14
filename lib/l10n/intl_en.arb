@@ -139,9 +139,9 @@
 "dialogYesButton":"yes",
 "dialogCancelButton":"cancel",
 
-"dialogDeleteQuestionStaff":"Are you sure you want to remove this employee?"
+"dialogDeleteQuestionStaff":"Are you sure you want to remove this employee?",
 
-
+"guideDownloaded":"Please wait until the file is fully loaded"
 
 
 

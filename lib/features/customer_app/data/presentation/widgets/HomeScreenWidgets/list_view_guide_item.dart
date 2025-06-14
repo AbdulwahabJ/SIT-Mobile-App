@@ -18,8 +18,8 @@ class ListViewGuideItem extends StatelessWidget {
 
         if (pdfPath == null || pdfPath.isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('الرجاء الانتظار حتى يتم تحميل الملف بالكامل'),
+            SnackBar(
+              content: Text(S.of(context).guideDownloaded),
               duration: Duration(seconds: 2),
             ),
           );

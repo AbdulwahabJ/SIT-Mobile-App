@@ -135,7 +135,7 @@
 "dialogYesButton":"نعم",
 "dialogCancelButton":"الغاء",
 
-"dialogDeleteQuestionStaff":"هل متأكد من حذف الموظف؟"
+"dialogDeleteQuestionStaff":"هل متأكد من حذف الموظف؟",
 
-
+"guideDownloaded":"الرجاء الانتظار حتى يتم تحميل الملف بالكامل"
 }

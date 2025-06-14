@@ -76,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "group": MessageLookupByLibrary.simpleMessage("Group"),
         "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
+        "guideDownloaded": MessageLookupByLibrary.simpleMessage(
+            "Please wait until the file is fully loaded"),
         "have_a_nice_day":
             MessageLookupByLibrary.simpleMessage("have a nice day"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),

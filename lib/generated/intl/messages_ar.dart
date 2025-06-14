@@ -79,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "groupName":
             MessageLookupByLibrary.simpleMessage("اسم المجموعة الجديدة"),
         "groups": MessageLookupByLibrary.simpleMessage("المجموعات"),
+        "guideDownloaded": MessageLookupByLibrary.simpleMessage(
+            "الرجاء الانتظار حتى يتم تحميل الملف بالكامل"),
         "have_a_nice_day": MessageLookupByLibrary.simpleMessage("يومك سعيد"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "holyMosques": MessageLookupByLibrary.simpleMessage("الحرمين الشريفين"),
