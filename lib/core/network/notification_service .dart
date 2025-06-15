@@ -1,48 +1,92 @@
 // ignore_for_file: avoid_print
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-  void initialize() {
-    // طلب الإذن لاستقبال الإشعارات (خاص بـ iOS)
-    _firebaseMessaging.requestPermission();
-    FirebaseMessaging.instance
-        .subscribeToTopic('allUsers'); // الاشتراك في topic
+  // هذا كائن flutter_local_notifications
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
-    // استلام التوكن الفريد
+  Future<void> initialize() async {
+    // 🔸 إعداد إشعارات محلية - Android
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    // 🔸 إعداد إشعارات محلية - iOS
+    const DarwinInitializationSettings initializationSettingsIOS =
+        DarwinInitializationSettings();
+
+    // 🔸 تجميع إعدادات Android و iOS
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsIOS,
+    );
+
+    // 🔸 تهيئة local notifications
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+    // 🔸 طلب الإذن لاستقبال الإشعارات من FCM
+    await _firebaseMessaging.requestPermission();
+
+    // 🔸 الاشتراك في topic
+    await FirebaseMessaging.instance.subscribeToTopic('allUsers');
+
+    // 🔸 عرض التوكن في الـ debug
     _firebaseMessaging.getToken().then((token) {
       print("Device Token: $token");
-      // يمكنك إرسال هذا التوكن إلى الخادم لتخزينه واستخدامه في إرسال الإشعارات.
     });
 
-    // معالجة الإشعارات عند وصولها (Foreground)
+    // 🔸 استقبال الرسائل في وضع foreground
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Received a message while app is in foreground!');
-      print('Message data: ${message.data}');
+      print('📩 Received message in foreground');
+      print('📨 Message data: ${message.data}');
+
       if (message.notification != null) {
-        print(
-            'Message also contained a notification: ${message.notification!.title}');
-        // هنا يمكن استعراض الإشعار في نافذة أو نافذة منبثقة.
+        print('🔔 Notification title: ${message.notification!.title}');
+        _showLocalNotification(message);
       }
     });
 
-    // معالجة الإشعار عند فتح التطبيق من خلاله
+    // 🔸 عند فتح التطبيق من الإشعار
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
-      // يمكنك هنا تنفيذ أمر معين عند فتح التطبيق من الإشعار
+      print('🟢 User opened the app from notification');
     });
 
+    // 🔸 استقبال في الخلفية
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  }
+
+  // 🔔 عرض الإشعار المحلي على الجهاز
+  Future<void> _showLocalNotification(RemoteMessage message) async {
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
+      'channel_id', // يجب أن يتطابق مع الموجود في manifest
+      'Default Channel',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    const DarwinNotificationDetails iosDetails = DarwinNotificationDetails();
+
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+
+    await flutterLocalNotificationsPlugin.show(
+      0, // ID فريد لكل إشعار
+      message.notification?.title ?? 'No Title',
+      message.notification?.body ?? 'No Body',
+      notificationDetails,
+    );
   }
 }
 
+// 📦 هذه لمعالجة الرسائل بالخلفية
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Handling a background message: ${message.messageId}');
-  if (message.notification != null) {
-    print(
-        'Background message also contained a notification: ${message.notification}');
-    // يمكنك هنا تنفيذ أي إجراء أو معالجة إضافية.
-  }
+  print('📤 Background message received: ${message.messageId}');
 }

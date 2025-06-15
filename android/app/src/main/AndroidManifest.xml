@@ -1,23 +1,28 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.saracompany.sitapp">
-        <!-- أذونات الإنترنت -->
-        <uses-permission android:name="android.permission.INTERNET" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.saracompany.sitapp">
+    <!-- أذونات الإنترنت -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
-        <!-- أذونات الكاميرا -->
-        <uses-permission android:name="android.permission.CAMERA" />
+    <!-- أذونات الكاميرا -->
+    <uses-permission android:name="android.permission.CAMERA" />
 
-        <!-- أذونات القراءة والكتابة للوسائط -->
-        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- أذونات القراءة والكتابة للوسائط -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-        <!-- أذونات حالة الشبكة -->
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- أذونات حالة الشبكة -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- أذونات  الاشعارات -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:label="Sara Travel App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-         android:enableOnBackInvokedCallback="true">
-         
+        android:enableOnBackInvokedCallback="true">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -31,22 +36,24 @@
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
                  to determine the Window background behind the Flutter UI. -->
+            <!-- 🟢 قناة الإشعارات -->
             <meta-data
-              android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
-              />
+                android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:value="channel_id" />
+
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"
+            />
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
-                   android:name="com.google.firebase.messaging.default_notification_channel_id"
-
-        <meta-data
+        android:name="com.google.firebase.messaging.default_notification_channel_id" <meta-data
             android:name="flutterEmbedding"
-
             android:value="2" />
     </application>
     <!-- Required to query activities that can process text, see:
@@ -58,8 +65,8 @@
         <package android:name="com.whatsapp" />
 
         <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT"/>
-            <data android:mimeType="text/plain"/>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
         </intent>
     </queries>
 </manifest>
