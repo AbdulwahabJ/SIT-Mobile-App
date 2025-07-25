@@ -13,6 +13,7 @@ class AdminSettingsCubit extends Cubit<AdminSettingsState> {
   //
   //............................................................................
   //Group functions
+  
   Future<void> addGroup(String name) async {
     //
     emit(AdminSettingsLoading());

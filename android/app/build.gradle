@@ -11,11 +11,13 @@ plugins {
 android {
     namespace = "com.saracompany.sitapp"
     compileSdk = 35
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "26.3.11579264"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        //for local notification
+         coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -44,6 +46,8 @@ android {
 dependencies {
     // إضافة تبعية Firebase Messaging
     implementation("com.google.firebase:firebase-messaging:23.0.0") 
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4' //for local notification
+
 }
 
 flutter {

@@ -742,9 +742,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           icon: AppIcons.dropDownMenuIcon,
           decoration: _dropdownDecoration(),
           hint: Text(S.of(context).selectGroup),
-          value: ifUserHaveGroupName != null && ifUserHaveGroupName!.isNotEmpty
-              ? ifUserHaveGroupName
-              : _selectedGroupUser,
+          value: ifUserHaveGroupName ?? _selectedGroupUser,
           items: dropdownItems!.map(_buildDropdownItem).toList(),
           onChanged: (value) async {
             setState(() => _selectedGroupUser = value);

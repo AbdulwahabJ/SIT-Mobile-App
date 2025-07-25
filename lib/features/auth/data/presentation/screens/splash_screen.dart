@@ -26,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _startSplashLogic() async {
     await Future.delayed(const Duration(seconds: 3));
     //for test
-    // TokenStorage.deleteToken();
-    // TokenStorage.deleteUser();
+    TokenStorage.deleteToken();
+    TokenStorage.deleteUser();
     // TokenStorage.reSetOnboardingDone();
     //
     await _checkOnBoardingStatus();

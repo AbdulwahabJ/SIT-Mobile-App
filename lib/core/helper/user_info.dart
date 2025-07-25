@@ -39,14 +39,11 @@ Future<bool> isUserStaff() async {
 Future<String> isUserHaveGroup() async {
   final user = await TokenStorage.getUser();
   print('ussssssssss: ${user?.groupId}');
-  if (user != null && user.groupId.isNotEmpty) {
+  if (user != null && user.groupId.isNotEmpty && user.groupId != null) {
     return user.groupId;
   }
-  return '';
+  return 'all groups';
 }
-
-
-
 
 // Future<bool> isAdmin() async {
 //   final isAdmin = await isUserAdmin();
