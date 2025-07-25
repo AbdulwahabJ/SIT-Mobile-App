@@ -33,6 +33,7 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
 
   loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
+    await context.read<AdminSettingsCubit>().getProgramsForToday("all groups");
   }
 
   Future<dynamic> getUsertypeInfo() async {
@@ -46,7 +47,7 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
   Widget build(BuildContext context) {
     return BlocListener<AdminSettingsCubit, AdminSettingsState>(
       listener: (context, state) {
-        if (state is AdminSettingsSuccess) {
+        if (state is GroupsUploadedSuccess) {
           setState(() {
             dropdownItems =
                 context.read<AdminSettingsCubit>().allGroups?.cast<String>() ??
@@ -114,7 +115,7 @@ class _StaffScreenBodyState extends State<StaffScreenBody> {
       ),
       child: DropdownButton<String>(
         hint: Text('select'),
-        value: _selectedGroup,
+        value: dropdownItems != null ? dropdownItems![0] : _selectedGroup,
         icon: const Icon(
           Icons.arrow_drop_down,
           color: AppColors.accentColor,
