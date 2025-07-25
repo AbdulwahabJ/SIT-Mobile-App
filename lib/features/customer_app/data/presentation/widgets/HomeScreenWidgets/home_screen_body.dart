@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/helper/language.dart';
+import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/network/shared_preferenes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/models/user_model.dart';
@@ -24,11 +25,13 @@ class HomeScreenBody extends StatefulWidget {
 
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   UserModel? _user;
+  bool isAdmin = false;
   String? _selectedGroup;
   List<String>? dropdownItems = [''];
   @override
   void initState() {
     super.initState();
+    _ifUserAdmin();
     _loadUser();
     _loadGroups();
   }
@@ -41,6 +44,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   Future<void> _loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
     await context.read<AdminSettingsCubit>().getProgramsForToday("all groups");
+  }
+
+  Future<void> _ifUserAdmin() async {
+    bool respons = await isUserAdmin();
+    setState(() {
+      isAdmin = respons;
+    });
   }
 
   @override
@@ -98,11 +108,14 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   child: Text(S.of(context).todayProgram,
                       style: AppStyles.styleSemiBold18),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      right: isArabic() ? 0 : 19.0, left: isArabic() ? 19 : 0),
-                  child: dropDownList(context),
-                ),
+                isAdmin
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                            right: isArabic() ? 0 : 19.0,
+                            left: isArabic() ? 19 : 0),
+                        child: dropDownList(context),
+                      )
+                    : Container()
               ],
             ),
             const SizedBox(height: 10),
