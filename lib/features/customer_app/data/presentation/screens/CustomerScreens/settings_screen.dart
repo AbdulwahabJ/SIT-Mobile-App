@@ -63,9 +63,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   _initializeData() async {
+    await _ifUserAdmin();
     await _loadGroups();
     await isUserhaveGroup();
-    await _ifUserAdmin();
   }
 
   _loadGroups() async {
@@ -81,8 +81,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   _ifUserAdmin() async {
-    isAdmin = await isUserAdmin();
-    setState(() {});
+    bool respons = await isUserAdmin();
+    setState(() {
+      isAdmin = respons;
+    });
   }
 
   @override
