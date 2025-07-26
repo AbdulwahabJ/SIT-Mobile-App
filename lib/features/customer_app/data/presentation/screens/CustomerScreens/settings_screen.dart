@@ -8,6 +8,7 @@ import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/core/widgets/bottom_sheet_icon.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_text_field_widget.dart';
+import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/settings_widgets/user_settings_widget.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_cubit.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_state.dart';
 import '../../../../../../core/constants/app_colors.dart';
@@ -38,7 +39,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   List<dynamic> allProgramsForGroup = [];
 
   String? _selectedGroup;
-  String? _selectedGroupUser;
 
   String? selectedProgram;
   String? selectedProgramIdForUpdate;
@@ -51,7 +51,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String? selectedTimeFromPicker;
   String? selectedDateFromPicker;
   bool isAdmin = false;
-  String? ifUserHaveGroupName;
   double bottomSheettSize = 0.65;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -62,25 +61,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _initializeData();
   }
 
-  _initializeData() async {
+  Future<void> _initializeData() async {
     await _ifUserAdmin();
     await _loadGroups();
-    await isUserhaveGroup();
   }
 
-  _loadGroups() async {
+  Future<void> _loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
   }
 
-  isUserhaveGroup() async {
-    String? userGroupName = await isUserHaveGroup();
-    setState(() {
-      ifUserHaveGroupName = userGroupName;
-    });
-    print('User group: $ifUserHaveGroupName');
-  }
-
-  _ifUserAdmin() async {
+  Future<void> _ifUserAdmin() async {
     bool respons = await isUserAdmin();
     setState(() {
       isAdmin = respons;
@@ -115,16 +105,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: BlocConsumer<AdminSettingsCubit, AdminSettingsState>(
         listener: (context, state) {
-          if (state is GroupsUploadedSuccess) {
-            setState(() {
-              dropdownItems = context
-                      .read<AdminSettingsCubit>()
-                      .allGroups
-                      ?.cast<String>() ??
-                  [];
-              context.read<AdminSettingsCubit>().resetState();
-            });
-          } else if (state is AdminSettingsSuccess) {
+          //admin states
+          if (state is AdminSettingsSuccess) {
             //
 
             Navigator.pop(context);
@@ -144,17 +126,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
-
-            //
-          } else if (state is UpdateUserGroupSuccess) {
-            //
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
-            context.read<AdminSettingsCubit>().resetState();
-            // Navigator.pop(context);
-            //
-          } else if (state is UpdateGroupNameSuccess) {
+          }
+          //admin settings
+          else if (state is UpdateGroupNameSuccess) {
             //
             Navigator.pop(context);
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -163,7 +137,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _clearFields();
             _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
-//
             //
           } else if (state is DeleteGroupNameSuccess) {
             //
@@ -224,7 +197,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     isAdmin
                         ? adminSettingsBody(context, state)
-                        : userSettingsBody(context),
+                        : UserSettingsWidget()
                   ],
                 ),
               ],
@@ -349,7 +322,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               );
                           _loadGroups();
                           _clearFields();
-                          context.read<AdminSettingsCubit>().resetState();
+                          Navigator.of(context).pop();
                         } else {
                           Navigator.of(context).pop();
 
@@ -733,34 +706,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Column userSettingsBody(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(S.of(context).group, style: AppStyles.styleReguler16W600),
-        const SizedBox(height: 10),
-        DropdownButtonFormField<String>(
-          iconSize: 24,
-          icon: AppIcons.dropDownMenuIcon,
-          decoration: _dropdownDecoration(),
-          hint: Text(S.of(context).selectGroup),
-          value: ifUserHaveGroupName ?? _selectedGroupUser,
-          items: dropdownItems!.map(_buildDropdownItem).toList(),
-          onChanged: (value) async {
-            setState(() => _selectedGroupUser = value);
-            await context.read<AdminSettingsCubit>().updateUserGroup(value);
-          },
-        ),
-      ],
-    );
-  }
-
   void _clearFields() {
     textFieldController.clear();
-
     setState(() {
       _selectedGroup = null;
-      _selectedGroupUser = null;
       selectedProgram = null;
       selectedDateFromPicker = null;
       selectedTimeFromPicker = null;
@@ -791,250 +740,3 @@ DropdownMenuItem<String> _buildDropdownItem(String code) {
     child: Text(code),
   );
 }
-
-
-  // showModalBottomSheet(
-  //                                 context: context,
-  //                                 isScrollControlled: true,
-  //                                 builder: (context) {
-  //                                   return DraggableScrollableSheet(
-  //                                     initialChildSize: 0.4,
-  //                                     minChildSize: 0.3,
-  //                                     maxChildSize: 0.9,
-  //                                     expand: false,
-  //                                     builder: (context, scrollController) {
-  //                                       return SingleChildScrollView(
-  //                                         controller: scrollController,
-  //                                         child: Padding(
-  //                                           padding: const EdgeInsets.all(16.0),
-  //                                           child: Column(
-  //                                             crossAxisAlignment:
-  //                                                 CrossAxisAlignment.start,
-  //                                             children: [
-  //                                               Center(
-  //                                                 child: Container(
-  //                                                   width: 50,
-  //                                                   height: 5,
-  //                                                   decoration: BoxDecoration(
-  //                                                     color: Colors.grey[300],
-  //                                                     borderRadius:
-  //                                                         BorderRadius.circular(
-  //                                                             10),
-  //                                                   ),
-  //                                                 ),
-  //                                               ),
-  //                                               const SizedBox(height: 20),
-  //                                               Text(
-  //                                                   S
-  //                                                       .of(context)
-  //                                                       .updatProgramName,
-  //                                                   style: AppStyles
-  //                                                       .styleSemiBold20W600),
-  //                                               const SizedBox(height: 20),
-  //                                               DropdownButtonFormField<String>(
-  //                                                 iconSize: 24,
-  //                                                 icon:
-  //                                                     AppIcons.dropDownMenuIcon,
-  //                                                 decoration:
-  //                                                     _dropdownDecoration(
-  //                                                         icon: AppIcons
-  //                                                             .programFieldIcon),
-  //                                                 hint: Text(S
-  //                                                     .of(context)
-  //                                                     .selectProgram),
-  //                                                 value: updatedProgram,
-  //                                                 items: allPrograms!
-  //                                                     .map(_buildDropdownItem)
-  //                                                     .toList(),
-  //                                                 onChanged: (value) {
-  //                                                   setState(() {
-  //                                                     updatedProgram = value;
-  //                                                   });
-  //                                                 },
-  //                                               ),
-  //                                               const SizedBox(height: 20),
-  //                                               Row(
-  //                                                 mainAxisAlignment:
-  //                                                     MainAxisAlignment
-  //                                                         .spaceBetween,
-  //                                                 children: [
-  //                                                   CustomDateFieldPicker(
-  //                                                       oldDate: updatedDate,
-  //                                                       onDateSelected:
-  //                                                           (DateTime date) {
-  //                                                         setState(() {
-  //                                                           selectedDateFromPicker =
-  //                                                               DateFormat(
-  //                                                                       'yyyy-MM-dd')
-  //                                                                   .format(
-  //                                                                       date);
-  //                                                         });
-  //                                                       },
-  //                                                       textLabel: S
-  //                                                           .of(context)
-  //                                                           .chooseDateHint),
-  //                                                   CustomTimeFieldPicker(
-  //                                                     oldTime: updatedTime,
-  //                                                     textLabel: S
-  //                                                         .of(context)
-  //                                                         .chooseTimeHint,
-  //                                                     onTimeSelected:
-  //                                                         (TimeOfDay time) {
-  //                                                       setState(() {
-  //                                                         selectedTimeFromPicker =
-  //                                                             '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:00';
-  //                                                       });
-  //                                                     },
-  //                                                   ),
-  //                                                 ],
-  //                                               ),
-  //                                               const SizedBox(height: 30),
-  //                                               Center(
-  //                                                 child: InkWell(
-  //                                                   onTap: () {},
-  //                                                   child: CustomMainButton(
-  //                                                     isSuccess: state
-  //                                                         is AdminSettingsSuccess,
-  //                                                     isLoading: state
-  //                                                         is AdminSettingsLoading,
-  //                                                     buttonText: S
-  //                                                         .of(context)
-  //                                                         .updateGroupButton,
-  //                                                   ),
-  //                                                 ),
-  //                                               ),
-  //                                             ],
-  //                                           ),
-  //                                         ),
-  //                                       );
-  //                                     },
-  //                                   );
-  //                                 },
-  //                               );
-
-
-  //  IconButton(
-  //                 onPressed: () {
-  //                   showModalBottomSheet(
-  //                     context: context,
-  //                     isScrollControlled: true,
-  //                     builder: (context) {
-  //                       return BlocBuilder<AdminSettingsCubit,
-  //                           AdminSettingsState>(
-  //                         builder: (context, state) {
-  //                           return DraggableScrollableSheet(
-  //                             initialChildSize: 0.4,
-  //                             minChildSize: 0.3,
-  //                             maxChildSize: 0.9,
-  //                             expand: false,
-  //                             builder: (context, scrollController) {
-  //                               return SingleChildScrollView(
-  //                                 controller: scrollController,
-  //                                 child: Padding(
-  //                                   padding: const EdgeInsets.all(16.0),
-  //                                   child: Column(
-  //                                     crossAxisAlignment:
-  //                                         CrossAxisAlignment.start,
-  //                                     children: [
-  //                                       Center(
-  //                                         child: Container(
-  //                                           width: 50,
-  //                                           height: 5,
-  //                                           decoration: BoxDecoration(
-  //                                             color: Colors.grey[300],
-  //                                             borderRadius:
-  //                                                 BorderRadius.circular(10),
-  //                                           ),
-  //                                         ),
-  //                                       ),
-  //                                       const SizedBox(height: 20),
-  //                                       Text(
-  //                                         S.of(context).updatProgramName,
-  //                                         style: AppStyles.styleSemiBold20W600,
-  //                                       ),
-  //                                       const SizedBox(height: 20),
-  //                                       DropdownButtonFormField<String>(
-  //                                         iconSize: 24,
-  //                                         icon: AppIcons.dropDownMenuIcon,
-  //                                         decoration: _dropdownDecoration(),
-  //                                         hint: Text(S.of(context).selectGroup),
-  //                                         value: _selectedGroup,
-  //                                         items: dropdownItems!
-  //                                             .map(_buildDropdownItem)
-  //                                             .toList(),
-  //                                         onChanged: (value) {
-  //                                           setState(
-  //                                               () => _selectedGroup = value);
-  //                                         },
-  //                                       ),
-  //                                       DropdownButtonFormField<String>(
-  //                                         iconSize: 24,
-  //                                         icon: AppIcons.dropDownMenuIcon,
-  //                                         decoration: _dropdownDecoration(
-  //                                             icon: AppIcons.programFieldIcon),
-  //                                         hint:
-  //                                             Text(S.of(context).selectProgram),
-  //                                         value: _selectedProgram,
-  //                                         items: allPrograms!
-  //                                             .map(_buildDropdownItem)
-  //                                             .toList(),
-  //                                         onChanged: (value) {
-  //                                           setState(() {
-  //                                             _selectedProgram = value;
-  //                                           });
-  //                                           context
-  //                                               .read<AdminSettingsCubit>()
-  //                                               .getProgramDataForUpdate(
-  //                                                 _selectedGroup,
-  //                                                 _selectedProgram,
-  //                                               );
-  //                                         },
-  //                                       ),
-  //                                       const SizedBox(height: 20),
-  //                                       DropdownButtonFormField<String>(
-  //                                         iconSize: 24,
-  //                                         icon: AppIcons.dropDownMenuIcon,
-  //                                         decoration: _dropdownDecoration(
-  //                                             icon: AppIcons.programFieldIcon),
-  //                                         hint:
-  //                                             Text(S.of(context).selectProgram),
-  //                                         value: updatedProgram,
-  //                                         items: allPrograms!
-  //                                             .map(_buildDropdownItem)
-  //                                             .toList(),
-  //                                         onChanged: (value) {
-  //                                           setState(() {
-  //                                             updatedProgram = value;
-  //                                           });
-  //                                         },
-  //                                       ),
-  //                                       const SizedBox(height: 30),
-  //                                       Center(
-  //                                         child: InkWell(
-  //                                           onTap: () {
-  //                                             // إضافة منطق التحديث هنا إذا لزم الأمر
-  //                                           },
-  //                                           child: CustomMainButton(
-  //                                             isSuccess: state
-  //                                                 is DataProgramForUpdateSuccess,
-  //                                             isLoading:
-  //                                                 state is AdminSettingsLoading,
-  //                                             buttonText: S
-  //                                                 .of(context)
-  //                                                 .updateGroupButton,
-  //                                           ),
-  //                                         ),
-  //                                       ),
-  //                                     ],
-  //                                   ),
-  //                                 ),
-  //                               );
-  //                             },
-  //                           );
-  //                         },
-  //                       );
-  //                     },
-  //                   );
-  //                 },
-  //                 icon: const Icon(Icons.abc, color: Colors.amber),
-  //               ),
