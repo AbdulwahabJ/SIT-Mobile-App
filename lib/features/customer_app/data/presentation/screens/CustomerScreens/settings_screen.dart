@@ -126,6 +126,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.message)));
             _clearFields();
+          } else if (state is GroupsUploadedSuccess) {
+            setState(() {
+              dropdownItems = context
+                      .read<AdminSettingsCubit>()
+                      .allGroups
+                      ?.cast<String>() ??
+                  [];
+              context.read<AdminSettingsCubit>().resetState();
+            });
           }
           //admin settings
           else if (state is UpdateGroupNameSuccess) {
@@ -322,7 +331,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               );
                           _loadGroups();
                           _clearFields();
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
                         } else {
                           Navigator.of(context).pop();
 

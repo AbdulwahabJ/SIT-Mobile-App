@@ -37,6 +37,7 @@ class _UserSettingsWidgetState extends State<UserSettingsWidget> {
 
   Future<void> isUserhaveGroup() async {
     String? userGroupName = await isUserHaveGroup();
+    if (!mounted) return;
     setState(() {
       ifUserHaveGroupName = userGroupName;
     });
