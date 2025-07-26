@@ -25,25 +25,41 @@ class HomeScreenBody extends StatefulWidget {
 
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   UserModel? _user;
+  String? user_group;
   bool isAdmin = false;
   String? _selectedGroup;
   List<String>? dropdownItems = [''];
+  String? ifUserHaveGroupName;
+
   @override
   void initState() {
     super.initState();
     _ifUserAdmin();
     _loadUser();
     _loadGroups();
+    // _isUserhaveGroup();
   }
 
   Future<void> _loadUser() async {
+    user_group = await isUserHaveGroup();
+
     _user = await TokenStorage.getUser();
     setState(() {});
   }
 
+  // Future<void> _isUserhaveGroup() async {
+  //   String? userGroupName = await isUserHaveGroup();
+  //   setState(() {
+  //     ifUserHaveGroupName = userGroupName;
+  //   });
+  //   print('User group: $ifUserHaveGroupName');
+  // }
+
   Future<void> _loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
-    await context.read<AdminSettingsCubit>().getProgramsForToday("all groups");
+    await context
+        .read<AdminSettingsCubit>()
+        .getProgramsForToday(isAdmin ? "all groups" : user_group);
   }
 
   Future<void> _ifUserAdmin() async {
