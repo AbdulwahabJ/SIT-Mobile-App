@@ -26,7 +26,7 @@ class _MomentImagesListViewState extends State<MomentImagesListView> {
     _ifUserAdmin();
   }
 
-  _ifUserAdmin() async {
+  Future<void> _ifUserAdmin() async {
     isAdmin = await isUserAdmin();
     setState(() {});
   }

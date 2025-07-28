@@ -331,7 +331,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               );
                           _loadGroups();
                           _clearFields();
-                          // Navigator.of(context).pop();
+                          Navigator.of(context).pop();
                         } else {
                           Navigator.of(context).pop();
 

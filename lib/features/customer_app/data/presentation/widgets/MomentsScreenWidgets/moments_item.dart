@@ -42,8 +42,9 @@ class _MomentsItemState extends State<MomentsItem> {
     _ifUserAdmin();
   }
 
-  _ifUserAdmin() async {
+  Future<void> _ifUserAdmin() async {
     isAdmin = await isUserAdmin();
+
     setState(() {});
   }
 
@@ -70,8 +71,8 @@ class _MomentsItemState extends State<MomentsItem> {
                         context.read<AdminSettingsCubit>().getMoments();
                       } else if (state is AdminSettingsFailure) {
                         //
-                        Navigator.pop(context);
                         _showSnackBar(state.message);
+                        Navigator.pop(context);
                         //
                       }
                     },
