@@ -13,8 +13,8 @@ class NetworkListener extends GetxController {
     _connectivity.onConnectivityChanged.listen(_updateConnectionState);
   }
 
-  void _updateConnectionState(List<ConnectivityResult> results) {
-    if (results.contains(ConnectivityResult.none)) {
+  void _updateConnectionState(ConnectivityResult results) {
+    if (results == ConnectivityResult.none) {
       if (!_isSnackbarVisible) {
         CustomSnackbar.noInternet();
         _isSnackbarVisible = true;

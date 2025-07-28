@@ -57,6 +57,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
 
   Future<void> _loadGroups() async {
     await context.read<AdminSettingsCubit>().getGroup();
+    if (!mounted) return;
+
     await context
         .read<AdminSettingsCubit>()
         .getProgramsForToday(isAdmin ? "all groups" : userGroup);

@@ -31,7 +31,7 @@ dependencies:
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
   carousel_slider: ^5.0.0
-  connectivity_plus: ^6.1.4
+  connectivity_plus: ^5.0.2
   cupertino_icons: ^1.0.8
   device_preview: ^1.2.0
   dio: ^5.7.0
