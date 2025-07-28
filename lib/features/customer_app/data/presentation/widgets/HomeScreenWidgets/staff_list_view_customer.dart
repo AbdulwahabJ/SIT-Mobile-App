@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/customer_app/logic/StaffCubit/staff_cubit.dart';
 
@@ -32,7 +33,7 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
       listener: (context, state) {
         if (state is DeleteStaffSuccessSSS) {
           // context.read<StaffCubit>().resetState;
-          _showSnackBar(state.message);
+          CustomSnackbar.success(state.message);
           context.read<StaffCubit>().getStaff();
         }
       },
@@ -167,11 +168,5 @@ class _StaffListViewCustomerState extends State<StaffListViewCustomer> {
         );
       },
     );
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
   }
 }

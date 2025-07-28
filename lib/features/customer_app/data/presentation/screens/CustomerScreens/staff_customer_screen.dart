@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/helper/validation.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
@@ -76,7 +77,7 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
               BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthStaffSuccess) {
-                    _showSnackBar(state.message);
+                    CustomSnackbar.success(state.message);
                     context.read<StaffCubit>().getStaff();
                   }
                 },
@@ -255,12 +256,6 @@ class _StaffScreenBodyState extends State<_StaffScreenBody> {
           );
       Navigator.of(context).pop();
     }
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _clearFields() {

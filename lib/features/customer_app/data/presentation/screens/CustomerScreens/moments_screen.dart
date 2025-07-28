@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/customer_app/logic/AdminSettingsCubit/admin_settings_cubit.dart';
 import '../../../../../../core/helper/language.dart';
@@ -44,7 +45,7 @@ class _MomentsScreenState extends State<MomentsScreen> {
           } else if (state is DeleteMomentImageSuccesse) {
             context.read<AdminSettingsCubit>().getMoments();
 
-            _showSnackBar(state.message);
+            CustomSnackbar.success(state.message);
           }
         },
         child: Padding(
@@ -90,9 +91,5 @@ class _MomentsScreenState extends State<MomentsScreen> {
     );
   }
 
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
+
 }

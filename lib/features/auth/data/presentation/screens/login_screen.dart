@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
@@ -35,24 +36,16 @@ class LogInScreenState extends State<LogInScreen> {
           if (state is AuthLoading) {
             enabeld = !enabeld;
           } else if (state is AuthSuccess) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-            });
+            CustomSnackbar.success(state.message);
+
             Navigator.pushReplacementNamed(
               context,
               AppRoutes.customerScreen,
             );
           } else if (state is AuthFailure) {
             enabeld = !enabeld;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
-            });
+           CustomSnackbar.error(state.error);
+
           }
         },
         builder: (context, state) {

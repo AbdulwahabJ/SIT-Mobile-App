@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phone_input/phone_input_package.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
@@ -55,20 +56,11 @@ class SignUpScreenState extends State<SignUpScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-            });
+            CustomSnackbar.success(state.message);
+
             Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
           } else if (state is AuthFailure) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
-            });
+            CustomSnackbar.error(state.error);
           }
         },
         builder: (context, state) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/utils/app_screen_utils.dart';
 import 'package:sit_app/features/customer_app/data/presentation/widgets/HomeScreenWidgets/drawer_item.dart';
@@ -63,19 +64,9 @@ class _DrawerItemsState extends State<DrawerItems> {
                   AppRoutes.loginScreen,
                   (route) => false,
                 );
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.message)),
-                  );
-                });
+                CustomSnackbar.success(state.message);
               } else if (state is AuthFailure) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.error)),
-                  );
-                });
+                CustomSnackbar.error(state.error);
               }
             },
             builder: (context, state) {

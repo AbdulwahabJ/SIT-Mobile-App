@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/helper/language.dart';
 import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
@@ -66,12 +67,12 @@ class _MomentsItemState extends State<MomentsItem> {
                 ? BlocListener<AdminSettingsCubit, AdminSettingsState>(
                     listener: (context, state) {
                       if (state is UploadAllMomentsSuccesse) {
-                        _showSnackBar(state.message);
+                        CustomSnackbar.success(state.message);
                         // context.read<AdminSettingsCubit>().resetState();
                         context.read<AdminSettingsCubit>().getMoments();
                       } else if (state is AdminSettingsFailure) {
                         //
-                        _showSnackBar(state.message);
+                        CustomSnackbar.error(state.message);
                         Navigator.pop(context);
                         //
                       }
@@ -123,8 +124,9 @@ class _MomentsItemState extends State<MomentsItem> {
                                       _clearFields();
                                     } else {
                                       Navigator.of(context).pop();
-                                      _showSnackBar(
+                                      CustomSnackbar.error(
                                           S.of(context).formValidation);
+
                                       _clearFields();
                                     }
 
@@ -172,12 +174,6 @@ class _MomentsItemState extends State<MomentsItem> {
         )
       ],
     );
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _clearFields() {

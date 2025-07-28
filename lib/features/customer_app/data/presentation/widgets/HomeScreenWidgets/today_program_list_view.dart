@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:intl/intl.dart';
 import 'package:sit_app/core/constants/app_colors.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/utils/app_images.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
@@ -45,11 +46,7 @@ class _TodayProgramListViewState extends State<TodayProgramListView> {
                   programsList = state.programsList;
                 });
               } else if (state is AdminSettingsFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                      content:
-                          Text('Failed to load programs: ${state.message}')),
-                );
+                CustomSnackbar.error(state.message);
               }
             },
             child: Container(),

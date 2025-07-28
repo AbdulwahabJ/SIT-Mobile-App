@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/helper/user_info.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/text_field_decoration.dart';
@@ -57,9 +58,8 @@ class _UserSettingsWidgetState extends State<UserSettingsWidget> {
           });
         } else if (state is UpdateUserGroupSuccess) {
           //
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message)));
+          CustomSnackbar.success(state.message);
+
           context.read<AdminSettingsCubit>().resetState();
           // Navigator.pop(context);
           //

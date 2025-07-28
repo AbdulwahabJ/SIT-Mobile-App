@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/core/widgets/bottom_nav_bar.dart/customer_screen.dart';
 import 'package:sit_app/core/widgets/bottom_sheet_icon.dart';
@@ -108,24 +109,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
           //admin states
           if (state is AdminSettingsSuccess) {
             //
-
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
+            CustomSnackbar.success(state.message);
             _clearFields();
             _loadGroups();
-
             context.read<AdminSettingsCubit>().resetState();
-
             //
           } else if (state is AdminSettingsFailure) {
             //
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
+            CustomSnackbar.error(state.message);
             _clearFields();
+            //
           } else if (state is GroupsUploadedSuccess) {
             setState(() {
               dropdownItems = context
@@ -138,26 +133,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
           }
           //admin settings
           else if (state is UpdateGroupNameSuccess) {
-            //
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
+            CustomSnackbar.success(state.message);
             _clearFields();
             _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
-            //
           } else if (state is DeleteGroupNameSuccess) {
-            //
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
+            CustomSnackbar.success(state.message);
             _clearFields();
             _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
-
-            //
           } else if (state is DataProgramForUpdateSuccess) {
             //
             setState(() {
@@ -176,9 +162,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             });
           } else if (state is DeleteProgramSuccesse) {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.message)));
+            CustomSnackbar.success(state.message);
             _clearFields();
             _loadGroups();
             context.read<AdminSettingsCubit>().resetState();
@@ -335,8 +319,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         } else {
                           Navigator.of(context).pop();
 
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(S.of(context).formValidation)));
+                          CustomSnackbar.success(S.of(context).formValidation);
                           _clearFields();
                         }
                       },
@@ -562,8 +545,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           context.read<AdminSettingsCubit>().resetState();
                         } else {
                           Navigator.of(context).pop();
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(S.of(context).formValidation)));
+                          CustomSnackbar.error(S.of(context).formValidation);
                           _clearFields();
                         }
                       },

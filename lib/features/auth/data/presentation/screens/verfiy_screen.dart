@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sit_app/core/constants/app_icons.dart';
 import 'package:sit_app/core/constants/app_padding.dart';
 import 'package:sit_app/core/constants/app_text.dart';
+import 'package:sit_app/core/helper/custom_snackbar.dart';
 import 'package:sit_app/core/routes/app_routes.dart';
 import 'package:sit_app/core/utils/app_styles.dart';
 import 'package:sit_app/features/auth/data/presentation/widgets/custom_main_button.dart';
@@ -43,22 +44,14 @@ class _VerfiyScreenState extends State<VerfiyScreen> {
         listener: (context, state) {
           if (state is AuthSuccess) {
             isSuccess = true;
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutes.resetPasswordScreen,
-              );
-            });
+            CustomSnackbar.success(state.message);
+
+            Navigator.pushReplacementNamed(
+              context,
+              AppRoutes.resetPasswordScreen,
+            );
           } else if (state is AuthFailure) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
-            });
+            CustomSnackbar.error(state.error);
           }
         },
         builder: (context, state) {
